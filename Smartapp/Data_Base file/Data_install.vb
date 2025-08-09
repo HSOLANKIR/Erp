@@ -603,6 +603,8 @@ CREATE TABLE 'TBL_VC_item_Details' (
 	'Qty2'	TEXT,
 	'Rate1'	TEXT,
 	'Rate2'	TEXT,
+	'Amount1'	TEXT,
+	'Amount2'	TEXT,
 	PRIMARY KEY('ID' AUTOINCREMENT)
 );
 

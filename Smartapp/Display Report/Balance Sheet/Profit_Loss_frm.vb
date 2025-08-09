@@ -654,31 +654,31 @@ where ld.Visible = 'Approval' and ld.[Group] = '{r("ID")}'
         open_MSSQL_Cstm(Database_File.cre, cn1)
         While r.Read
             Qry = $"Select it.id,it.name,(Select u.Symbol From TBL_Inventory_Unit u where u.ID = it.Unit) as Unit_Name,
-ifnull(ifnull((SELECT ifnull(SUM(vi.Qty) ,0)
+ifnull(ifnull((SELECT ifnull(SUM(vi.Qty1) ,0)
 From TBL_VC_item_Details vi
 LEFT JOIN TBL_VC vc on vc.Tra_ID = vi.Tra_ID
 
 where (vi.Type = 'Credit' and vc.Effect_Stock = 'Yes' and vc.Type = 'Head') and vi.Item = it.Id and vc.Visible = 'Approval' and (vc.[Date] <= '{to_.ToString(Lite_date_Format)}'){Branch_Filter}) -
-(SELECT ifnull(SUM(vi.Qty) ,0)
+(SELECT ifnull(SUM(vi.Qty1) ,0)
 From TBL_VC_item_Details vi
 LEFT JOIN TBL_VC vc on vc.Tra_ID = vi.Tra_ID
 
-where (vi.Type = 'Debit' and vc.Effect_Stock = 'Yes' and vc.Type = 'Head') and vi.Item = it.Id and vc.Visible = 'Approval' and (vc.[Date] <= '{to_.ToString(Lite_date_Format)}'){Branch_Filter}),0) + (Select ifnull(sum(ios.Stock),0) From TBL_Stock_Item_Opning_Stock ios where ios.Item_ID = it.id and ios.Branch_ID = '{Branch_ID}'),0) as Qty ,
+where (vi.Type = 'Debit' and vc.Effect_Stock = 'Yes' and vc.Type = 'Head') and vi.Item = it.Id and vc.Visible = 'Approval' and (vc.[Date] <= '{to_.ToString(Lite_date_Format)}'){Branch_Filter}),0) + (Select ifnull(sum(ios.Stock),0) From TBL_Stock_Item_Opning_Stock ios where ios.Item_ID = it.id and ios.Branch_ID = '{Branch_ID}'),0) as Qty1 ,
 
 ifnull((Case WHEN ('{Dft_Valuation}' = 'At Zero Price' or ('{Dft_Valuation}' = 'Default' and it.Costing_Value_Type = 'At Zero Price')) THEN
 '0'
 else (Case WHEN ('{Dft_Valuation}' = 'Avg. Cost (as per period)' or ('{Dft_Valuation}' = 'Default' and it.Costing_Value_Type = 'Avg. Cost (as per period)')) THEN
-(SELECT ifnull(ifnull(SUM(vi.Amount) ,0) / ifnull(ifnull(SUM(vi.Qty),0),0),0) From TBL_VC_item_Details vi where (vi.Type = 'Credit') and vi.Item = it.Id and (vi.Date BETWEEN '{CDate(frm_).ToString(Lite_date_Format)}' and '{CDate(to_).ToString(Lite_date_Format) }'){Branch_Filter})
+(SELECT ifnull(ifnull(SUM(vi.Amount1) ,0) / ifnull(ifnull(SUM(vi.Qty1),0),0),0) From TBL_VC_item_Details vi where (vi.Type = 'Credit') and vi.Item = it.Id and (vi.Date BETWEEN '{CDate(frm_).ToString(Lite_date_Format)}' and '{CDate(to_).ToString(Lite_date_Format) }'){Branch_Filter})
 
 else (Case WHEN ('{Dft_Valuation}' = 'Avg. Price (as per period)' or ('{Dft_Valuation}' = 'Default' and it.Costing_Value_Type = 'Avg. Price (as per period)')) THEN
-(SELECT ifnull(ifnull(SUM(vi.Amount) ,0) / ifnull(ifnull(SUM(vi.Qty),0),0),0) From TBL_VC_item_Details vi where (vi.Type = 'Debit') and vi.Item = it.Id and (vi.Date BETWEEN '{CDate(frm_).ToString(Lite_date_Format)}' and '{CDate(to_).ToString(Lite_date_Format) }'){Branch_Filter})
+(SELECT ifnull(ifnull(SUM(vi.Amount1) ,0) / ifnull(ifnull(SUM(vi.Qty1),0),0),0) From TBL_VC_item_Details vi where (vi.Type = 'Debit') and vi.Item = it.Id and (vi.Date BETWEEN '{CDate(frm_).ToString(Lite_date_Format)}' and '{CDate(to_).ToString(Lite_date_Format) }'){Branch_Filter})
 
 
 else (Case WHEN ('{Dft_Valuation}' = 'Last Sales Price' or ('{Dft_Valuation}' = 'Default' and it.Costing_Value_Type = 'Last Sales Price')) THEN
-(SELECT ifnull(vi.Rate ,0) From TBL_VC_item_Details vi LEFT JOIN TBL_VC vc on vc.Tra_ID = vi.Tra_ID where vc.Voucher_Type = 'Sales' and vi.Item = it.Id and vc.Visible = 'Approval' and (vc.[Date] <= '{to_.ToString(Lite_date_Format)}'){Branch_Filter} ORDER by vc.[date] DESC LIMIT 1)
+(SELECT ifnull(vi.Rate1 ,0) From TBL_VC_item_Details vi LEFT JOIN TBL_VC vc on vc.Tra_ID = vi.Tra_ID where vc.Voucher_Type = 'Sales' and vi.Item = it.Id and vc.Visible = 'Approval' and (vc.[Date] <= '{to_.ToString(Lite_date_Format)}'){Branch_Filter} ORDER by vc.[date] DESC LIMIT 1)
 
 else (Case WHEN ('{Dft_Valuation}' = 'Last Purchase Cost' or ('{Dft_Valuation}' = 'Default' and it.Costing_Value_Type = 'Last Purchase Cost')) THEN
-(SELECT ifnull(vi.Rate ,0) From TBL_VC_item_Details vi LEFT JOIN TBL_VC vc on vc.Tra_ID = vi.Tra_ID where vc.Voucher_Type = 'Purchase' and vi.Item = it.Id and vc.Visible = 'Approval' and (vc.[Date] <= '{to_.ToString(Lite_date_Format)}'){Branch_Filter} ORDER by vc.[date] DESC LIMIT 1)
+(SELECT ifnull(vi.Rate1 ,0) From TBL_VC_item_Details vi LEFT JOIN TBL_VC vc on vc.Tra_ID = vi.Tra_ID where vc.Voucher_Type = 'Purchase' and vi.Item = it.Id and vc.Visible = 'Approval' and (vc.[Date] <= '{to_.ToString(Lite_date_Format)}'){Branch_Filter} ORDER by vc.[date] DESC LIMIT 1)
 
 else (Case WHEN ('{Dft_Valuation}' = 'Std. Cost' or ('{Dft_Valuation}' = 'Default' and it.Costing_Value_Type = 'Std. Cost')) THEN
 (SELECT ifnull((std.Rate) ,0) From TBL_Item_Rate std where std.Item = it.id and std.Type = 'Cost' and ([Date] <= '{to_.ToString(Lite_date_Format)}') ORDER BY [Date] DESC LIMIT 1)
@@ -712,7 +712,7 @@ From TBL_Stock_Item it WHERE it.Under = '{r("ID")}' and it.Visible = 'Approval'"
 
             Dim vlu As Decimal = 0
             While r1.Read
-                vlu += Val(Val(r1("Qty") * r1("Vlu")))
+                vlu += Val(Val(r1("Qty1") * r1("Vlu")))
             End While
 
             If Opning_ = False Then

@@ -22,8 +22,8 @@ Partial Class Report_Stock_item_frm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.BG_Panel = New System.Windows.Forms.Panel()
         Me.Panel7 = New System.Windows.Forms.Panel()
         Me.B3 = New System.Windows.Forms.Panel()
@@ -80,19 +80,25 @@ Partial Class Report_Stock_item_frm
         Me.TableLayoutPanel17 = New System.Windows.Forms.TableLayoutPanel()
         Me.Label26 = New System.Windows.Forms.Label()
         Me.Label27 = New System.Windows.Forms.Label()
+        Me.Panel32 = New System.Windows.Forms.Panel()
         Me.Label29 = New System.Windows.Forms.Label()
+        Me.Panel33 = New System.Windows.Forms.Panel()
         Me.Panel16 = New System.Windows.Forms.Panel()
         Me.Panel11 = New System.Windows.Forms.Panel()
         Me.TableLayoutPanel16 = New System.Windows.Forms.TableLayoutPanel()
+        Me.Panel34 = New System.Windows.Forms.Panel()
+        Me.Label25 = New System.Windows.Forms.Label()
+        Me.Panel35 = New System.Windows.Forms.Panel()
         Me.Label22 = New System.Windows.Forms.Label()
         Me.Label23 = New System.Windows.Forms.Label()
-        Me.Label25 = New System.Windows.Forms.Label()
         Me.Panel26 = New System.Windows.Forms.Panel()
         Me.Panel10 = New System.Windows.Forms.Panel()
         Me.TableLayoutPanel15 = New System.Windows.Forms.TableLayoutPanel()
+        Me.Panel36 = New System.Windows.Forms.Panel()
+        Me.Label18 = New System.Windows.Forms.Label()
+        Me.Panel37 = New System.Windows.Forms.Panel()
         Me.Label21 = New System.Windows.Forms.Label()
         Me.Label20 = New System.Windows.Forms.Label()
-        Me.Label18 = New System.Windows.Forms.Label()
         Me.Panel27 = New System.Windows.Forms.Panel()
         Me.Panel13 = New System.Windows.Forms.Panel()
         Me.Panel6 = New System.Windows.Forms.Panel()
@@ -116,12 +122,6 @@ Partial Class Report_Stock_item_frm
         Me.Label15 = New System.Windows.Forms.Label()
         Me.Panel24 = New System.Windows.Forms.Panel()
         Me.Panel25 = New System.Windows.Forms.Panel()
-        Me.Panel32 = New System.Windows.Forms.Panel()
-        Me.Panel33 = New System.Windows.Forms.Panel()
-        Me.Panel34 = New System.Windows.Forms.Panel()
-        Me.Panel35 = New System.Windows.Forms.Panel()
-        Me.Panel36 = New System.Windows.Forms.Panel()
-        Me.Panel37 = New System.Windows.Forms.Panel()
         Me.BG_Panel.SuspendLayout()
         Me.Panel7.SuspendLayout()
         CType(Me.Grid1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -142,19 +142,19 @@ Partial Class Report_Stock_item_frm
         Me.Panel9.SuspendLayout()
         Me.Panel12.SuspendLayout()
         Me.TableLayoutPanel17.SuspendLayout()
+        Me.Panel32.SuspendLayout()
         Me.Panel11.SuspendLayout()
         Me.TableLayoutPanel16.SuspendLayout()
+        Me.Panel34.SuspendLayout()
         Me.Panel10.SuspendLayout()
         Me.TableLayoutPanel15.SuspendLayout()
+        Me.Panel36.SuspendLayout()
         Me.Panel6.SuspendLayout()
         Me.Panel8.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.Godown_Panel.SuspendLayout()
         Me.Branch_Panel.SuspendLayout()
         Me.Valuation_Panel.SuspendLayout()
-        Me.Panel32.SuspendLayout()
-        Me.Panel34.SuspendLayout()
-        Me.Panel36.SuspendLayout()
         Me.SuspendLayout()
         '
         'BG_Panel
@@ -217,24 +217,24 @@ Partial Class Report_Stock_item_frm
         Me.Grid1.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Grid1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
         Me.Grid1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle3.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.White
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Grid1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Grid1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.Grid1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.Grid1.ColumnHeadersVisible = False
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle4.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(254, Byte), Integer), CType(CType(197, Byte), Integer), CType(CType(48, Byte), Integer))
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.Grid1.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(254, Byte), Integer), CType(CType(197, Byte), Integer), CType(CType(48, Byte), Integer))
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.Grid1.DefaultCellStyle = DataGridViewCellStyle2
         Me.Grid1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Grid1.EnableHeadersVisualStyles = False
         Me.Grid1.GridColor = System.Drawing.Color.Silver
@@ -870,6 +870,18 @@ Partial Class Report_Stock_item_frm
         Me.Label27.Text = "Value"
         Me.Label27.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
+        'Panel32
+        '
+        Me.TableLayoutPanel17.SetColumnSpan(Me.Panel32, 2)
+        Me.Panel32.Controls.Add(Me.Label29)
+        Me.Panel32.Controls.Add(Me.Panel33)
+        Me.Panel32.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel32.Location = New System.Drawing.Point(0, 0)
+        Me.Panel32.Margin = New System.Windows.Forms.Padding(0)
+        Me.Panel32.Name = "Panel32"
+        Me.Panel32.Size = New System.Drawing.Size(204, 19)
+        Me.Panel32.TabIndex = 7
+        '
         'Label29
         '
         Me.Label29.Dock = System.Windows.Forms.DockStyle.Fill
@@ -883,6 +895,15 @@ Partial Class Report_Stock_item_frm
         Me.Label29.TabIndex = 3
         Me.Label29.Text = "Inward"
         Me.Label29.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Panel33
+        '
+        Me.Panel33.BackColor = System.Drawing.Color.Silver
+        Me.Panel33.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Panel33.Location = New System.Drawing.Point(0, 18)
+        Me.Panel33.Name = "Panel33"
+        Me.Panel33.Size = New System.Drawing.Size(204, 1)
+        Me.Panel33.TabIndex = 20
         '
         'Panel16
         '
@@ -921,31 +942,17 @@ Partial Class Report_Stock_item_frm
         Me.TableLayoutPanel16.Size = New System.Drawing.Size(204, 39)
         Me.TableLayoutPanel16.TabIndex = 0
         '
-        'Label22
+        'Panel34
         '
-        Me.Label22.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label22.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label22.Location = New System.Drawing.Point(103, 20)
-        Me.Label22.Margin = New System.Windows.Forms.Padding(1)
-        Me.Label22.Name = "Label22"
-        Me.Label22.Padding = New System.Windows.Forms.Padding(5, 0, 0, 0)
-        Me.Label22.Size = New System.Drawing.Size(100, 18)
-        Me.Label22.TabIndex = 6
-        Me.Label22.Text = "Quantity"
-        Me.Label22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'Label23
-        '
-        Me.Label23.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label23.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label23.Location = New System.Drawing.Point(1, 20)
-        Me.Label23.Margin = New System.Windows.Forms.Padding(1)
-        Me.Label23.Name = "Label23"
-        Me.Label23.Padding = New System.Windows.Forms.Padding(5, 0, 0, 0)
-        Me.Label23.Size = New System.Drawing.Size(100, 18)
-        Me.Label23.TabIndex = 5
-        Me.Label23.Text = "Value"
-        Me.Label23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.TableLayoutPanel16.SetColumnSpan(Me.Panel34, 2)
+        Me.Panel34.Controls.Add(Me.Label25)
+        Me.Panel34.Controls.Add(Me.Panel35)
+        Me.Panel34.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel34.Location = New System.Drawing.Point(0, 0)
+        Me.Panel34.Margin = New System.Windows.Forms.Padding(0)
+        Me.Panel34.Name = "Panel34"
+        Me.Panel34.Size = New System.Drawing.Size(204, 19)
+        Me.Panel34.TabIndex = 8
         '
         'Label25
         '
@@ -960,6 +967,41 @@ Partial Class Report_Stock_item_frm
         Me.Label25.TabIndex = 3
         Me.Label25.Text = "Outward"
         Me.Label25.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Panel35
+        '
+        Me.Panel35.BackColor = System.Drawing.Color.Silver
+        Me.Panel35.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Panel35.Location = New System.Drawing.Point(0, 18)
+        Me.Panel35.Name = "Panel35"
+        Me.Panel35.Size = New System.Drawing.Size(204, 1)
+        Me.Panel35.TabIndex = 20
+        '
+        'Label22
+        '
+        Me.Label22.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Label22.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label22.Location = New System.Drawing.Point(103, 20)
+        Me.Label22.Margin = New System.Windows.Forms.Padding(1)
+        Me.Label22.Name = "Label22"
+        Me.Label22.Padding = New System.Windows.Forms.Padding(5, 0, 0, 0)
+        Me.Label22.Size = New System.Drawing.Size(100, 18)
+        Me.Label22.TabIndex = 6
+        Me.Label22.Text = "Value"
+        Me.Label22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label23
+        '
+        Me.Label23.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Label23.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label23.Location = New System.Drawing.Point(1, 20)
+        Me.Label23.Margin = New System.Windows.Forms.Padding(1)
+        Me.Label23.Name = "Label23"
+        Me.Label23.Padding = New System.Windows.Forms.Padding(5, 0, 0, 0)
+        Me.Label23.Size = New System.Drawing.Size(100, 18)
+        Me.Label23.TabIndex = 5
+        Me.Label23.Text = "Quantity"
+        Me.Label23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Panel26
         '
@@ -986,8 +1028,8 @@ Partial Class Report_Stock_item_frm
         Me.TableLayoutPanel15.ColumnCount = 2
         Me.TableLayoutPanel15.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
         Me.TableLayoutPanel15.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
-        Me.TableLayoutPanel15.Controls.Add(Me.Panel36, 0, 0)
         Me.TableLayoutPanel15.Controls.Add(Me.Label21, 0, 1)
+        Me.TableLayoutPanel15.Controls.Add(Me.Panel36, 0, 0)
         Me.TableLayoutPanel15.Controls.Add(Me.Label20, 0, 1)
         Me.TableLayoutPanel15.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel15.Location = New System.Drawing.Point(1, 0)
@@ -998,31 +1040,17 @@ Partial Class Report_Stock_item_frm
         Me.TableLayoutPanel15.Size = New System.Drawing.Size(204, 39)
         Me.TableLayoutPanel15.TabIndex = 0
         '
-        'Label21
+        'Panel36
         '
-        Me.Label21.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label21.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label21.Location = New System.Drawing.Point(103, 20)
-        Me.Label21.Margin = New System.Windows.Forms.Padding(1)
-        Me.Label21.Name = "Label21"
-        Me.Label21.Padding = New System.Windows.Forms.Padding(5, 0, 0, 0)
-        Me.Label21.Size = New System.Drawing.Size(100, 18)
-        Me.Label21.TabIndex = 6
-        Me.Label21.Text = "Quantity"
-        Me.Label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'Label20
-        '
-        Me.Label20.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label20.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label20.Location = New System.Drawing.Point(1, 20)
-        Me.Label20.Margin = New System.Windows.Forms.Padding(1)
-        Me.Label20.Name = "Label20"
-        Me.Label20.Padding = New System.Windows.Forms.Padding(5, 0, 0, 0)
-        Me.Label20.Size = New System.Drawing.Size(100, 18)
-        Me.Label20.TabIndex = 5
-        Me.Label20.Text = "Value"
-        Me.Label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.TableLayoutPanel15.SetColumnSpan(Me.Panel36, 2)
+        Me.Panel36.Controls.Add(Me.Label18)
+        Me.Panel36.Controls.Add(Me.Panel37)
+        Me.Panel36.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel36.Location = New System.Drawing.Point(0, 0)
+        Me.Panel36.Margin = New System.Windows.Forms.Padding(0)
+        Me.Panel36.Name = "Panel36"
+        Me.Panel36.Size = New System.Drawing.Size(204, 19)
+        Me.Panel36.TabIndex = 8
         '
         'Label18
         '
@@ -1036,6 +1064,41 @@ Partial Class Report_Stock_item_frm
         Me.Label18.TabIndex = 3
         Me.Label18.Text = "Closing"
         Me.Label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Panel37
+        '
+        Me.Panel37.BackColor = System.Drawing.Color.Silver
+        Me.Panel37.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Panel37.Location = New System.Drawing.Point(0, 18)
+        Me.Panel37.Name = "Panel37"
+        Me.Panel37.Size = New System.Drawing.Size(204, 1)
+        Me.Panel37.TabIndex = 20
+        '
+        'Label21
+        '
+        Me.Label21.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Label21.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label21.Location = New System.Drawing.Point(103, 20)
+        Me.Label21.Margin = New System.Windows.Forms.Padding(1)
+        Me.Label21.Name = "Label21"
+        Me.Label21.Padding = New System.Windows.Forms.Padding(5, 0, 0, 0)
+        Me.Label21.Size = New System.Drawing.Size(100, 18)
+        Me.Label21.TabIndex = 6
+        Me.Label21.Text = "Value"
+        Me.Label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label20
+        '
+        Me.Label20.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Label20.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label20.Location = New System.Drawing.Point(1, 20)
+        Me.Label20.Margin = New System.Windows.Forms.Padding(1)
+        Me.Label20.Name = "Label20"
+        Me.Label20.Padding = New System.Windows.Forms.Padding(5, 0, 0, 0)
+        Me.Label20.Size = New System.Drawing.Size(100, 18)
+        Me.Label20.TabIndex = 5
+        Me.Label20.Text = "Quantity"
+        Me.Label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Panel27
         '
@@ -1298,69 +1361,6 @@ Partial Class Report_Stock_item_frm
         Me.Panel25.Size = New System.Drawing.Size(1364, 1)
         Me.Panel25.TabIndex = 7
         '
-        'Panel32
-        '
-        Me.TableLayoutPanel17.SetColumnSpan(Me.Panel32, 2)
-        Me.Panel32.Controls.Add(Me.Label29)
-        Me.Panel32.Controls.Add(Me.Panel33)
-        Me.Panel32.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel32.Location = New System.Drawing.Point(0, 0)
-        Me.Panel32.Margin = New System.Windows.Forms.Padding(0)
-        Me.Panel32.Name = "Panel32"
-        Me.Panel32.Size = New System.Drawing.Size(204, 19)
-        Me.Panel32.TabIndex = 7
-        '
-        'Panel33
-        '
-        Me.Panel33.BackColor = System.Drawing.Color.Silver
-        Me.Panel33.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel33.Location = New System.Drawing.Point(0, 18)
-        Me.Panel33.Name = "Panel33"
-        Me.Panel33.Size = New System.Drawing.Size(204, 1)
-        Me.Panel33.TabIndex = 20
-        '
-        'Panel34
-        '
-        Me.TableLayoutPanel16.SetColumnSpan(Me.Panel34, 2)
-        Me.Panel34.Controls.Add(Me.Label25)
-        Me.Panel34.Controls.Add(Me.Panel35)
-        Me.Panel34.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel34.Location = New System.Drawing.Point(0, 0)
-        Me.Panel34.Margin = New System.Windows.Forms.Padding(0)
-        Me.Panel34.Name = "Panel34"
-        Me.Panel34.Size = New System.Drawing.Size(204, 19)
-        Me.Panel34.TabIndex = 8
-        '
-        'Panel35
-        '
-        Me.Panel35.BackColor = System.Drawing.Color.Silver
-        Me.Panel35.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel35.Location = New System.Drawing.Point(0, 18)
-        Me.Panel35.Name = "Panel35"
-        Me.Panel35.Size = New System.Drawing.Size(204, 1)
-        Me.Panel35.TabIndex = 20
-        '
-        'Panel36
-        '
-        Me.TableLayoutPanel15.SetColumnSpan(Me.Panel36, 2)
-        Me.Panel36.Controls.Add(Me.Label18)
-        Me.Panel36.Controls.Add(Me.Panel37)
-        Me.Panel36.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel36.Location = New System.Drawing.Point(0, 0)
-        Me.Panel36.Margin = New System.Windows.Forms.Padding(0)
-        Me.Panel36.Name = "Panel36"
-        Me.Panel36.Size = New System.Drawing.Size(204, 19)
-        Me.Panel36.TabIndex = 8
-        '
-        'Panel37
-        '
-        Me.Panel37.BackColor = System.Drawing.Color.Silver
-        Me.Panel37.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel37.Location = New System.Drawing.Point(0, 18)
-        Me.Panel37.Name = "Panel37"
-        Me.Panel37.Size = New System.Drawing.Size(204, 1)
-        Me.Panel37.TabIndex = 20
-        '
         'Report_Stock_item_frm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -1393,19 +1393,19 @@ Partial Class Report_Stock_item_frm
         Me.Panel9.ResumeLayout(False)
         Me.Panel12.ResumeLayout(False)
         Me.TableLayoutPanel17.ResumeLayout(False)
+        Me.Panel32.ResumeLayout(False)
         Me.Panel11.ResumeLayout(False)
         Me.TableLayoutPanel16.ResumeLayout(False)
+        Me.Panel34.ResumeLayout(False)
         Me.Panel10.ResumeLayout(False)
         Me.TableLayoutPanel15.ResumeLayout(False)
+        Me.Panel36.ResumeLayout(False)
         Me.Panel6.ResumeLayout(False)
         Me.Panel8.ResumeLayout(False)
         Me.Panel1.ResumeLayout(False)
         Me.Godown_Panel.ResumeLayout(False)
         Me.Branch_Panel.ResumeLayout(False)
         Me.Valuation_Panel.ResumeLayout(False)
-        Me.Panel32.ResumeLayout(False)
-        Me.Panel34.ResumeLayout(False)
-        Me.Panel36.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub

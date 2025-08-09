@@ -473,8 +473,6 @@ LEFT JOIN TBL_VC vc on vc.Tra_ID = vi.Tra_ID
                 find_stock_lab(Find_Idx(sender), False).Text = Val(it_list.List_Grid.CurrentRow.Cells("Stock_vlu").Value.ToString)
 
 
-
-
                 Find_Unit1_Label(Find_Idx(sender), False).Text = it_list.List_Grid.CurrentRow.Cells("Unit_id").Value.ToString
                 find_decimal_lab(Find_Idx(sender), False).Text = Val(it_list.List_Grid.CurrentRow.Cells("Unit_decimal").Value.ToString)
 

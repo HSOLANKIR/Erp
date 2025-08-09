@@ -2162,7 +2162,7 @@ from TBL_Ledger LD where {Branch_Enable_Ledger("LD.id", Branch_ID)} {Head_Filter
                     IGSTID_ = ""
                 End If
                 dt_Head.Rows.Add(HeadID_, Val(nUmBeR_FORMATE(vlu)))
-                cmd = New SQLiteCommand("INSERT INTO TBL_VC_item_Details (Tra_ID,Date,Item,HSN_Code,Qty,Unit_Type,Rate,Discount_P,Discount_A,GST_per,GST_Type,Cess_ID,Cess_per,Cess_Amt,CGST,SGST,IGST,Amount,Type,Description,CGST_ID,SGST_ID,IGST_ID,Ledger_ID,Unit1,Unit2,Qty1,Qty2,Unit,Rate1,Rate2) VALUES (@Tra_ID,@Date_,@Item,@HSN_Code,@Qty,@Unit_Type,@Rate,@Discount_P,@Discount_A,@GST_per,@GST_Type,@Cess_ID,@Cess_per,@Cess_Amt,@CGST,@SGST,@IGST,@Amount,@Type,@Description,@CGST_ID,@SGST_ID,@IGST_ID,@Ledger_ID,@Unit1,@Unit2,@Qty1,@Qty2,@Unit,@Rate1,@Rate2)", cn)
+                cmd = New SQLiteCommand("INSERT INTO TBL_VC_item_Details (Tra_ID,Date,Item,HSN_Code,Qty,Unit_Type,Rate,Discount_P,Discount_A,GST_per,GST_Type,Cess_ID,Cess_per,Cess_Amt,CGST,SGST,IGST,Amount,Type,Description,CGST_ID,SGST_ID,IGST_ID,Ledger_ID,Unit1,Unit2,Qty1,Qty2,Unit,Rate1,Rate2,Amount1,Amount2) VALUES (@Tra_ID,@Date_,@Item,@HSN_Code,@Qty,@Unit_Type,@Rate,@Discount_P,@Discount_A,@GST_per,@GST_Type,@Cess_ID,@Cess_per,@Cess_Amt,@CGST,@SGST,@IGST,@Amount,@Type,@Description,@CGST_ID,@SGST_ID,@IGST_ID,@Ledger_ID,@Unit1,@Unit2,@Qty1,@Qty2,@Unit,@Rate1,@Rate2,@Amount1,@Amount2)", cn)
                 With cmd.Parameters
                     .AddWithValue("@Tra_ID", Tra_ID)
                     .AddWithValue("@Date_", CDate(Date_TXT.Text))
@@ -2193,6 +2193,11 @@ from TBL_Ledger LD where {Branch_Enable_Ledger("LD.id", Branch_ID)} {Head_Filter
 
                     .AddWithValue("@Rate1", c.Rate1)
                     .AddWithValue("@Rate2", c.Rate2)
+
+                    .AddWithValue("@Amount1", c.Qty1 * c.Rate1)
+                    .AddWithValue("@Amount2", c.Qty2 * c.Rate2)
+
+
 
                     If TAX_Type = "CS" Then
                         .AddWithValue("@CGST", nUmBeR_FORMATE(tax_vlu) / 2)
@@ -2242,7 +2247,7 @@ from TBL_Ledger LD where {Branch_Enable_Ledger("LD.id", Branch_ID)} {Head_Filter
 
                 Dim Unit_ As String = "Frist"
 
-                cmd = New SQLiteCommand("INSERT INTO TBL_VC_item_Details (Tra_ID,Date,Item,HSN_Code,Qty,Unit_Type,Rate,Discount_P,Discount_A,GST_per,GST_Type,Cess_ID,Cess_per,Cess_Amt,CGST,SGST,IGST,Amount,Type,Description,CGST_ID,SGST_ID,IGST_ID,Ledger_ID,Unit1,Unit2,Qty1,Qty2,Unit,Rate1,Rate2) VALUES (@Tra_ID,@Date_,@Item,@HSN_Code,@Qty,@Unit_Type,@Rate,@Discount_P,@Discount_A,@GST_per,@GST_Type,@Cess_ID,@Cess_per,@Cess_Amt,@CGST,@SGST,@IGST,@Amount,@Type,@Description,@CGST_ID,@SGST_ID,@IGST_ID,@Ledger_ID,@Unit1,@Unit2,@Qty1,@Qty2,@Unit,@Rate1,@Rate2)", cn)
+                cmd = New SQLiteCommand("INSERT INTO TBL_VC_item_Details (Tra_ID,Date,Item,HSN_Code,Qty,Unit_Type,Rate,Discount_P,Discount_A,GST_per,GST_Type,Cess_ID,Cess_per,Cess_Amt,CGST,SGST,IGST,Amount,Type,Description,CGST_ID,SGST_ID,IGST_ID,Ledger_ID,Unit1,Unit2,Qty1,Qty2,Unit,Rate1,Rate2,Amount1,Amount2) VALUES (@Tra_ID,@Date_,@Item,@HSN_Code,@Qty,@Unit_Type,@Rate,@Discount_P,@Discount_A,@GST_per,@GST_Type,@Cess_ID,@Cess_per,@Cess_Amt,@CGST,@SGST,@IGST,@Amount,@Type,@Description,@CGST_ID,@SGST_ID,@IGST_ID,@Ledger_ID,@Unit1,@Unit2,@Qty1,@Qty2,@Unit,@Rate1,@Rate2,@Amount1,@Amount2)", cn)
                 With cmd.Parameters
                     .AddWithValue("@Tra_ID", Tra_ID)
                     .AddWithValue("@Date_", CDate(Date_TXT.Text))
@@ -2262,6 +2267,9 @@ from TBL_Ledger LD where {Branch_Enable_Ledger("LD.id", Branch_ID)} {Head_Filter
 
                     .AddWithValue("@Rate1", "")
                     .AddWithValue("@Rate2", "")
+
+                    .AddWithValue("@Amount1", "")
+                    .AddWithValue("@Amount2", "")
 
 
                     .AddWithValue("@Discount_P", nUmBeR_FORMATE("0.00"))
@@ -2308,7 +2316,7 @@ from TBL_Ledger LD where {Branch_Enable_Ledger("LD.id", Branch_ID)} {Head_Filter
 
                 Dim Unit_ As String = "Frist"
 
-                cmd = New SQLiteCommand("INSERT INTO TBL_VC_item_Details (Tra_ID,Date,Item,HSN_Code,Qty,Unit_Type,Rate,Discount_P,Discount_A,GST_per,GST_Type,Cess_ID,Cess_per,Cess_Amt,CGST,SGST,IGST,Amount,Type,Description,CGST_ID,SGST_ID,IGST_ID,Ledger_ID,Unit1,Unit2,Qty1,Qty2,Unit,Rate1,Rate2) VALUES (@Tra_ID,@Date_,@Item,@HSN_Code,@Qty,@Unit_Type,@Rate,@Discount_P,@Discount_A,@GST_per,@GST_Type,@Cess_ID,@Cess_per,@Cess_Amt,@CGST,@SGST,@IGST,@Amount,@Type,@Description,@CGST_ID,@SGST_ID,@IGST_ID,@Ledger_ID,@Unit1,@Unit2,@Qty1,@Qty2,@Unit,@Rate1,@Rate2)", cn)
+                cmd = New SQLiteCommand("INSERT INTO TBL_VC_item_Details (Tra_ID,Date,Item,HSN_Code,Qty,Unit_Type,Rate,Discount_P,Discount_A,GST_per,GST_Type,Cess_ID,Cess_per,Cess_Amt,CGST,SGST,IGST,Amount,Type,Description,CGST_ID,SGST_ID,IGST_ID,Ledger_ID,Unit1,Unit2,Qty1,Qty2,Unit,Rate1,Rate2,Amount1,Amount2) VALUES (@Tra_ID,@Date_,@Item,@HSN_Code,@Qty,@Unit_Type,@Rate,@Discount_P,@Discount_A,@GST_per,@GST_Type,@Cess_ID,@Cess_per,@Cess_Amt,@CGST,@SGST,@IGST,@Amount,@Type,@Description,@CGST_ID,@SGST_ID,@IGST_ID,@Ledger_ID,@Unit1,@Unit2,@Qty1,@Qty2,@Unit,@Rate1,@Rate2,@Amount1,@Amount2)", cn)
                 With cmd.Parameters
                     .AddWithValue("@Tra_ID", Tra_ID)
                     .AddWithValue("@Date_", CDate(Date_TXT.Text))
@@ -2333,6 +2341,9 @@ from TBL_Ledger LD where {Branch_Enable_Ledger("LD.id", Branch_ID)} {Head_Filter
 
                     .AddWithValue("@Rate1", "")
                     .AddWithValue("@Rate2", "")
+
+                    .AddWithValue("@Amount1", "")
+                    .AddWithValue("@Amount2", "")
 
 
                     .AddWithValue("@Type", "Debit")
@@ -3108,18 +3119,21 @@ WHERE vi.Tra_ID = '{Tra_ID_}' and (Select vc.Visible From TBL_VC vc where vc.Tra
         cstm_control_mng(Sp_controls1)
         'End If
     End Function
-    Private Function sj_Fill_All_Data(cn As SQLiteConnection, TBL_ As String, Tra_ID_ As String)
+    Private Function sj_Fill_All_Data(cn As SQLiteConnection, Tra_ID_ As String)
         Stock_journal_controls1.Source_P.Controls.Clear()
         Stock_journal_controls1.Production_P.Controls.Clear()
 
         ProgressBar1.Value = 0
         Dim q As String = $"Select *,(Select it.name From TBL_Stock_Item it where it.id = item) as item_name,
 (Select it.Tax_Type From TBL_Stock_Item it where it.id = item) as TAX_ID,
-(Select un.Symbol From TBL_Inventory_Unit un where un.id = (Select it.Unit From TBL_Stock_Item it where it.id = item)) as Unit_Name,
+(Select un.Symbol From TBL_Inventory_Unit un where un.id = vi.Unit) as Unit_Name,
+(Select un.Decimal From TBL_Inventory_Unit un where un.id = vi.Unit) as Unit_Decimal,
+(Select it.Alter_Unit_Val1 From TBL_Stock_Item it where it.id = item) as Unit1_vlu,
+(Select it.Alter_Unit_Val2 From TBL_Stock_Item it where it.id = item) as Unit2_vlu,
 (Select it.Batch_YN From TBL_Stock_Item it where it.id = item) as Batch_YN,
 (Select it.Mfg_YN From TBL_Stock_Item it where it.id = item) as Mfg_YN,
 (Select it.Exp_YN From TBL_Stock_Item it where it.id = item) as Exp_YN
-    From {TBL_} where Tra_ID = '{Tra_ID_}'"
+    From TBL_VC_item_Details vi where Tra_ID = '{Tra_ID_}'"
 
         cmd = New SQLiteCommand($"Select count(*) as count From ({q})", cn)
         Dim rC As SQLiteDataReader
@@ -3148,21 +3162,19 @@ WHERE vi.Tra_ID = '{Tra_ID_}' and (Select vc.Visible From TBL_VC vc where vc.Tra
 
                         .Find_AccID_Label(idx, True).Text = r("item")
                         .Find_qty_TXT(idx, True).Text = r("Qty").ToString
-                        .Find_unit_lab(idx, True).Text = r("Unit_Name").ToString
 
-                        '.find_stock_lab(idx, True).Text = Val(Item_Stock(.Find_AccID_Label(idx, True).Text, Date_TXT.Text, Tra_ID_))
+                        .Find_unit_lab(idx, True).Text = r("Unit_Name").ToString
+                        .find_decimal_lab(idx, True).Text = r("Unit_Decimal").ToString
+
+                        .Find_Unit1_Label(idx, True).Text = r("Unit1").ToString
+                        .Find_Unit2_Label(idx, True).Text = r("Unit2").ToString
+
+                        .Find_Unit1_Value(idx, True).Text = r("Unit1_vlu").ToString
+                        .Find_Unit2_Value(idx, True).Text = r("Unit2_vlu").ToString
+
 
                         .Find_Other_data(idx, True).Text = Fill_vc_Item_Other_Data(cn, r("ID"))
-                        If Batches_YN = True Then
-                            .Find_Batch_YN_Label(idx, True).Text = r("Batch_YN").ToString
-                            .Find_mfg_YN_Label(idx, True).Text = r("Mfg_YN").ToString
-                            .Find_exp_YN_Label(idx, True).Text = r("Exp_YN").ToString
-                        Else
-                            .Find_Batch_YN_Label(idx, True).Text = "No"
-                            .Find_mfg_YN_Label(idx, True).Text = "No"
-                            .Find_exp_YN_Label(idx, True).Text = "No"
-                        End If
-
+                        .Unit_Details_Fill(idx, True)
                         .fill_balance_S(.Find_Particuls_TXT(idx, True))
                     End With
                 ElseIf r("Type") = "Credit" Then
@@ -3175,19 +3187,17 @@ WHERE vi.Tra_ID = '{Tra_ID_}' and (Select vc.Visible From TBL_VC vc where vc.Tra
                         .Find_qty_TXT(idx, False).Text = r("Qty").ToString
 
                         .Find_unit_lab(idx, False).Text = r("Unit_Name").ToString
+                        .find_decimal_lab(idx, False).Text = r("Unit_Decimal").ToString
 
-                        '.find_stock_lab(idx, False).Text = Val(Item_Stock(.Find_AccID_Label(idx, False).Text, Date_TXT.Text, Tra_ID_))
+                        .Find_Unit1_Label(idx, False).Text = r("Unit1").ToString
+                        .Find_Unit2_Label(idx, False).Text = r("Unit2").ToString
+
+                        .Find_Unit1_Value(idx, False).Text = r("Unit1_vlu").ToString
+                        .Find_Unit2_Value(idx, False).Text = r("Unit2_vlu").ToString
 
                         .Find_Other_data(idx, False).Text = Fill_vc_Item_Other_Data(cn, r("ID"))
-                        If Batches_YN = True Then
-                            .Find_Batch_YN_Label(idx, False).Text = r("Batch_YN").ToString
-                            .Find_mfg_YN_Label(idx, False).Text = r("Mfg_YN").ToString
-                            .Find_exp_YN_Label(idx, False).Text = r("Exp_YN").ToString
-                        Else
-                            .Find_Batch_YN_Label(idx, False).Text = "No"
-                            .Find_mfg_YN_Label(idx, False).Text = "No"
-                            .Find_exp_YN_Label(idx, False).Text = "No"
-                        End If
+
+                        .Unit_Details_Fill(idx, False)
                         .fill_balance_P(.Find_Particuls_TXT(idx, False))
                     End With
                 End If
@@ -3716,9 +3726,8 @@ From TBL_VC vcM where Tra_ID = '{ID}'", conn)
                 If Voucher_all_inventory() = True Then
                     Sp_controls1.roundup_val_Lab.Text = Round_UP_Vlu
                     Sp_Fill_All_Data(cn, Tra_ID, False)
-
                 ElseIf Voucher_Type_LB.Text = "Stock Journal" Then
-                    sj_Fill_All_Data(cn, "TBL_VC_item_Details", Tra_ID)
+                    sj_Fill_All_Data(cn, Tra_ID)
                 End If
             End If
             If VC_Type_ = "Duplicate" Then

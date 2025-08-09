@@ -60,6 +60,13 @@ Public Class BG_Head_frm
         ElseIf e.KeyCode = Keys.F1 Then
             Label6_Click(e, e)
         End If
+
+        If e.KeyCode = Keys.D1 AndAlso e.Modifiers = Keys.Alt Then
+            Label3_Click(e, e)
+        ElseIf e.KeyCode = Keys.D1 AndAlso e.Modifiers = Keys.Control Then
+
+        ElseIf e.KeyCode = Keys.D1 Then
+        End If
         If e.KeyCode = Keys.K AndAlso e.Modifiers = Keys.Alt Then
             Label4_Click(e, e)
         End If
@@ -96,6 +103,7 @@ Public Class BG_Head_frm
         Data_Manu.Hide()
         System_Manu.Hide()
         Help_Manu.Hide()
+        Package_Menu.Hide()
 
         Pan.Show()
     End Function
@@ -176,6 +184,11 @@ Public Class BG_Head_frm
             nm = .Add_Item("AnyDesk", True, 17)
             AddHandler .Find_Particuls(nm(0), nm(1)).Click, AddressOf AnyDesk_Help
             AddHandler .Find_txt(nm(0), nm(1)).KeyDown, AddressOf AnyDesk_Help_Keydown
+        End With
+
+        With Package_Menu
+            .Add_Group("Installed Package")
+            Pckage_()
         End With
 
     End Function
@@ -506,5 +519,65 @@ Public Class BG_Head_frm
 
     Private Sub Help_Manu_Load(sender As Object, e As EventArgs) Handles Help_Manu.Load
 
+    End Sub
+
+    Private Sub Label3_Click(sender As Object, e As EventArgs) Handles Label3.Click
+        If Label3.Enabled = True Then
+            Top_Panel_Manag(Package_Menu)
+            Dim ctlpos As Point = Label3.PointToScreen(New Point(0, 0))
+            Package_Menu.Location = New Point(ctlpos.X, ctlpos.Y + Label3.Height + 5)
+            Package_Menu.Focus()
+        End If
+    End Sub
+    Private Function Pckage_()
+        Dim Succ As Boolean = False
+        Using key As RegistryKey = Registry.ClassesRoot.OpenSubKey("Cryptonix\Install.Path")
+            Dim subKeyNames() As String = key.GetSubKeyNames()
+            Dim valueNames() As String = key.GetValueNames()
+            For Each valueName As String In valueNames
+                Dim value As Object = key.GetValue(valueName)
+                If File.Exists(valueName) Then
+                    If value <> "001" Then
+                        Dim Cur_v As String = FileVersionInfo.GetVersionInfo(valueName).FileVersion.ToString
+                        Dim Name_ As String = Find_Software_Details(value.ToString, "Name")
+                        Dim L_Version As String = Find_Software_Details(value.ToString, "System_Version")
+
+                        With Package_Menu
+                            Try
+                                Dim nm As String() = .Add_Item(Name_, True, 17)
+                                .Find_Particuls(nm(0), nm(1)).Tag = valueName
+                                AddHandler .Find_Particuls(nm(0), nm(1)).Click, AddressOf Package_Run
+                                AddHandler .Find_txt(nm(0), nm(1)).KeyDown, AddressOf Package_Run_Keydown
+                            Catch ex As Exception
+
+                            End Try
+                        End With
+                    End If
+                Else
+                    Dim regKey As RegistryKey = Registry.ClassesRoot.CreateSubKey("Cryptonix\Install.Path")
+                    regKey.DeleteValue(valueName)
+                End If
+            Next
+        End Using
+    End Function
+    Private Sub Package_Run(sender As Object, e As EventArgs)
+        Process.Start(sender.Tag)
+
+
+        Top_Panel_Manag(Panel3)
+        Company_Creation_frm.Class_Select.Focus()
+    End Sub
+    Private Sub Package_Run_Keydown(sender As Object, e As KeyEventArgs)
+        If e.KeyCode = Keys.Enter Then
+            Process.Start(Package_Menu.Find_Particuls(Package_Menu.Find_Idx(sender), Package_Menu.Find_Idx2(sender)).Tag)
+
+            Top_Panel_Manag(Panel3)
+            Company_Creation_frm.Class_Select.Focus()
+        End If
+
+        If e.KeyCode = Keys.Escape Then
+            Top_Panel_Manag(Panel3)
+            Frm_foCus()
+        End If
     End Sub
 End Class

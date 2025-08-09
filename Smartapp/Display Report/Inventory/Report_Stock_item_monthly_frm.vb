@@ -235,28 +235,20 @@ Public Class Report_Stock_item_monthly_frm
         Dim out_a As Decimal = 0.00
 
 
-        Dim Godown_Filter As String = ""
-        Dim Godown_LeftJoin As String = "LEFT JOIN TBL_VC_Item_Other_Details vio on vio.TBL_VI = vi.ID"
-
-        If Godown_YN = True Then
-            If dft_Godown_Name <> "All Godown" Then
-                Godown_Filter = "AND vio.Godown = '" & Find_DT_Value(Database_File.cre, "TBL_Stock_Godown", "ID", "Name = '" & dft_Godown_Name & "'") & "'"
-            End If
-        End If
 
         Dim cn As New SQLiteConnection
         If open_MSSQL_Cstm(Database_File.cre, cn) = True Then
-            cmd = New SQLiteCommand($"Select vi.Type,vi.Qty,vi.Amount From TBL_VC_item_Details VI LEFT JOIN TBL_VC vc on vc.Tra_ID = vi.Tra_ID where VI.Item = '{VC_ID_}' and vc.Visible = 'Approval' and vc.Type = 'Head' and vc.Date <= '{CDate(Frm_date).AddDays(0).ToString(Lite_date_Format)}'", cn)
+            cmd = New SQLiteCommand($"Select vi.Type,vi.Qty1,vi.Amount1 From TBL_VC_item_Details VI where VI.Item = '{VC_ID_}' and vi.Date <= '{CDate(Frm_date).AddDays(0).ToString(Lite_date_Format)}'", cn)
             Dim r As SQLiteDataReader
             r = cmd.ExecuteReader
             'My.Computer.Clipboard.SetText(cmd.CommandText)
             While r.Read
                 If r("Type").ToString = "Credit" Then
-                    in_q += Val(r("Qty").ToString)
-                    in_a += Val(r("Amount").ToString)
+                    in_q += Val(r("Qty1").ToString)
+                    in_a += Val(r("Amount1").ToString)
                 ElseIf r("Type").ToString = "Debit" Then
-                    out_q += Val(r("Qty").ToString)
-                    out_a += Val(r("Amount").ToString)
+                    out_q += Val(r("Qty1").ToString)
+                    out_a += Val(r("Amount1").ToString)
                 End If
             End While
             r.Close()
@@ -278,7 +270,7 @@ Public Class Report_Stock_item_monthly_frm
                 End Try
             ElseIf Dft_Valuation = "Last Purchase Cost" Then
                 If open_MSSQL_Cstm(Database_File.cre, cn) = True Then
-                    cmd = New SQLiteCommand($"SELECT ifnull(vi.Rate ,0) as Rate_ From TBL_VC_item_Details vi LEFT JOIN TBL_VC vc on vc.Tra_ID = vi.Tra_ID {Godown_LeftJoin} where vc.Voucher_Type = 'Purchase' and vi.Item = '{VC_ID_}' and vc.Visible = 'Approval' and vc.Date <= '{CDate(Frm_date).AddDays(0).ToString(Lite_date_Format)}' {Godown_Filter} ORDER by vc.[date] DESC LIMIT 1", cn)
+                    cmd = New SQLiteCommand($"SELECT ifnull(vi.Rate1 ,0) as Rate_ From TBL_VC_item_Details vi LEFT JOIN TBL_VC vc on vc.Tra_ID = vi.Tra_ID where vc.Voucher_Type = 'Purchase' and vi.Item = '{VC_ID_}' and vc.Visible = 'Approval' and vc.Date <= '{CDate(Frm_date).AddDays(0).ToString(Lite_date_Format)}' ORDER by vc.[date] DESC LIMIT 1", cn)
                     Dim r1 As SQLiteDataReader
                     r1 = cmd.ExecuteReader
                     While r1.Read
@@ -287,7 +279,7 @@ Public Class Report_Stock_item_monthly_frm
                 End If
             ElseIf Dft_Valuation = "Last Sales Price" Then
                 If open_MSSQL_Cstm(Database_File.cre, cn) = True Then
-                    cmd = New SQLiteCommand($"SELECT ifnull(vi.Rate ,0) as Rate_ From TBL_VC_item_Details vi LEFT JOIN TBL_VC vc on vc.Tra_ID = vi.Tra_ID {Godown_LeftJoin} where vc.Voucher_Type = 'Sales' and vi.Item = '{VC_ID_}' and vc.Visible = 'Approval' and vc.Date <= '{CDate(Frm_date).AddDays(0).ToString(Lite_date_Format)}' {Godown_Filter} ORDER by vc.[date] DESC LIMIT 1", cn)
+                    cmd = New SQLiteCommand($"SELECT ifnull(vi.Rate1 ,0) as Rate_ From TBL_VC_item_Details vi LEFT JOIN TBL_VC vc on vc.Tra_ID = vi.Tra_ID where vc.Voucher_Type = 'Sales' and vi.Item = '{VC_ID_}' and vc.Visible = 'Approval' and vc.Date <= '{CDate(Frm_date).AddDays(0).ToString(Lite_date_Format)}' ORDER by vc.[date] DESC LIMIT 1", cn)
                     Dim r1 As SQLiteDataReader
                     r1 = cmd.ExecuteReader
                     While r1.Read
@@ -416,28 +408,28 @@ Public Class Report_Stock_item_monthly_frm
         If open_MSSQL(Database_File.cre) = True Then
             Dim Date_Filter As String = $"(vc.Date >= '{Frm_date.ToString(Lite_date_Format)}' and vc.Date <= '{to_date.AddDays(1).ToString(Lite_date_Format)}')"
 
-            cmd = New SQLiteCommand($"Select [Date],SUM(Inward_qty) as Inward_qty,SUM(Outward_qty) as Outward_qty,SUM(Inward_vlu) as Inward_vlu,SUM(Outward_vlu) as Outward_vlu,Rate as Rate From (Select vc.[Date],
-(SELECT SUM(ifnull((vi.Qty) ,0))
+            cmd = New SQLiteCommand($"Select [Date],SUM(Inward_qty) as Inward_qty,SUM(Outward_qty) as Outward_qty,SUM(Inward_vlu) as Inward_vlu,SUM(Outward_vlu) as Outward_vlu,Rate1 as Rate From (Select vc.[Date],
+(SELECT SUM(ifnull((vi.Qty1) ,0))
 From TBL_VC_item_Details vi
 {Godown_LeftJoin}
 where (vi.Type = 'Credit' and vi.Tra_ID = vc.Tra_ID) and vi.Item = '{VC_ID_}' {Godown_Filter}{Branch_Filter}) as Inward_qty,
 
-(SELECT SUM(ifnull((vi.Qty) ,0))
+(SELECT SUM(ifnull((vi.Qty1) ,0))
 From TBL_VC_item_Details vi
 {Godown_LeftJoin}
 where (vi.Type = 'Debit' and vi.Tra_ID = vc.Tra_ID) and vi.Item = '{VC_ID_}' {Godown_Filter}{Branch_Filter}) as Outward_qty,
 
-(SELECT ifnull((vi.Amount) ,0)
+(SELECT ifnull((vi.Amount1) ,0)
 From TBL_VC_item_Details vi
 {Godown_LeftJoin}
 where (vi.Type = 'Credit' and vi.Tra_ID = vc.Tra_ID) and vi.Item = '{VC_ID_}' {Godown_Filter}{Branch_Filter}) as Inward_vlu,
 
-(SELECT ifnull((vi.Amount) ,0)
+(SELECT ifnull((vi.Amount1) ,0)
 From TBL_VC_item_Details vi
 {Godown_LeftJoin}
 where (vi.Type = 'Debit' and vi.Tra_ID = vc.Tra_ID) and vi.Item = '{VC_ID_}' {Godown_Filter}{Branch_Filter}) as Outward_vlu,
 
-'0' as rate
+'0' as Rate1
 
 From TBL_VC vc
 
@@ -502,7 +494,7 @@ Order By [Date]", con)
                 ElseIf valu = "Last Purchase Cost" Then
                     Dim cn As New SQLiteConnection
                     If open_MSSQL_Cstm(Database_File.cre, cn) = True Then
-                        cmd = New SQLiteCommand($"SELECT ifnull(vi.Rate ,0) as Rate_ From TBL_VC_item_Details vi LEFT JOIN TBL_VC vc on vc.Tra_ID = vi.Tra_ID {Godown_LeftJoin} where vc.Voucher_Type = 'Purchase' and vi.Item = '{VC_ID_}' and vc.Visible = 'Approval' and vc.Date <= '{Dateee_.AddDays(1).ToString(Lite_date_Format)}' {Godown_Filter} ORDER by vc.[date] DESC LIMIT 1", cn)
+                        cmd = New SQLiteCommand($"SELECT ifnull(vi.Rate1 ,0) as Rate_ From TBL_VC_item_Details vi LEFT JOIN TBL_VC vc on vc.Tra_ID = vi.Tra_ID {Godown_LeftJoin} where vc.Voucher_Type = 'Purchase' and vi.Item = '{VC_ID_}' and vc.Visible = 'Approval' and vc.Date <= '{Dateee_.AddDays(1).ToString(Lite_date_Format)}' {Godown_Filter} ORDER by vc.[date] DESC LIMIT 1", cn)
                         Dim r1 As SQLiteDataReader
                         r1 = cmd.ExecuteReader
                         While r1.Read
@@ -512,7 +504,7 @@ Order By [Date]", con)
                 ElseIf valu = "Last Sales Price" Then
                     Dim cn As New SQLiteConnection
                     If open_MSSQL_Cstm(Database_File.cre, cn) = True Then
-                        cmd = New SQLiteCommand($"SELECT ifnull(vi.Rate ,0) as Rate_ From TBL_VC_item_Details vi LEFT JOIN TBL_VC vc on vc.Tra_ID = vi.Tra_ID {Godown_LeftJoin} where vc.Voucher_Type = 'Sales' and vi.Item = '{VC_ID_}' and vc.Visible = 'Approval' and vc.Date <= '{Dateee_.AddDays(1).ToString(Lite_date_Format)}' {Godown_Filter} ORDER by vc.[date] DESC LIMIT 1", cn)
+                        cmd = New SQLiteCommand($"SELECT ifnull(vi.Rate1 ,0) as Rate_ From TBL_VC_item_Details vi LEFT JOIN TBL_VC vc on vc.Tra_ID = vi.Tra_ID {Godown_LeftJoin} where vc.Voucher_Type = 'Sales' and vi.Item = '{VC_ID_}' and vc.Visible = 'Approval' and vc.Date <= '{Dateee_.AddDays(1).ToString(Lite_date_Format)}' {Godown_Filter} ORDER by vc.[date] DESC LIMIT 1", cn)
                         Dim r1 As SQLiteDataReader
                         r1 = cmd.ExecuteReader
                         While r1.Read

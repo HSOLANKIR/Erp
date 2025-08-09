@@ -395,28 +395,28 @@ Public Class Report_Stock_Summary_frm
 
         If open_MSSQL_Cstm(Database_File.cre, cn) = True Then
             cmd = New SQLiteCommand($"Select it.id,it.name,(SELECT un.Symbol From TBL_Inventory_Unit un where un.id = it.Unit) as Un,
-ifnull(ifnull((SELECT ifnull(SUM(vi.Qty) ,0)
+ifnull(ifnull((SELECT ifnull(SUM(vi.Qty1) ,0)
 From TBL_VC_item_Details vi
 where (vi.Type = 'Credit') and vi.Item = it.Id {Opning_Date}) -
 
-(SELECT ifnull(SUM(vi.Qty) ,0)
+(SELECT ifnull(SUM(vi.Qty1) ,0)
 From TBL_VC_item_Details vi
 where (vi.Type = 'Debit') and vi.Item = it.Id {Opning_Date}),0) + ifnull(it.OB_Quantity,0),0) as Opning,
 
-(SELECT ifnull(SUM(vi.Qty) ,0)
+(SELECT ifnull(SUM(vi.Qty1) ,0)
 From TBL_VC_item_Details vi
 
 where (vi.Type = 'Credit') and vi.Item = it.Id {Period_Date}) as In_Q,
 
-(SELECT ifnull(SUM(vi.Qty) ,0)
+(SELECT ifnull(SUM(vi.Qty1) ,0)
 From TBL_VC_item_Details vi
 where (vi.Type = 'Debit') and vi.Item = it.Id {Period_Date}) as Out_Q,
 
-(SELECT ifnull(SUM(vi.Amount) ,0)
+(SELECT ifnull(SUM(vi.Amount1) ,0)
 From TBL_VC_item_Details vi
 where (vi.Type = 'Credit') and vi.Item = it.Id {Period_Date}) as In_V,
 
-(SELECT ifnull(SUM(vi.Amount) ,0)
+(SELECT ifnull(SUM(vi.Amount1) ,0)
 From TBL_VC_item_Details vi
 where (vi.Type = 'Debit') and vi.Item = it.Id {Period_Date}) as Out_V,
 
@@ -425,14 +425,14 @@ where (vi.Type = 'Debit') and vi.Item = it.Id {Period_Date}) as Out_V,
 ifnull((Case WHEN (@Valuation = 'At Zero Price' or (@Valuation = 'Default' and it.Costing_Value_Type = 'At Zero Price')) THEN
 '0'
 else (Case WHEN (@Valuation = 'Avg. Cost (as per period)' or (@Valuation = 'Default' and it.Costing_Value_Type = 'Avg. Cost (as per period)')) THEN
-(SELECT ifnull(ifnull(SUM(vi.Amount) ,0) / ifnull(ifnull(SUM(vi.Qty),0),0),0) From TBL_VC_item_Details vi LEFT JOIN TBL_VC where (vi.Type = 'Credit') and vi.Item = it.Id and (vi.Date BETWEEN '{CDate(Frm_date).ToString(Lite_date_Format)}' and '{CDate(To_date).AddDays(1).ToString(Lite_date_Format) }'))
+(SELECT ifnull(ifnull(SUM(vi.Amount1) ,0) / ifnull(ifnull(SUM(vi.Qty1),0),0),0) From TBL_VC_item_Details vi LEFT JOIN TBL_VC where (vi.Type = 'Credit') and vi.Item = it.Id and (vi.Date BETWEEN '{CDate(Frm_date).ToString(Lite_date_Format)}' and '{CDate(To_date).AddDays(1).ToString(Lite_date_Format) }'))
 else (Case WHEN (@Valuation = 'Avg. Price (as per period)' or (@Valuation = 'Default' and it.Costing_Value_Type = 'Avg. Price (as per period)')) THEN
-(SELECT ifnull(ifnull(SUM(vi.Amount) ,0) / ifnull(ifnull(SUM(vi.Qty),0),0),0) From TBL_VC_item_Details vi LEFT JOIN TBL_VC  where (vi.Type = 'Debit') and vi.Item = it.Id and (vi.Date BETWEEN '{CDate(Frm_date).ToString(Lite_date_Format)}' and '{CDate(To_date).AddDays(1).ToString(Lite_date_Format) }'))
+(SELECT ifnull(ifnull(SUM(vi.Amount1) ,0) / ifnull(ifnull(SUM(vi.Qty1),0),0),0) From TBL_VC_item_Details vi LEFT JOIN TBL_VC  where (vi.Type = 'Debit') and vi.Item = it.Id and (vi.Date BETWEEN '{CDate(Frm_date).ToString(Lite_date_Format)}' and '{CDate(To_date).AddDays(1).ToString(Lite_date_Format) }'))
 
 else (Case WHEN (@Valuation = 'Last Purchase Cost' or (@Valuation = 'Default' and it.Costing_Value_Type = 'Last Purchase Cost')) THEN
-(SELECT ifnull(vi.Rate ,0) From TBL_VC_item_Details vi LEFT JOIN TBL_VC vc on vc.Tra_ID = vi.Tra_ID where vc.Voucher_Type = 'Purchase' and vi.Item = it.Id and vc.Visible = 'Approval' and (vc.[Date] <= @Filter_Date) ORDER by vc.[date] DESC LIMIT 1)
+(SELECT ifnull(vi.Rate1 ,0) From TBL_VC_item_Details vi LEFT JOIN TBL_VC vc on vc.Tra_ID = vi.Tra_ID where vc.Voucher_Type = 'Purchase' and vi.Item = it.Id and vc.Visible = 'Approval' and (vc.[Date] <= @Filter_Date) ORDER by vc.[date] DESC LIMIT 1)
 else (Case WHEN (@Valuation = 'Last Sales Price' or (@Valuation = 'Default' and it.Costing_Value_Type = 'Last Sales Price')) THEN
-(SELECT ifnull(vi.Rate ,0) From TBL_VC_item_Details vi LEFT JOIN TBL_VC vc on vc.Tra_ID = vi.Tra_ID where vc.Voucher_Type = 'Sales' and vi.Item = it.Id and vc.Visible = 'Approval' and (vc.[Date] <= @Filter_Date) ORDER by vc.[date] DESC LIMIT 1)
+(SELECT ifnull(vi.Rate1 ,0) From TBL_VC_item_Details vi LEFT JOIN TBL_VC vc on vc.Tra_ID = vi.Tra_ID where vc.Voucher_Type = 'Sales' and vi.Item = it.Id and vc.Visible = 'Approval' and (vc.[Date] <= @Filter_Date) ORDER by vc.[date] DESC LIMIT 1)
 
 
 else (Case WHEN (@Valuation = 'Std. Price' or (@Valuation = 'Default' and it.Costing_Value_Type = 'Std. Price')) THEN
@@ -455,7 +455,7 @@ end)
 end)
 end)
 end)
-end),0) Rate
+end),0) Rate1
 
 From TBL_Stock_Item it WHERE it.Under = '{VC_ID_ }' and it.Visible = 'Approval'", cn)
             With cmd.Parameters
@@ -466,7 +466,7 @@ From TBL_Stock_Item it WHERE it.Under = '{VC_ID_ }' and it.Visible = 'Approval'"
                 'My.Computer.Clipboard.SetText(cmd.CommandText)
                 While r1.Read
                     Dim CLosing_vlu As Decimal = (Val(r1("Opning")) + (Val(r1("In_Q")) - Val(r1("Out_Q"))))
-                    Dim Valu As String = CLosing_vlu * Val(r1("Rate"))
+                    Dim Valu As String = CLosing_vlu * Val(r1("Rate1"))
 
                     dr = dt.NewRow
                     dr("ID") = r1("ID")
@@ -478,7 +478,7 @@ From TBL_Stock_Item it WHERE it.Under = '{VC_ID_ }' and it.Visible = 'Approval'"
                     dr("Outward_V") = N2_FORMATE(Val(r1("Out_V").ToString))
 
                     dr("Closing_Q") = N2_FORMATE(CLosing_vlu)
-                    dr("Closing_V") = N2_FORMATE(CLosing_vlu * Val(r1("Rate").ToString))
+                    dr("Closing_V") = N2_FORMATE(CLosing_vlu * Val(r1("Rate1").ToString))
 
                     If Val(r1("Opning").ToString) <> 0 Then
                         dr("Opning_Unit") = r1("Un").ToString

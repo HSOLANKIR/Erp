@@ -1304,4 +1304,11 @@ INSERT INTO aud.[{TBL}] ({col},[Original_ID],[Audit_ID]) SELECT {col},'{Orignal_
         Down = 2
         Normal = 3
     End Enum
+    Public Function Find_Software_Details(Software_ID As String, col As String)
+        For Each ro As DataRow In Dt_Software_Type.Rows
+            If ro(0).ToString = Software_ID Then
+                Return ro(col).ToString
+            End If
+        Next
+    End Function
 End Module

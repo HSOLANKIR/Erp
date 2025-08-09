@@ -123,7 +123,7 @@ Public Class Backup_db_frm
                     'Exit For
                 End If
             End If
-            System.Threading.Thread.Sleep(2)
+            'Threading.Thread.Sleep(2)
         Next
 
         Label6.Text = "Backup..."
@@ -214,7 +214,7 @@ Public Class Backup_db_frm
             End If
             count_ += 1
             Backup_Background.ReportProgress(count_)
-            Threading.Thread.Sleep(5)
+            'Threading.Thread.Sleep(5)
 
         Next
     End Function
@@ -373,7 +373,7 @@ Public Class Backup_db_frm
                 Directory.Delete(Dt_set.Rows(i).Item(2), True)
                 TextBox1.Text &= $"Success..{vbNewLine}"
                 TextBox1.SelectionStart = TextBox1.TextLength - 1
-                Threading.Thread.Sleep(20)
+                'Threading.Thread.Sleep(20)
             Catch ex As Exception
                 TextBox1.Text &= $"Error..{vbNewLine}"
                 TextBox1.SelectionStart = TextBox1.TextLength - 1

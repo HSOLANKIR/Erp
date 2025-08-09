@@ -33,8 +33,6 @@ Public Class sp_controls
         Dim cn As New SQLiteConnection
         Dim r As SQLiteDataReader
 
-        'dd
-
         If open_MSSQL_Cstm(Database_File.cre, cn) = True Then
             dt_item = New DataTable
             dt_item.Columns.Add("Name")
@@ -489,6 +487,7 @@ from TBL_Ledger LD where ([Group] = '13' or [Group] = '15')", cn)
         amt_total_label.Text = "0"
         Amounr_Label.Text = "0"
         Vc_GST_summary_ctrl1.bg_panel.Controls.Clear()
+
 
 
     End Function

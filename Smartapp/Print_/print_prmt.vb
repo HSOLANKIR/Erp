@@ -512,14 +512,7 @@ Module print_prmt
         If vlu.ToString.Substring(0, 1) = "'" And vlu.ToString.Substring(vlu.Length - 1, 1) = "'" Then
             Return vlu.ToString.Substring(1, vlu.Length - 2)
         Else
-            Select Case vlu
-                Case "Item_Name"
-                    Return Expiry_Date_Item_Summary.Acc_LB.Text
-                Case "Date_"
-                    Return Expiry_Date_Item_Summary.To_Date_LB.Text
-                Case "Total_"
-                    Return Expiry_Date_Item_Summary.Label2.Text
-            End Select
+
         End If
     End Function
     Public Function Sales_Purchase_Register(vlu As String)

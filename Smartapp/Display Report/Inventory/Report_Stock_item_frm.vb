@@ -551,23 +551,17 @@ Public Class Report_Stock_item_frm
         End If
         Dim cn As New SQLiteConnection
         If open_MSSQL_Cstm(Database_File.cre, cn) = True Then
-            cmd = New SQLiteCommand($"Select vi.Type,
-CASE
-WHEN '{Unit_ID}' = vi.Unit1 THEN SUM(vi.Qty1)
-WHEN '{Unit_ID}' = vi.Unit2 THEN SUM(vi.Qty2)
-ELSE SUM(vi.Qty)
-END as Qty,
+            cmd = New SQLiteCommand($"Select vi.Type,vi.Qty1,vi.Amount1 From TBL_VC_item_Details VI where VI.Item = '{VC_ID_}' and vi.Date <= '{CDate(Frm_date).AddDays(0).ToString(Lite_date_Format)}'", cn)
 
-vi.Amount From TBL_VC_item_Details VI where VI.Item = '{VC_ID_}' and VI.Date <= '{CDate(Frm_date).AddDays(0).ToString(Lite_date_Format)}'", cn)
             Dim r As SQLiteDataReader
             r = cmd.ExecuteReader
             While r.Read
                 If r("Type").ToString = "Credit" Then
-                    in_q += Val(r("Qty").ToString)
-                    in_a += Val(r("Amount").ToString)
+                    in_q += Val(r("Qty1").ToString)
+                    in_a += Val(r("Amount1").ToString)
                 ElseIf r("Type").ToString = "Debit" Then
-                    out_q += Val(r("Qty").ToString)
-                    out_a += Val(r("Amount").ToString)
+                    out_q += Val(r("Qty1").ToString)
+                    out_a += Val(r("Amount1").ToString)
                 End If
             End While
             r.Close()
@@ -592,20 +586,20 @@ vi.Amount From TBL_VC_item_Details VI where VI.Item = '{VC_ID_}' and VI.Date <= 
                 End Try
             ElseIf Dft_Valuation = "Last Purchase Cost" Then
                 If open_MSSQL_Cstm(Database_File.cre, cn) = True Then
-                    cmd = New SQLiteCommand($"SELECT ifnull(vi.Rate ,0) as Rate_ From TBL_VC_item_Details vi LEFT JOIN TBL_VC vc on vc.Tra_ID = vi.Tra_ID where vc.Voucher_Type = 'Purchase' and vi.Item = '{VC_ID_}' and vc.Visible = 'Approval' and vc.Date <= '{CDate(Frm_date).AddDays(0).ToString(Lite_date_Format)}' ORDER by vc.[date] DESC LIMIT 1", cn)
+                    cmd = New SQLiteCommand($"SELECT ifnull(vi.Rate1 ,0) as Rate1 From TBL_VC_item_Details vi LEFT JOIN TBL_VC vc on vc.Tra_ID = vi.Tra_ID where vc.Voucher_Type = 'Purchase' and vi.Item = '{VC_ID_}' and vc.Visible = 'Approval' and vc.Date <= '{CDate(Frm_date).AddDays(0).ToString(Lite_date_Format)}' ORDER by vc.[date] DESC LIMIT 1", cn)
                     Dim r1 As SQLiteDataReader
                     r1 = cmd.ExecuteReader
                     While r1.Read
-                        Rate_ = Val(r1("Rate_").ToString)
+                        Rate_ = Val(r1("Rate1").ToString)
                     End While
                 End If
             ElseIf Dft_Valuation = "Last Sales Price" Then
                 If open_MSSQL_Cstm(Database_File.cre, cn) = True Then
-                    cmd = New SQLiteCommand($"SELECT ifnull(vi.Rate ,0) as Rate_ From TBL_VC_item_Details vi LEFT JOIN TBL_VC vc on vc.Tra_ID = vi.Tra_ID where vc.Voucher_Type = 'Sales' and vi.Item = '{VC_ID_}' and vc.Visible = 'Approval' and vc.Date <= '{CDate(Frm_date).AddDays(0).ToString(Lite_date_Format)}' ORDER by vc.[date] DESC LIMIT 1", cn)
+                    cmd = New SQLiteCommand($"SELECT ifnull(vi.Rate1 ,0) as Rate1 From TBL_VC_item_Details vi LEFT JOIN TBL_VC vc on vc.Tra_ID = vi.Tra_ID where vc.Voucher_Type = 'Sales' and vi.Item = '{VC_ID_}' and vc.Visible = 'Approval' and vc.Date <= '{CDate(Frm_date).AddDays(0).ToString(Lite_date_Format)}' ORDER by vc.[date] DESC LIMIT 1", cn)
                     Dim r1 As SQLiteDataReader
                     r1 = cmd.ExecuteReader
                     While r1.Read
-                        Rate_ = Val(r1("Rate_").ToString)
+                        Rate_ = Val(r1("Rate1").ToString)
                     End While
                 End If
             ElseIf Dft_Valuation = "Std. Price" Then
@@ -658,14 +652,6 @@ vi.Amount From TBL_VC_item_Details VI where VI.Item = '{VC_ID_}' and VI.Date <= 
         Dim cn As New SQLiteConnection
 
         Dim Closing_vlu_total As Decimal = 0
-        Dim Godown_Filter As String = ""
-        Dim Godown_LeftJoin As String = "LEFT JOIN TBL_VC_Item_Other_Details vio on vio.TBL_VI = vi.ID"
-
-        If Godown_YN = True Then
-            If dft_Godown_Name <> "All Godown" Then
-                Godown_Filter = "AND vio.Godown = '" & Find_DT_Value(Database_File.cre, "TBL_Stock_Godown", "ID", "Name = '" & dft_Godown_Name & "'") & "'"
-            End If
-        End If
 
         Dim valu As String = ""
         valu = Dft_Valuation
@@ -677,27 +663,27 @@ vi.Amount From TBL_VC_item_Details VI where VI.Item = '{VC_ID_}' and VI.Date <= 
         If open_MSSQL_Cstm(Database_File.cre, cn) = True Then
             cmd = New SQLiteCommand($"Select vc.Tra_ID,vc.[Date],vc.Voucher_Type,vc.Voucher_No,(Select ld.name From TBL_Ledger ld where ld.id = vc.Ledger) as Ledger,vc.Visible,
 (CASE WHEN vi.Type = 'Credit' THEN
-SUM(vi.Qty)
+SUM(vi.Qty1)
 ELSE(
 '0.00'
 )END) as Inward_qty,
 (CASE WHEN vi.Type = 'Debit' THEN
-SUM(vi.Qty)
+SUM(vi.Qty1)
 ELSE(
 '0.00'
 )END) as Outward_qty,
-(ifnull(sum(vi.Amount),0)/ifnull(SUM(vi.Qty),0)) as Rate,
+(ifnull(sum(vi.Amount1),0)/ifnull(SUM(vi.Qty1),0)) as Rate1,
 ifnull((Case WHEN '{valu}' = 'At Zero Price' THEN
 '0'
 else (Case WHEN '{valu}' = 'Avg. Price (as per period)' THEN
-(SELECT ifnull(SUM(vi.Amount),0)/ifnull(SUM(vi.Qty),0) From TBL_VC_item_Details vi {Godown_LeftJoin} where (vi.Type = 'Debit') and vi.Item = '{VC_ID_}' {date_Filter} {Godown_Filter})
+(SELECT ifnull(SUM(vi.Amount1),0)/ifnull(SUM(vi.Qty1),0) From TBL_VC_item_Details vi where (vi.Type = 'Debit') and vi.Item = '{VC_ID_}' {date_Filter})
 else (Case WHEN '{valu}' = 'Avg. Cost (as per period)' THEN
-(SELECT ifnull(SUM(vi.Amount),0)/ifnull(SUM(vi.Qty),0) From TBL_VC_item_Details vi {Godown_LeftJoin} where (vi.Type = 'Credit') and vi.Item = '{VC_ID_}' {date_Filter} {Godown_Filter})
+(SELECT ifnull(SUM(vi.Amount1),0)/ifnull(SUM(vi.Qty1),0) From TBL_VC_item_Details vi where (vi.Type = 'Credit') and vi.Item = '{VC_ID_}' {date_Filter})
 
 else (Case WHEN '{valu}' = 'Last Sales Price' THEN
-(SELECT ifnull(vi.Rate ,0) From TBL_VC_item_Details vi LEFT JOIN TBL_VC vc on vc.Tra_ID = vi.Tra_ID {Godown_LeftJoin} where vc.Voucher_Type = 'Sales' and vi.Item = '{VC_ID_}' and vc.Visible = 'Approval' {Godown_Filter}{date_Filter} ORDER by vc.[date] DESC LIMIT 1)
+(SELECT ifnull(vi.Rate1 ,0) From TBL_VC_item_Details vi LEFT JOIN TBL_VC vc on vc.Tra_ID = vi.Tra_ID where vc.Voucher_Type = 'Sales' and vi.Item = '{VC_ID_}' and vc.Visible = 'Approval' {date_Filter} ORDER by vc.[date] DESC LIMIT 1)
 else (Case WHEN '{valu}' = 'Last Purchase Cost' THEN
-(SELECT ifnull(vi.Rate ,0) From TBL_VC_item_Details vi LEFT JOIN TBL_VC vc on vc.Tra_ID = vi.Tra_ID {Godown_LeftJoin} where vc.Voucher_Type = 'Purchase' and vi.Item = '{VC_ID_}' and vc.Visible = 'Approval' {Godown_Filter}{date_Filter} ORDER by vc.[date] DESC LIMIT 1)
+(SELECT ifnull(vi.Rate1 ,0) From TBL_VC_item_Details vi LEFT JOIN TBL_VC vc on vc.Tra_ID = vi.Tra_ID where vc.Voucher_Type = 'Purchase' and vi.Item = '{VC_ID_}' and vc.Visible = 'Approval' {date_Filter} ORDER by vc.[date] DESC LIMIT 1)
 
 else (Case WHEN '{valu}' = 'Std. Cost' THEN
 (SELECT ifnull((std.Rate) ,0) From TBL_Item_Rate std where std.Item = '{VC_ID_}' and std.Type = 'Cost' and ([Date] <= '{to_date.AddDays(1).ToString(Lite_date_Format)}') ORDER BY [Date] DESC LIMIT 1)
@@ -723,9 +709,8 @@ end),0) as std_rate
 From TBL_VC vc
 LEFT JOIN TBL_VC_item_Details vi on vi.Tra_ID = vc.Tra_ID
 LEFT JOIN TBL_Stock_Item it on it.ID = '{VC_ID_}'
-{Godown_LeftJoin}
 
-where vi.Item = '{VC_ID_}' and vc.Effect_Stock = 'Yes' and vc.Visible = 'Approval' {Godown_Filter}{date_Filter} 
+where vi.Item = '{VC_ID_}' and vc.Effect_Stock = 'Yes' and vc.Visible = 'Approval' {date_Filter} 
 
 Group By vc.Tra_ID
 ORDER BY vc.[Date]", cn)
@@ -760,27 +745,27 @@ ORDER BY vc.[Date]", cn)
                 dr_Print("Unit") = ""
 
                 dr("Quantity_OW") = Back_Unit(r("Outward_qty"))
-                dr("Rate_OW") = N2_FORMATE(r("Rate"))
-                dr("Value_OW") = N2_FORMATE(Val(r("Outward_qty")) * Val(r("Rate")))
+                dr("Rate_OW") = N2_FORMATE(r("Rate1"))
+                dr("Value_OW") = N2_FORMATE(Val(r("Outward_qty")) * Val(r("Rate1")))
 
                 dr_Print("OW_Qty") = Back_Unit(r("Outward_qty"))
-                dr_Print("OW_Rate") = N2_FORMATE(r("Rate"))
-                dr_Print("OW_Value") = N2_FORMATE(Val(r("Outward_qty")) * Val(r("Rate")))
+                dr_Print("OW_Rate") = N2_FORMATE(r("Rate1"))
+                dr_Print("OW_Value") = N2_FORMATE(Val(r("Outward_qty")) * Val(r("Rate1")))
 
 
                 QTY_OW_TOtal += Val(r("Outward_qty"))
-                AMT_OW_TOtal += (Val(r("Outward_qty")) * Val(r("Rate")))
+                AMT_OW_TOtal += (Val(r("Outward_qty")) * Val(r("Rate1")))
                 Closing_ = Val(Closing_) - Val(r("Outward_qty"))
 
                 dr("Quantity_IN") = Back_Unit(r("Inward_qty"))
-                dr("Rate_IN") = N2_FORMATE(r("Rate"))
-                dr("Value_IN") = N2_FORMATE(Val(r("Inward_qty")) * Val(r("Rate")))
+                dr("Rate_IN") = N2_FORMATE(r("Rate1"))
+                dr("Value_IN") = N2_FORMATE(Val(r("Inward_qty")) * Val(r("Rate1")))
 
                 dr_Print("IW_Qty") = Back_Unit(r("Inward_qty"))
-                dr_Print("IW_Rate") = N2_FORMATE(r("Rate"))
-                dr_Print("IW_Value") = N2_FORMATE(Val(r("Inward_qty")) * Val(r("Rate")))
+                dr_Print("IW_Rate") = N2_FORMATE(r("Rate1"))
+                dr_Print("IW_Value") = N2_FORMATE(Val(r("Inward_qty")) * Val(r("Rate1")))
                 QTY_IN_TOtal += Val(r("Inward_qty"))
-                AMT_IN_TOtal += (Val(r("Inward_qty")) * Val(r("Rate")))
+                AMT_IN_TOtal += (Val(r("Inward_qty")) * Val(r("Rate1")))
                 Closing_ = Val(Closing_) + Val(r("Inward_qty"))
 
                 dr("Quantity_CL") = Back_Unit(Closing_)

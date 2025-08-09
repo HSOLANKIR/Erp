@@ -9,7 +9,8 @@ Imports System.Threading.Tasks
 
 Public Class Try_frm
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-
+        Dim c As Decimal = Val(Txt1.Text)
+        Label1.Text = c
     End Sub
     Public Class MyCustomData
         Public Property Name As String

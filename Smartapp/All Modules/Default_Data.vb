@@ -82,4 +82,7 @@
     Public User_Name As String = ""
 
     Public Login_Password As String = ""
+
+    Public Dt_Software_Type As DataTable
+
 End Module

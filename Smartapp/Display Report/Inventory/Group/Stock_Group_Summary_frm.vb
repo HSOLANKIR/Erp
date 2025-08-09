@@ -245,26 +245,7 @@ Public Class Stock_Group_Summary_frm
         Dim Vlu As Decimal = 0.00
         Dim ToVlu As Decimal = 0.00
         Dim r As SQLiteDataReader
-        Dim Branch_Filter As String = ""
 
-        Dim Qty_source As String
-        'Godown Filters
-        Dim Godown_Filter As String = ""
-        Dim Godown_LeftJoin As String = ""
-        If dft_Godown_Name = "All Godown" Then
-            Godown_LeftJoin = ""
-            Qty_source = "vi"
-            Godown_Filter = ""
-        Else
-            Godown_LeftJoin = "LEFT JOIN TBL_VC_Item_Other_Details vio on vio.TBL_VI = vi.ID"
-            Qty_source = "vio"
-            Godown_Filter = $" and vio.Godown = {Find_DT_Value(Database_File.cre, "TBL_Stock_Godown", "ID", "Name = '" & dft_Godown_Name & "'")}"
-        End If
-
-
-        If Dft_Branch <> "Primary" Then
-            Branch_Filter = " AND VC.Branch = '" & Find_DT_Value(Database_File.cre, "TBL_Ledger", "ID", "Name = '" & Dft_Branch & "'") & "'"
-        End If
 
         Dim Qty_Total_Head As Decimal = 0.00
         Dim Unit_Allo_Head As Boolean = True
@@ -277,28 +258,28 @@ Public Class Stock_Group_Summary_frm
             Dim GR As String = r("ID")
 
             cmd = New SQLiteCommand($"Select it.id,it.name,(Select u.Symbol From TBL_Inventory_Unit u where u.ID = it.Unit) as Unit_Name,
-ifnull(ifnull((SELECT ifnull(SUM({Qty_source}.Qty) ,0)
+ifnull(ifnull((SELECT ifnull(SUM(vi.Qty1) ,0)
 From TBL_VC_item_Details vi
 LEFT JOIN TBL_VC vc on vc.Tra_ID = vi.Tra_ID
-{Godown_LeftJoin}
-where (vi.Type = 'Credit' and vc.Effect_Stock = 'Yes') and vi.Item = it.Id and vc.Visible = 'Approval' and (vc.[Date] <= @Filter_Date){Branch_Filter}{Godown_Filter}) -
-(SELECT ifnull(SUM({Qty_source}.Qty) ,0)
+
+where (vi.Type = 'Credit' and vc.Effect_Stock = 'Yes') and vi.Item = it.Id and vc.Visible = 'Approval' and (vc.[Date] <= @Filter_Date)) -
+(SELECT ifnull(SUM(vi.Qty1) ,0)
 From TBL_VC_item_Details vi
 LEFT JOIN TBL_VC vc on vc.Tra_ID = vi.Tra_ID
-{Godown_LeftJoin}
-where (vi.Type = 'Debit' and vc.Effect_Stock = 'Yes') and vi.Item = it.Id and vc.Visible = 'Approval' and (vc.[Date] <= @Filter_Date){Branch_Filter}{Godown_Filter}),0) + (Select ifnull(sum(ios.Stock),0) From TBL_Stock_Item_Opning_Stock ios where ios.Item_ID = it.id and ios.Branch_ID = '{Branch_ID}'),0) as Qty ,
+
+where (vi.Type = 'Debit' and vc.Effect_Stock = 'Yes') and vi.Item = it.Id and vc.Visible = 'Approval' and (vc.[Date] <= @Filter_Date)),0) + ifnull(it.OB_Quantity,0),0) as Qty1 ,
 
 ifnull((Case WHEN (@Valuation = 'At Zero Price' or (@Valuation = 'Default' and it.Costing_Value_Type = 'At Zero Price')) THEN
 '0'
 else (Case WHEN (@Valuation = 'Avg. Cost (as per period)' or (@Valuation = 'Default' and it.Costing_Value_Type = 'Avg. Cost (as per period)')) THEN
-(SELECT ifnull(ifnull(SUM({Qty_source}.Amount) ,0) / ifnull(ifnull(SUM({Qty_source}.Qty),0),0),0) From TBL_VC_item_Details vi {Godown_LeftJoin} where (vi.Type = 'Credit') and vi.Item = it.Id and (vi.Date BETWEEN '{CDate(Frm_date).ToString(Lite_date_Format)}' and '{CDate(to_date).AddDays(1).ToString(Lite_date_Format) }'){Branch_Filter}{Godown_Filter})
+(SELECT ifnull(ifnull(SUM(vi.Amount1) ,0) / ifnull(ifnull(SUM(vi.Qty1),0),0),0) From TBL_VC_item_Details vi  where (vi.Type = 'Credit') and vi.Item = it.Id and (vi.Date BETWEEN '{CDate(Frm_date).ToString(Lite_date_Format)}' and '{CDate(to_date).AddDays(1).ToString(Lite_date_Format) }'))
 else (Case WHEN (@Valuation = 'Avg. Price (as per period)' or (@Valuation = 'Default' and it.Costing_Value_Type = 'Avg. Price (as per period)')) THEN
-(SELECT ifnull(ifnull(SUM({Qty_source}.Amount) ,0) / ifnull(ifnull(SUM({Qty_source}.Qty),0),0),0) From TBL_VC_item_Details vi {Godown_LeftJoin} where (vi.Type = 'Debit') and vi.Item = it.Id and (vi.Date BETWEEN '{CDate(Frm_date).ToString(Lite_date_Format)}' and '{CDate(to_date).AddDays(1).ToString(Lite_date_Format) }'){Branch_Filter}{Godown_Filter})
+(SELECT ifnull(ifnull(SUM(vi.Amount1) ,0) / ifnull(ifnull(SUM(vi.Qty1),0),0),0) From TBL_VC_item_Details vi  where (vi.Type = 'Debit') and vi.Item = it.Id and (vi.Date BETWEEN '{CDate(Frm_date).ToString(Lite_date_Format)}' and '{CDate(to_date).AddDays(1).ToString(Lite_date_Format) }'))
 
 else (Case WHEN (@Valuation = 'Last Purchase Cost' or (@Valuation = 'Default' and it.Costing_Value_Type = 'Last Purchase Cost')) THEN
-(SELECT ifnull({Qty_source}.Rate ,0) From TBL_VC_item_Details vi LEFT JOIN TBL_VC vc on vc.Tra_ID = vi.Tra_ID {Godown_LeftJoin} where vc.Voucher_Type = 'Purchase' and vi.Item = it.Id and vc.Visible = 'Approval' and (vc.[Date] <= @Filter_Date){Branch_Filter}{Godown_Filter} ORDER by vc.[date] DESC LIMIT 1)
+(SELECT ifnull(vi.Rate1 ,0) From TBL_VC_item_Details vi LEFT JOIN TBL_VC vc on vc.Tra_ID = vi.Tra_ID  where vc.Voucher_Type = 'Purchase' and vi.Item = it.Id and vc.Visible = 'Approval' and (vc.[Date] <= @Filter_Date) ORDER by vc.[date] DESC LIMIT 1)
 else (Case WHEN (@Valuation = 'Last Sales Price' or (@Valuation = 'Default' and it.Costing_Value_Type = 'Last Sales Price')) THEN
-(SELECT ifnull({Qty_source}.Rate ,0) From TBL_VC_item_Details vi LEFT JOIN TBL_VC vc on vc.Tra_ID = vi.Tra_ID {Godown_LeftJoin} where vc.Voucher_Type = 'Sales' and vi.Item = it.Id and vc.Visible = 'Approval' and (vc.[Date] <= @Filter_Date){Branch_Filter}{Godown_Filter} ORDER by vc.[date] DESC LIMIT 1)
+(SELECT ifnull(vi.Rate1 ,0) From TBL_VC_item_Details vi LEFT JOIN TBL_VC vc on vc.Tra_ID = vi.Tra_ID  where vc.Voucher_Type = 'Sales' and vi.Item = it.Id and vc.Visible = 'Approval' and (vc.[Date] <= @Filter_Date) ORDER by vc.[date] DESC LIMIT 1)
 
 else (Case WHEN (@Valuation = 'Std. Price' or (@Valuation = 'Default' and it.Costing_Value_Type = 'Std. Price')) THEN
 (SELECT ifnull((std.Rate) ,0) From TBL_Item_Rate std where std.Item = it.id and std.Type = 'Price' and ([Date] <= @Filter_Date) ORDER BY [Date] DESC LIMIT 1)
@@ -339,8 +320,8 @@ From TBL_Stock_Item it WHERE it.Under = '{GR}' and it.Visible = 'Approval'", cn1
                     Dim Unit_Total As String = ""
 
                     While r1.Read
-                        Vlu += (Val(r1("Qty") * r1("Vlu")))
-                        Qty_Total += (Val(r1("Qty")))
+                        Vlu += (Val(r1("Qty1") * r1("Vlu")))
+                        Qty_Total += (Val(r1("Qty1")))
 
 
                         If Unit_Allo = True Then

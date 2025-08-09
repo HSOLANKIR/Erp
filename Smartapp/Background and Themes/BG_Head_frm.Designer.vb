@@ -52,6 +52,9 @@ Partial Class BG_Head_frm
         Me.Version_Label = New System.Windows.Forms.Label()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.Panel8 = New System.Windows.Forms.Panel()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Package_Menu = New Management.Head_Manu_ctrl()
         Me.Help_Manu = New Management.Head_Manu_ctrl()
         Me.Company_Manu = New Management.Head_Manu_ctrl()
         Me.System_Manu = New Management.Head_Manu_ctrl()
@@ -72,6 +75,7 @@ Partial Class BG_Head_frm
         Me.Panel1.SuspendLayout()
         Me.Panel7.SuspendLayout()
         CType(Me.PictureBox6, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel8.SuspendLayout()
         Me.SuspendLayout()
         '
         'Top_Bar
@@ -161,6 +165,7 @@ Partial Class BG_Head_frm
         Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.0!))
         Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.0!))
         Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.0!))
+        Me.TableLayoutPanel3.Controls.Add(Me.Label3, 0, 1)
         Me.TableLayoutPanel3.Controls.Add(Me.Panel2, 0, 0)
         Me.TableLayoutPanel3.Controls.Add(Me.Label6, 4, 1)
         Me.TableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill
@@ -175,9 +180,7 @@ Partial Class BG_Head_frm
         'Panel2
         '
         Me.TableLayoutPanel3.SetColumnSpan(Me.Panel2, 5)
-        Me.Panel2.Controls.Add(Me.PictureBox5)
-        Me.Panel2.Controls.Add(Me.PictureBox3)
-        Me.Panel2.Controls.Add(Me.PictureBox2)
+        Me.Panel2.Controls.Add(Me.Panel8)
         Me.Panel2.Controls.Add(Me.Panel6)
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel2.Location = New System.Drawing.Point(0, 0)
@@ -192,12 +195,13 @@ Partial Class BG_Head_frm
         Me.PictureBox5.Cursor = System.Windows.Forms.Cursors.Hand
         Me.PictureBox5.Dock = System.Windows.Forms.DockStyle.Right
         Me.PictureBox5.Image = CType(resources.GetObject("PictureBox5.Image"), System.Drawing.Image)
-        Me.PictureBox5.Location = New System.Drawing.Point(535, 0)
+        Me.PictureBox5.Location = New System.Drawing.Point(320, 0)
         Me.PictureBox5.Name = "PictureBox5"
         Me.PictureBox5.Size = New System.Drawing.Size(25, 25)
         Me.PictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBox5.TabIndex = 7
         Me.PictureBox5.TabStop = False
+        Me.PictureBox5.Visible = False
         '
         'PictureBox3
         '
@@ -205,7 +209,7 @@ Partial Class BG_Head_frm
         Me.PictureBox3.Cursor = System.Windows.Forms.Cursors.Hand
         Me.PictureBox3.Dock = System.Windows.Forms.DockStyle.Right
         Me.PictureBox3.Image = CType(resources.GetObject("PictureBox3.Image"), System.Drawing.Image)
-        Me.PictureBox3.Location = New System.Drawing.Point(560, 0)
+        Me.PictureBox3.Location = New System.Drawing.Point(345, 0)
         Me.PictureBox3.Name = "PictureBox3"
         Me.PictureBox3.Size = New System.Drawing.Size(25, 25)
         Me.PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
@@ -218,7 +222,7 @@ Partial Class BG_Head_frm
         Me.PictureBox2.Cursor = System.Windows.Forms.Cursors.Hand
         Me.PictureBox2.Dock = System.Windows.Forms.DockStyle.Right
         Me.PictureBox2.Image = CType(resources.GetObject("PictureBox2.Image"), System.Drawing.Image)
-        Me.PictureBox2.Location = New System.Drawing.Point(585, 0)
+        Me.PictureBox2.Location = New System.Drawing.Point(370, 0)
         Me.PictureBox2.Name = "PictureBox2"
         Me.PictureBox2.Size = New System.Drawing.Size(25, 25)
         Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
@@ -428,6 +432,49 @@ Partial Class BG_Head_frm
         '
         Me.Timer1.Enabled = True
         '
+        'Panel8
+        '
+        Me.Panel8.Controls.Add(Me.PictureBox5)
+        Me.Panel8.Controls.Add(Me.PictureBox3)
+        Me.Panel8.Controls.Add(Me.PictureBox2)
+        Me.Panel8.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Panel8.Location = New System.Drawing.Point(215, 0)
+        Me.Panel8.Name = "Panel8"
+        Me.Panel8.Size = New System.Drawing.Size(395, 25)
+        Me.Panel8.TabIndex = 2
+        '
+        'Label3
+        '
+        Me.Label3.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Label3.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Label3.Font = New System.Drawing.Font("Arial", 9.75!)
+        Me.Label3.ForeColor = System.Drawing.Color.White
+        Me.Label3.Location = New System.Drawing.Point(3, 28)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(3)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(128, 18)
+        Me.Label3.TabIndex = 9
+        Me.Label3.Text = "1 : Packages"
+        Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'Package_Menu
+        '
+        Me.Package_Menu.admin_diaload = False
+        Me.Package_Menu.AutoSize = True
+        Me.Package_Menu.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.Package_Menu.Back_Ctrl = Nothing
+        Me.Package_Menu.Back_Focus = Nothing
+        Me.Package_Menu.BackColor = System.Drawing.Color.White
+        Me.Package_Menu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Package_Menu.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Package_Menu.Head = ""
+        Me.Package_Menu.Location = New System.Drawing.Point(594, 283)
+        Me.Package_Menu.Margin = New System.Windows.Forms.Padding(4)
+        Me.Package_Menu.Name = "Package_Menu"
+        Me.Package_Menu.Size = New System.Drawing.Size(263, 77)
+        Me.Package_Menu.TabIndex = 23
+        Me.Package_Menu.Visible = False
+        '
         'Help_Manu
         '
         Me.Help_Manu.admin_diaload = False
@@ -505,6 +552,7 @@ Partial Class BG_Head_frm
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.BlanchedAlmond
         Me.ClientSize = New System.Drawing.Size(1364, 749)
+        Me.Controls.Add(Me.Package_Menu)
         Me.Controls.Add(Me.Help_Manu)
         Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.Top_Bar)
@@ -535,6 +583,7 @@ Partial Class BG_Head_frm
         Me.Panel1.ResumeLayout(False)
         Me.Panel7.ResumeLayout(False)
         CType(Me.PictureBox6, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel8.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -572,4 +621,7 @@ Partial Class BG_Head_frm
     Friend WithEvents Help_Manu As Head_Manu_ctrl
     Friend WithEvents PictureBox6 As PictureBox
     Friend WithEvents Version_Label As Label
+    Friend WithEvents Panel8 As Panel
+    Friend WithEvents Label3 As Label
+    Friend WithEvents Package_Menu As Head_Manu_ctrl
 End Class

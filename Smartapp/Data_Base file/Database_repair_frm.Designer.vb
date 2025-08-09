@@ -87,7 +87,7 @@ Partial Class Database_repair_frm
         '
         Me.Label6.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Label6.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold)
-        Me.Label6.Location = New System.Drawing.Point(0, 256)
+        Me.Label6.Location = New System.Drawing.Point(0, 296)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(405, 17)
         Me.Label6.TabIndex = 10
@@ -300,9 +300,9 @@ Partial Class Database_repair_frm
         '
         'Panel12
         '
+        Me.Panel12.Controls.Add(Me.Label5)
         Me.Panel12.Controls.Add(Me.PictureBox5)
         Me.Panel12.Controls.Add(Me.Label6)
-        Me.Panel12.Controls.Add(Me.Label5)
         Me.Panel12.Controls.Add(Me.Label18)
         Me.Panel12.Controls.Add(Me.Label20)
         Me.Panel12.Controls.Add(Me.ProgressBag2)
@@ -331,7 +331,7 @@ Partial Class Database_repair_frm
         Me.Label5.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Label5.Font = New System.Drawing.Font("Arial Black", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.Color.RoyalBlue
-        Me.Label5.Location = New System.Drawing.Point(0, 273)
+        Me.Label5.Location = New System.Drawing.Point(0, 256)
         Me.Label5.Name = "Label5"
         Me.Label5.Padding = New System.Windows.Forms.Padding(0, 0, 0, 5)
         Me.Label5.Size = New System.Drawing.Size(405, 40)
@@ -436,7 +436,7 @@ Partial Class Database_repair_frm
         'Label15
         '
         Me.Label15.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Label15.Font = New System.Drawing.Font("Arial", 11.0!)
+        Me.Label15.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label15.ForeColor = System.Drawing.Color.Black
         Me.Label15.Location = New System.Drawing.Point(0, 29)
         Me.Label15.Name = "Label15"

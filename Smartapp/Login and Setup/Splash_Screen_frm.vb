@@ -147,8 +147,11 @@ Public Class Splash_Screen_frm
                 r.Close()
                 'End If
 
+                Software_Type(cn)
+
                 cmmd = New SqlCommand($"UPDATE TBL_License_Device SET Version = '{My.Application.Info.Version.ToString}',Last_Login = SYSDATETIME() WHERE Device_ID = '{Computer_Serial()}'", cn)
                 cmmd.ExecuteReader()
+
             Else
                 Next_diaload = Msg_Custom_YN(NOT_Location.Center, Color.Red, My.Resources.PC_Error_animation_icn, Dialoag_Button.Retry_Cancel, "Error", $"Connection Error", $"An error occurred connecting the software to the server<nl>1). Check the internet connection.<nl>2). Check system update.<nl>3). Contact the company")
                 Status_Label.Text = "Connection Error"
@@ -182,7 +185,32 @@ Public Class Splash_Screen_frm
     End Sub
 
     Dim Next_diaload As DialogResult
+    Private Function Software_Type(cn As SqlConnection)
+        Dt_Software_Type = New DataTable
+        Dt_Software_Type.Columns.Add("System_Code")
+        Dt_Software_Type.Columns.Add("System_Version")
+        Dt_Software_Type.Columns.Add("Update_Link")
+        Dt_Software_Type.Columns.Add("Compulsory_YN")
+        Dt_Software_Type.Columns.Add("Description")
+        Dt_Software_Type.Columns.Add("Setup_Link")
+        Dt_Software_Type.Columns.Add("Name")
 
+        Dim ro As DataRow
+        Dim cm = New SqlCommand($"Select * From TBL_Update_Manager --where Public_App = 'Yes'", cn)
+        Dim r As SqlDataReader = cm.ExecuteReader
+        While r.Read
+            ro = Dt_Software_Type.NewRow
+            ro("System_Code") = r("System_Code").ToString
+            ro("System_Version") = r("System_Version").ToString
+            ro("Update_Link") = r("Update_Link").ToString
+            ro("Compulsory_YN") = r("Compulsory_YN").ToString
+            ro("Description") = r("Description").ToString
+            ro("Setup_Link") = r("Setup_Link").ToString
+            ro("Name") = r("Name").ToString
+            Dt_Software_Type.Rows.Add(ro)
+        End While
+        r.Close()
+    End Function
 
     Private Sub BackgroundWorker1_RunWorkerCompleted(sender As Object, e As RunWorkerCompletedEventArgs) Handles BackgroundWorker1.RunWorkerCompleted
         License_Count_frm.Show()

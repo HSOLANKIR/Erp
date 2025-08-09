@@ -321,10 +321,6 @@ Module Link_Find
                 Return dealer_party_vouchers
             Case "Dealer/Party Vouchers Summary"
                 Return dealer_party_vouchers_details
-            Case "Stock Items (Expiry Date Report)"
-                Return Expiry_Date_Stock_Report
-            Case "Stock Summary (Expiry Date Report)"
-                Return Expiry_Date_Item_Summary
             Case "Load Data"
                 Return Fill_Data_Loading
             Case "EwayBill"

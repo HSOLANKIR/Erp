@@ -24,8 +24,154 @@ Module Database_Update_mod
         If Val(db_v.ToString.Replace(".", "")) <= 1052 Then
             u_1052(frm)
         End If
+        If Val(db_v.ToString.Replace(".", "")) <= 1058 Then
+            u_1058(frm)
+        End If
 
 
+    End Function
+    Private Function u_1058(frm As Database_repair_frm) As Boolean
+        Dim r As SQLiteDataReader
+        frm.ProgressBag2.Value = 1
+        frm.ProgressBag2.Maximum = 0
+
+        Dim Qry_str As List(Of String) = New List(Of String)
+
+        Try
+            Dim cn As New SQLiteConnection
+            If open_MSSQL_Cstm(Database_File.cre, cn) = True Then
+                cmd = New SQLiteCommand("Select count(ID) as C From TBL_VC_item_Details", cn)
+                r = cmd.ExecuteReader
+                While r.Read
+                    frm.ProgressBag2.Maximum = Val(r("C").ToString)
+                End While
+                r.Close()
+                'Insurt 
+                cmd = New SQLiteCommand("Select vi.Unit_Type as Unit_Type,
+i.Unit as Unit,
+i.Alter_Unit as Alter_Unit,
+i.Alter_Unit_Val1 as Alter_Unit_Val1,
+i.Alter_Unit_Val2 as Alter_Unit_Val2,
+vi.Qty as Qty,
+vi.Rate as Rate,
+vi.ID as ID
+
+From TBL_VC_item_Details vi
+LEFT JOIN TBL_Stock_Item i on i.id = vi.Item", cn)
+                r = cmd.ExecuteReader
+                While r.Read
+                    Dim Unit_Type As String = r("Unit_Type").ToString
+
+                    Dim Unit1_id As String = r("Unit").ToString
+                    Dim Unit2_id As String = r("Alter_Unit").ToString
+
+                    Dim Unit1_vlu As Decimal = Val(r("Alter_Unit_Val1").ToString)
+                    Dim Unit2_vlu As Decimal = Val(r("Alter_Unit_Val2").ToString)
+
+                    Dim Qty As Decimal = Val(r("Qty").ToString)
+                    Dim Rate As Decimal = Val(r("Rate").ToString)
+
+                    Dim Qty1 As Decimal = 0
+                    Dim Qty2 As Decimal = 0
+
+                    Dim Rate1 As Decimal = 0
+                    Dim Rate2 As Decimal = 0
+
+
+
+                    Dim Unit_Curr As String
+                    If Unit2_vlu <> 0 Then
+                        If Unit_Type = "Second" Then
+                            Dim v As Decimal = Unit1_vlu / Unit2_vlu
+                            Dim Q As Decimal = v * Val(Qty)
+
+                            Unit_Curr = Unit2_id
+
+                            Qty2 = Val(Qty)
+                            Qty1 = Q
+
+                            Dim Rt As Decimal = Val(Val(Qty) * Val(Rate))
+                            Rate2 = Val(Rate)
+                            If Rt = 0 Then
+                                Rate1 = 0
+                            Else
+                                Rate1 = Rt / (Q)
+                            End If
+                        Else
+                            Dim v As Decimal = Unit2_vlu / Unit1_vlu
+                            Dim Q As Decimal = v * Val(Qty)
+
+                            Unit_Curr = Unit1_id
+
+                            Qty1 = Val(Qty)
+                            Qty2 = Q
+
+                            Dim Rt As Decimal = Val(Val(Qty) * Val(Rate))
+                            Rate1 = Val(Rate)
+                            If Rt = 0 Then
+                                Rate2 = Rt
+                            Else
+                                Rate2 = Rt / (Q)
+                            End If
+                        End If
+                    Else
+                        Qty1 = Val(Qty)
+                        Qty2 = Val(0)
+                        Rate1 = Val(Rate)
+                        Rate2 = Val(0)
+                        Unit_Curr = Unit1_id
+
+                    End If
+
+                    Dim Amount1 As Decimal = Qty1 * Rate1
+                    Dim Amount2 As Decimal = Qty2 * Rate2
+
+                    Qry_str.Add($"UPDATE TBL_VC_Item_Details SET [Unit1]='{Unit1_id}',[Unit2]='{Unit2_id}',[Qty1]='{Qty1}',[Qty2]='{Qty2}',[Rate1]='{Rate1}',[Rate2]='{Rate2}',[Unit]='{Unit_Curr}',[Amount1]='{Amount1}',[Amount2]='{Amount2}' Where ID = '{r("ID").ToString}'")
+
+                    With frm
+                        .ProgressBag2.Value = .ProgressBag2.Value + 1
+                        .ProgressBag2.Run(0)
+
+                        .BackgroundWorker1.ReportProgress(0)
+                        .Label6.Text = $"{ .ProgressBag2.Value} / { .ProgressBag2.Maximum} Priparing Vouchers"
+                        .ProgressBag2.vlu_label.Text = $"{N2_FORMATE(Val(.ProgressBag2.Value * 100) / Val(.ProgressBag2.Maximum))} %"
+
+                    End With
+                End While
+                r.Close()
+                frm.ProgressBag2.Value = 0
+
+                For Each s As String In Qry_str
+                    cmd = New SQLiteCommand(s, cn)
+                    cmd.ExecuteNonQuery()
+
+
+                    With frm
+                        .ProgressBag2.Value = .ProgressBag2.Value + 1
+                        .ProgressBag2.Run(0)
+
+                        .BackgroundWorker1.ReportProgress(0)
+                        .Label6.Text = $"{ .ProgressBag2.Value} / { .ProgressBag2.Maximum} Update Vouchers"
+                        .ProgressBag2.vlu_label.Text = $"{N2_FORMATE(Val(.ProgressBag2.Value * 100) / Val(.ProgressBag2.Maximum))} %"
+
+                    End With
+                Next
+            End If
+
+            If open_MSSQL_Cstm(Database_File.cmp, cn) = True Then
+                Try
+                    cmd = New SQLiteCommand("DROP TABLE [TBL_WhatsApp];", cn)
+                    cmd.ExecuteNonQuery()
+                Catch ex As Exception
+
+                End Try
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            MessageBox.Show(ex.Message, "Update Version : 1.0.5.8", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+        Return True
     End Function
     Private Function u_1052(frm As Database_repair_frm) As Boolean
         Dim cn As New SQLiteConnection
