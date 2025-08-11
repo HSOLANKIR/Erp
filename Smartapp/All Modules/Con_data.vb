@@ -3,7 +3,7 @@ Imports System.Data.SQLite
 Module Con_data
     Public Connection_Path As String
     Public Connection_Data As String
-
+    'try
     Public con_ As New SqlConnection()
     Public con As New SQLiteConnection()
     Public con_2 As New SQLiteConnection()

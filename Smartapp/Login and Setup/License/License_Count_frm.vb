@@ -9,6 +9,7 @@ Public Class License_Count_frm
         Second_ = LC_Timer
         Timer1.Start()
         device_serial = Computer_Serial()
+
     End Sub
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
@@ -55,7 +56,7 @@ Public Class License_Count_frm
             If Online_MSSQL(cn) = True Then
                 Dim cmmd As SqlCommand
                 Dim Isnothig As Boolean = False
-                cmmd = New SqlCommand($"Select Status,Exp_Date,Description,(SELECT DATEADD(MINUTE, 90, GETDATE()) AS vlu) as Time_ From TBL_License where License = '{LC_ID_str}'", cn)
+                cmmd = New SqlCommand($"Select Status,Exp_Date,Description,GETDATE() AT TIME ZONE 'UTC' AT TIME ZONE 'India Standard Time' as Time_ From TBL_License where License = '{LC_ID_str}'", cn)
                 Dim r As SqlDataReader = cmmd.ExecuteReader
                 While r.Read
                     Isnothig = True
@@ -68,7 +69,8 @@ Public Class License_Count_frm
                 r.Close()
 
                 If Isnothig = True Then
-                    cmmd = New SqlCommand($"UPDATE TBL_License_Device SET Version = '{verson_}',Last_Login = SYSDATETIME(),Last_Login_Company = '{Company_ID_str.ToString.Trim}',Last_Activity = '{Last_activity}' WHERE Device_ID = '{device_serial}'", cn)
+                    cmmd = New SqlCommand($"DECLARE @IndiaTime datetime = SYSDATETIMEOFFSET() AT TIME ZONE 'India Standard Time';
+UPDATE TBL_License_Device SET Version = '{verson_}',Last_Login = @IndiaTime,Last_Login_Company = '{Company_ID_str.ToString.Trim}',Last_Activity = '{Last_activity}' WHERE Device_ID = '{device_serial}'", cn)
                     cmmd.ExecuteNonQuery()
                 End If
             End If
