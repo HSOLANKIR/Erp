@@ -1,5 +1,6 @@
 ﻿Imports System.Data.SqlClient
 Imports System.Data.SQLite
+Imports System.Environment
 Module Con_data
     Public Connection_Path As String
     Public Connection_Data As String
@@ -199,7 +200,8 @@ Module Con_data
 
         Return result
     End Function
-    Public Server_Name As String = "sql5097.site4now.net"
+    'સ્ટાર્ટ મેનૂમાં "Edit the system environment variables" સર્ચ કરો અને તેને ખોલો.
+    Public Server_Name As String = "db_a9a8f3_cryptonix"
     Public Server_Database As String = "db_a9a8f3_cryptonix"
     Public Server_UserName As String = "db_a9a8f3_cryptonix_admin"
     Public Server_Password As String = "Opens@Server2558"
