@@ -201,7 +201,7 @@ Module Con_data
         Return result
     End Function
     'સ્ટાર્ટ મેનૂમાં "Edit the system environment variables" સર્ચ કરો અને તેને ખોલો.
-    Public Server_Name As String = "db_a9a8f3_cryptonix"
+    Public Server_Name As String = "sql5097.site4now.net" 'GetEnvironmentVariable("Cryptonix Server")
     Public Server_Database As String = "db_a9a8f3_cryptonix"
     Public Server_UserName As String = "db_a9a8f3_cryptonix_admin"
     Public Server_Password As String = "Opens@Server2558"

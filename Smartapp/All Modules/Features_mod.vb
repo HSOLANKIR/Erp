@@ -69,8 +69,7 @@
                 Payroll_YN = YN_Boolean(vlu)
             Case "Whatsapp_API"
                 Wh_Local_API = (vlu)
-            Case "Whatsapp_Number"
-                Wh_Local_No = (vlu)
+                Wh_Local_No = (dec)
             Case "Auto_Logout_YN"
                 Auto_Logout_YN = YN_Boolean(vlu)
             Case "Auto_Logout_Sec"

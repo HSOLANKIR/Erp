@@ -27,6 +27,7 @@ Module Whatsapp_mod
                 End Using
             End Using
 
+
             Upload_Rspons = Upload_File_Name
             If Upload_File_Name.Substring(0, 8) = "Success:" Then
                 Upload_File_Name = Upload_File_Name.Replace("Success:", "")
@@ -36,6 +37,7 @@ Module Whatsapp_mod
 
             Return Upload_File_Name
         Catch ex As Exception
+            MsgBox(ex.Message)
             Return Upload_File_Name
         End Try
     End Function
@@ -151,7 +153,7 @@ Module Whatsapp_mod
     End Enum
     Public Function Whatsapp_call_document(phone As String, msg As String, mediaType As whmedia_type, document_path As String, upload_ As Boolean, delete_ As Boolean) As String()
         Dim isvlu As Boolean = False
-        Dim file_ As String = ""
+        Dim file_ As String = document_path
 
         If upload_ = True Then
             file_ = Whatsapp_Upload_file(document_path)
@@ -163,7 +165,6 @@ Module Whatsapp_mod
 
         Dim url As New String($"https://wh.cryptonixtechnology.in/send-media")
         'file_ = document_path.Split("\").Last
-
         Dim status As String = "Sending error"
         Try
             Dim postdata As New JObject

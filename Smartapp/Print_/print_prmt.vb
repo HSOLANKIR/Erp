@@ -88,29 +88,31 @@ Module print_prmt
                     Case "ivc_type"
                         Return .cfg_print_type
                     Case "SabTotal"
-                        Return Format(Val(.Sp_controls1.amt_total_label.Text), "N2")
+                        Return N2_FORMATE(Val(.Sp_controls1.amt_total_label.Text))
                     Case "CSGST_Value"
                         If .TAX_Type = "CS" Then
-                            Return Format(Val(Val(.Sp_controls1.GST_Total.Text) / 2), "N2")
+                            Return N2_FORMATE(Val(Val(.Sp_controls1.GST_Total.Text) / 2))
                         Else
                             Return ""
                         End If
                     Case "IGST_Value"
                         If .TAX_Type = "I" Then
-                            Return Format(Val(.Sp_controls1.GST_Total.Text), "N2")
+                            Return N2_FORMATE(Val(.Sp_controls1.GST_Total.Text))
                         Else
                             Return ""
                         End If
                     Case "cess_prmt"
-                        Return Format(Val(.Sp_controls1.Cess_Total.Text), "N2")
+                        Return N2_FORMATE(Val(.Sp_controls1.Cess_Total.Text))
 
                     Case "Amount_vlu"
-                        Return Format(Val(.Sp_controls1.Amounr_Label.Text), "N2")
+                        Return N2_FORMATE(Val(.Sp_controls1.Amounr_Label.Text))
+                    Case "total_gst"
+                        Return N2_FORMATE(Val(.Sp_controls1.Label7.Text))
 
                     Case "Amount_word"
                         Return NumberToText(Val(.Sp_controls1.Amounr_Label.Text)) & " Only/-"
                     Case "Expence_total"
-                        Return Format(Val(.Sp_controls1.Label10.Text), "N2")
+                        Return N2_FORMATE(Val(.Sp_controls1.Label10.Text))
                     Case "Account_name"
                         Return .To_Name
                     Case "Account_Address"

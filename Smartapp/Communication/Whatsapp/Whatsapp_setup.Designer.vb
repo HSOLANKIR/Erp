@@ -85,7 +85,7 @@ Partial Class Whatsapp_setup
         Me.Login_P.Controls.Add(Me.Label4)
         Me.Login_P.Controls.Add(Me.Panel4)
         Me.Login_P.Controls.Add(Me.PictureBox1)
-        Me.Login_P.Location = New System.Drawing.Point(95, 43)
+        Me.Login_P.Location = New System.Drawing.Point(12, 12)
         Me.Login_P.Name = "Login_P"
         Me.Login_P.Size = New System.Drawing.Size(630, 454)
         Me.Login_P.TabIndex = 9
@@ -343,7 +343,7 @@ Partial Class Whatsapp_setup
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(300, 16)
         Me.Label14.TabIndex = 23
-        Me.Label14.Text = "Link Whatsapp No."
+        Me.Label14.Text = "Link Whatsapp"
         Me.Label14.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
         'Panel2
@@ -431,10 +431,10 @@ Partial Class Whatsapp_setup
         '
         'Label4
         '
-        Me.Label4.BackColor = System.Drawing.Color.LightCyan
+        Me.Label4.BackColor = System.Drawing.Color.PaleTurquoise
         Me.Label4.Dock = System.Windows.Forms.DockStyle.Top
         Me.Label4.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.ForeColor = System.Drawing.Color.DarkSlateGray
+        Me.Label4.ForeColor = System.Drawing.Color.Black
         Me.Label4.Location = New System.Drawing.Point(0, 0)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(628, 21)
@@ -472,7 +472,7 @@ Partial Class Whatsapp_setup
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.LemonChiffon
-        Me.ClientSize = New System.Drawing.Size(821, 540)
+        Me.ClientSize = New System.Drawing.Size(655, 481)
         Me.Controls.Add(Me.Login_P)
         Me.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog

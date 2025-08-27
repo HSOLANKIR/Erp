@@ -17,9 +17,6 @@ Public Class sp_controls
         With Inventory_Vouchers_frm
             q &= $" and (vc.Visible = 'Approval')"
             q &= $" and (vc.[Date] <= '{CDate(Inventory_Vouchers_frm.Date_TXT.Text).AddDays(1).ToString(Lite_date_Format)}')"
-            If Dft_Branch <> "Primary" Then
-                q &= " AND VC.Branch = '" & Find_DT_Value(Database_File.cre, "TBL_Ledger", "ID", "Name = '" & Dft_Branch & "'") & "'"
-            End If
             If .VC_Type_ = "Alter" Or .VC_Type_ = "Alter_Close" Then
                 q &= $" and (vc.Tra_ID <> '{Inventory_Vouchers_frm.Tra_ID}')"
             End If
@@ -50,7 +47,7 @@ Public Class sp_controls
             dt_item.Columns.Add("GST_Applicapable")
             dt_item.Columns.Add("Valuation")
             dt_item.Columns.Add("Stock_vlu")
-            dt_item.Columns.Add("Batches")
+            dt_item.Columns.Add("Batch_YN")
             dt_item.Columns.Add("Mfg")
             dt_item.Columns.Add("Exp")
             dt_item.Columns.Add("A_Unit_Symbol")
@@ -96,7 +93,7 @@ LEFT JOIN TBL_VC vc on vc.Tra_ID = vi.Tra_ID
                 dr("GST_Applicapable") = r("GST_Applicable")
                 dr("Valuation") = nUmBeR_FORMATE(r("Rate_valuation").ToString)
                 dr("Stock_vlu") = nUmBeR_FORMATE(r("Stock"))
-                dr("Batches") = r("Batch_Yn").ToString
+                dr("Batch_YN") = r("Batch_Yn").ToString
                 dr("Mfg") = r("Mfg_YN").ToString
                 dr("Exp") = r("Exp_YN").ToString
                 dr("A_Unit_ID") = r("Alter_Unit").ToString
@@ -665,17 +662,31 @@ Sub(lbl) If GST_YN = True And lbl.GST_Enable = True Then lbl.GST_Panel.Visible =
 
 
         Try
-
-
             Array.ForEach(stock_panel.Controls.OfType(Of sp_control_under)().ToArray(),
 Sub(lbl) If Inventory_Vouchers_frm.cfg_Item_Discount = True Then lbl.DiscountP_TXT.Visible = True Else lbl.DiscountP_TXT.Visible = False
     )
-
-
+            Array.ForEach(stock_panel.Controls.OfType(Of sp_control_under)().ToArray(),
+Sub(lbl) If Inventory_Vouchers_frm.cfg_Item_Discount = True Then lbl.discount_amt_lab.Visible = True Else lbl.discount_amt_lab.Visible = False
+    )
         Catch ex As Exception
 
         End Try
 
+
+        Try
+            Label1.Visible = Batches_YN
+            If Batches_YN = True Then
+                Array.ForEach(stock_panel.Controls.OfType(Of sp_control_under)().ToArray(),
+Sub(lbl) If lbl.Batch_Enable = True Then lbl.Batch_TXT.Visible = True Else lbl.Batch_TXT.Visible = False
+    )
+            Else
+                Array.ForEach(stock_panel.Controls.OfType(Of sp_control_under)().ToArray(),
+Sub(lbl) lbl.Batch_TXT.Visible = False
+    )
+            End If
+        Catch ex As Exception
+
+        End Try
 
         If Inventory_Vouchers_frm.cfg_Item_Discount = True Then
             Head_Discount.Visible = True
@@ -1008,5 +1019,14 @@ Sub(lbl) If Inventory_Vouchers_frm.cfg_Item_Discount = True Then lbl.DiscountP_T
 
     Private Sub Vc_GST_summary_ctrl1_Load(sender As Object, e As EventArgs)
 
+    End Sub
+
+    Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click
+
+    End Sub
+
+    Private Sub Label1_VisibleChanged(sender As Object, e As EventArgs) Handles Label1.VisibleChanged
+        Label2.Visible = Label1.Visible
+        Label3.Visible = Label1.Visible
     End Sub
 End Class

@@ -33,33 +33,43 @@ Partial Class Ledger_cfg
         Me.Panel16 = New System.Windows.Forms.Panel()
         Me.BindingSource2 = New System.Windows.Forms.BindingSource(Me.components)
         Me.Panel4 = New System.Windows.Forms.Panel()
-        Me.Sorting_Panel = New System.Windows.Forms.Panel()
-        Me.Label17 = New System.Windows.Forms.Label()
-        Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.Bank_YN = New Tools.YN()
-        Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.GST_YN = New Tools.YN()
-        Me.Panel3 = New System.Windows.Forms.Panel()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.Credit_YN = New Tools.YN()
         Me.Panel5 = New System.Windows.Forms.Panel()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.Credit_Day_YN = New Tools.YN()
+        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.Credit_YN = New Tools.YN()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.GST_YN = New Tools.YN()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.Bank_YN = New Tools.YN()
+        Me.Sorting_Panel = New System.Windows.Forms.Panel()
+        Me.Label17 = New System.Windows.Forms.Label()
+        Me.Panel6 = New System.Windows.Forms.Panel()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.Communication_YN = New Tools.YN()
+        Me.Panel7 = New System.Windows.Forms.Panel()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.other_YN = New Tools.YN()
         Me.Narration_Panel.SuspendLayout()
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel14.SuspendLayout()
         CType(Me.BindingSource2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel4.SuspendLayout()
-        Me.Panel1.SuspendLayout()
-        Me.Panel2.SuspendLayout()
-        Me.Panel3.SuspendLayout()
         Me.Panel5.SuspendLayout()
+        Me.Panel3.SuspendLayout()
+        Me.Panel2.SuspendLayout()
+        Me.Panel1.SuspendLayout()
+        Me.Panel6.SuspendLayout()
+        Me.Panel7.SuspendLayout()
         Me.SuspendLayout()
         '
         'Narration_Panel
@@ -88,7 +98,7 @@ Partial Class Ledger_cfg
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(152, 4)
+        Me.Label2.Location = New System.Drawing.Point(223, 4)
         Me.Label2.Margin = New System.Windows.Forms.Padding(1)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(15, 16)
@@ -104,7 +114,7 @@ Partial Class Ledger_cfg
         Me.Address_YN.Defolt_ = "No"
         Me.Address_YN.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Address_YN.Font_ = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.Address_YN.Location = New System.Drawing.Point(171, 5)
+        Me.Address_YN.Location = New System.Drawing.Point(242, 5)
         Me.Address_YN.Margin = New System.Windows.Forms.Padding(1)
         Me.Address_YN.Name = "Address_YN"
         Me.Address_YN.ReadOnly = True
@@ -145,6 +155,8 @@ Partial Class Ledger_cfg
         'Panel4
         '
         Me.Panel4.AutoSize = True
+        Me.Panel4.Controls.Add(Me.Panel7)
+        Me.Panel4.Controls.Add(Me.Panel6)
         Me.Panel4.Controls.Add(Me.Panel5)
         Me.Panel4.Controls.Add(Me.Panel3)
         Me.Panel4.Controls.Add(Me.Panel2)
@@ -156,178 +168,8 @@ Partial Class Ledger_cfg
         Me.Panel4.Location = New System.Drawing.Point(0, 2)
         Me.Panel4.Name = "Panel4"
         Me.Panel4.Padding = New System.Windows.Forms.Padding(0, 10, 0, 10)
-        Me.Panel4.Size = New System.Drawing.Size(392, 141)
+        Me.Panel4.Size = New System.Drawing.Size(392, 183)
         Me.Panel4.TabIndex = 107
-        '
-        'Sorting_Panel
-        '
-        Me.Sorting_Panel.AutoSize = True
-        Me.Sorting_Panel.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Sorting_Panel.Location = New System.Drawing.Point(0, 26)
-        Me.Sorting_Panel.Name = "Sorting_Panel"
-        Me.Sorting_Panel.Size = New System.Drawing.Size(392, 0)
-        Me.Sorting_Panel.TabIndex = 4
-        '
-        'Label17
-        '
-        Me.Label17.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Label17.Font = New System.Drawing.Font("Arial", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label17.Location = New System.Drawing.Point(0, 10)
-        Me.Label17.Margin = New System.Windows.Forms.Padding(1)
-        Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(392, 16)
-        Me.Label17.TabIndex = 4
-        Me.Label17.Text = "General Details"
-        '
-        'Panel1
-        '
-        Me.Panel1.AutoSize = True
-        Me.Panel1.Controls.Add(Me.Label3)
-        Me.Panel1.Controls.Add(Me.Label4)
-        Me.Panel1.Controls.Add(Me.Bank_YN)
-        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel1.Location = New System.Drawing.Point(0, 47)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(392, 21)
-        Me.Panel1.TabIndex = 5
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Arial", 9.75!)
-        Me.Label3.Location = New System.Drawing.Point(18, 4)
-        Me.Label3.Margin = New System.Windows.Forms.Padding(1)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(125, 16)
-        Me.Label3.TabIndex = 3
-        Me.Label3.Text = "Enable Bank Details"
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(152, 4)
-        Me.Label4.Margin = New System.Windows.Forms.Padding(1)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(15, 16)
-        Me.Label4.TabIndex = 5
-        Me.Label4.Text = ": "
-        '
-        'Bank_YN
-        '
-        Me.Bank_YN.Back_color = System.Drawing.Color.White
-        Me.Bank_YN.BackColor = System.Drawing.Color.White
-        Me.Bank_YN.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.Bank_YN.Data_Link_ = "Branch_YN"
-        Me.Bank_YN.Defolt_ = "No"
-        Me.Bank_YN.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Bank_YN.Font_ = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.Bank_YN.Location = New System.Drawing.Point(171, 5)
-        Me.Bank_YN.Margin = New System.Windows.Forms.Padding(1)
-        Me.Bank_YN.Name = "Bank_YN"
-        Me.Bank_YN.ReadOnly = True
-        Me.Bank_YN.Size = New System.Drawing.Size(34, 15)
-        Me.Bank_YN.TabIndex = 6
-        Me.Bank_YN.Text = "No"
-        '
-        'Panel2
-        '
-        Me.Panel2.AutoSize = True
-        Me.Panel2.Controls.Add(Me.Label5)
-        Me.Panel2.Controls.Add(Me.Label6)
-        Me.Panel2.Controls.Add(Me.GST_YN)
-        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel2.Location = New System.Drawing.Point(0, 68)
-        Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(392, 21)
-        Me.Panel2.TabIndex = 6
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Arial", 9.75!)
-        Me.Label5.Location = New System.Drawing.Point(18, 4)
-        Me.Label5.Margin = New System.Windows.Forms.Padding(1)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(121, 16)
-        Me.Label5.TabIndex = 3
-        Me.Label5.Text = "Enable GST Details"
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(152, 4)
-        Me.Label6.Margin = New System.Windows.Forms.Padding(1)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(15, 16)
-        Me.Label6.TabIndex = 5
-        Me.Label6.Text = ": "
-        '
-        'GST_YN
-        '
-        Me.GST_YN.Back_color = System.Drawing.Color.White
-        Me.GST_YN.BackColor = System.Drawing.Color.White
-        Me.GST_YN.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.GST_YN.Data_Link_ = "Branch_YN"
-        Me.GST_YN.Defolt_ = "No"
-        Me.GST_YN.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GST_YN.Font_ = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.GST_YN.Location = New System.Drawing.Point(171, 5)
-        Me.GST_YN.Margin = New System.Windows.Forms.Padding(1)
-        Me.GST_YN.Name = "GST_YN"
-        Me.GST_YN.ReadOnly = True
-        Me.GST_YN.Size = New System.Drawing.Size(34, 15)
-        Me.GST_YN.TabIndex = 6
-        Me.GST_YN.Text = "No"
-        '
-        'Panel3
-        '
-        Me.Panel3.AutoSize = True
-        Me.Panel3.Controls.Add(Me.Label7)
-        Me.Panel3.Controls.Add(Me.Label8)
-        Me.Panel3.Controls.Add(Me.Credit_YN)
-        Me.Panel3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel3.Location = New System.Drawing.Point(0, 89)
-        Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(392, 21)
-        Me.Panel3.TabIndex = 7
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Font = New System.Drawing.Font("Arial", 9.75!)
-        Me.Label7.Location = New System.Drawing.Point(18, 4)
-        Me.Label7.Margin = New System.Windows.Forms.Padding(1)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(128, 16)
-        Me.Label7.TabIndex = 3
-        Me.Label7.Text = "Enable Ledger Credit"
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(152, 4)
-        Me.Label8.Margin = New System.Windows.Forms.Padding(1)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(15, 16)
-        Me.Label8.TabIndex = 5
-        Me.Label8.Text = ": "
-        '
-        'Credit_YN
-        '
-        Me.Credit_YN.Back_color = System.Drawing.Color.White
-        Me.Credit_YN.BackColor = System.Drawing.Color.White
-        Me.Credit_YN.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.Credit_YN.Data_Link_ = "Branch_YN"
-        Me.Credit_YN.Defolt_ = "No"
-        Me.Credit_YN.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Credit_YN.Font_ = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.Credit_YN.Location = New System.Drawing.Point(171, 5)
-        Me.Credit_YN.Margin = New System.Windows.Forms.Padding(1)
-        Me.Credit_YN.Name = "Credit_YN"
-        Me.Credit_YN.ReadOnly = True
-        Me.Credit_YN.Size = New System.Drawing.Size(34, 15)
-        Me.Credit_YN.TabIndex = 6
-        Me.Credit_YN.Text = "No"
         '
         'Panel5
         '
@@ -355,7 +197,7 @@ Partial Class Ledger_cfg
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(152, 4)
+        Me.Label10.Location = New System.Drawing.Point(223, 4)
         Me.Label10.Margin = New System.Windows.Forms.Padding(1)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(15, 16)
@@ -371,13 +213,283 @@ Partial Class Ledger_cfg
         Me.Credit_Day_YN.Defolt_ = "No"
         Me.Credit_Day_YN.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Credit_Day_YN.Font_ = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.Credit_Day_YN.Location = New System.Drawing.Point(171, 5)
+        Me.Credit_Day_YN.Location = New System.Drawing.Point(242, 5)
         Me.Credit_Day_YN.Margin = New System.Windows.Forms.Padding(1)
         Me.Credit_Day_YN.Name = "Credit_Day_YN"
         Me.Credit_Day_YN.ReadOnly = True
         Me.Credit_Day_YN.Size = New System.Drawing.Size(34, 15)
         Me.Credit_Day_YN.TabIndex = 6
         Me.Credit_Day_YN.Text = "No"
+        '
+        'Panel3
+        '
+        Me.Panel3.AutoSize = True
+        Me.Panel3.Controls.Add(Me.Label7)
+        Me.Panel3.Controls.Add(Me.Label8)
+        Me.Panel3.Controls.Add(Me.Credit_YN)
+        Me.Panel3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel3.Location = New System.Drawing.Point(0, 89)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(392, 21)
+        Me.Panel3.TabIndex = 7
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Font = New System.Drawing.Font("Arial", 9.75!)
+        Me.Label7.Location = New System.Drawing.Point(18, 4)
+        Me.Label7.Margin = New System.Windows.Forms.Padding(1)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(128, 16)
+        Me.Label7.TabIndex = 3
+        Me.Label7.Text = "Enable Ledger Credit"
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(223, 4)
+        Me.Label8.Margin = New System.Windows.Forms.Padding(1)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(15, 16)
+        Me.Label8.TabIndex = 5
+        Me.Label8.Text = ": "
+        '
+        'Credit_YN
+        '
+        Me.Credit_YN.Back_color = System.Drawing.Color.White
+        Me.Credit_YN.BackColor = System.Drawing.Color.White
+        Me.Credit_YN.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.Credit_YN.Data_Link_ = "Branch_YN"
+        Me.Credit_YN.Defolt_ = "No"
+        Me.Credit_YN.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Credit_YN.Font_ = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.Credit_YN.Location = New System.Drawing.Point(242, 5)
+        Me.Credit_YN.Margin = New System.Windows.Forms.Padding(1)
+        Me.Credit_YN.Name = "Credit_YN"
+        Me.Credit_YN.ReadOnly = True
+        Me.Credit_YN.Size = New System.Drawing.Size(34, 15)
+        Me.Credit_YN.TabIndex = 6
+        Me.Credit_YN.Text = "No"
+        '
+        'Panel2
+        '
+        Me.Panel2.AutoSize = True
+        Me.Panel2.Controls.Add(Me.Label5)
+        Me.Panel2.Controls.Add(Me.Label6)
+        Me.Panel2.Controls.Add(Me.GST_YN)
+        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel2.Location = New System.Drawing.Point(0, 68)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(392, 21)
+        Me.Panel2.TabIndex = 6
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Arial", 9.75!)
+        Me.Label5.Location = New System.Drawing.Point(18, 4)
+        Me.Label5.Margin = New System.Windows.Forms.Padding(1)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(121, 16)
+        Me.Label5.TabIndex = 3
+        Me.Label5.Text = "Enable GST Details"
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(223, 4)
+        Me.Label6.Margin = New System.Windows.Forms.Padding(1)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(15, 16)
+        Me.Label6.TabIndex = 5
+        Me.Label6.Text = ": "
+        '
+        'GST_YN
+        '
+        Me.GST_YN.Back_color = System.Drawing.Color.White
+        Me.GST_YN.BackColor = System.Drawing.Color.White
+        Me.GST_YN.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.GST_YN.Data_Link_ = "Branch_YN"
+        Me.GST_YN.Defolt_ = "No"
+        Me.GST_YN.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GST_YN.Font_ = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.GST_YN.Location = New System.Drawing.Point(242, 5)
+        Me.GST_YN.Margin = New System.Windows.Forms.Padding(1)
+        Me.GST_YN.Name = "GST_YN"
+        Me.GST_YN.ReadOnly = True
+        Me.GST_YN.Size = New System.Drawing.Size(34, 15)
+        Me.GST_YN.TabIndex = 6
+        Me.GST_YN.Text = "No"
+        '
+        'Panel1
+        '
+        Me.Panel1.AutoSize = True
+        Me.Panel1.Controls.Add(Me.Label3)
+        Me.Panel1.Controls.Add(Me.Label4)
+        Me.Panel1.Controls.Add(Me.Bank_YN)
+        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel1.Location = New System.Drawing.Point(0, 47)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(392, 21)
+        Me.Panel1.TabIndex = 5
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Arial", 9.75!)
+        Me.Label3.Location = New System.Drawing.Point(18, 4)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(1)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(125, 16)
+        Me.Label3.TabIndex = 3
+        Me.Label3.Text = "Enable Bank Details"
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(223, 4)
+        Me.Label4.Margin = New System.Windows.Forms.Padding(1)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(15, 16)
+        Me.Label4.TabIndex = 5
+        Me.Label4.Text = ": "
+        '
+        'Bank_YN
+        '
+        Me.Bank_YN.Back_color = System.Drawing.Color.White
+        Me.Bank_YN.BackColor = System.Drawing.Color.White
+        Me.Bank_YN.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.Bank_YN.Data_Link_ = "Branch_YN"
+        Me.Bank_YN.Defolt_ = "No"
+        Me.Bank_YN.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Bank_YN.Font_ = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.Bank_YN.Location = New System.Drawing.Point(242, 5)
+        Me.Bank_YN.Margin = New System.Windows.Forms.Padding(1)
+        Me.Bank_YN.Name = "Bank_YN"
+        Me.Bank_YN.ReadOnly = True
+        Me.Bank_YN.Size = New System.Drawing.Size(34, 15)
+        Me.Bank_YN.TabIndex = 6
+        Me.Bank_YN.Text = "No"
+        '
+        'Sorting_Panel
+        '
+        Me.Sorting_Panel.AutoSize = True
+        Me.Sorting_Panel.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Sorting_Panel.Location = New System.Drawing.Point(0, 26)
+        Me.Sorting_Panel.Name = "Sorting_Panel"
+        Me.Sorting_Panel.Size = New System.Drawing.Size(392, 0)
+        Me.Sorting_Panel.TabIndex = 4
+        '
+        'Label17
+        '
+        Me.Label17.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Label17.Font = New System.Drawing.Font("Arial", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label17.Location = New System.Drawing.Point(0, 10)
+        Me.Label17.Margin = New System.Windows.Forms.Padding(1)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(392, 16)
+        Me.Label17.TabIndex = 4
+        Me.Label17.Text = "General Details"
+        '
+        'Panel6
+        '
+        Me.Panel6.AutoSize = True
+        Me.Panel6.Controls.Add(Me.Label11)
+        Me.Panel6.Controls.Add(Me.Label12)
+        Me.Panel6.Controls.Add(Me.Communication_YN)
+        Me.Panel6.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel6.Location = New System.Drawing.Point(0, 131)
+        Me.Panel6.Name = "Panel6"
+        Me.Panel6.Size = New System.Drawing.Size(392, 21)
+        Me.Panel6.TabIndex = 9
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Font = New System.Drawing.Font("Arial", 9.75!)
+        Me.Label11.Location = New System.Drawing.Point(18, 4)
+        Me.Label11.Margin = New System.Windows.Forms.Padding(1)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(176, 16)
+        Me.Label11.TabIndex = 3
+        Me.Label11.Text = "Communication Configuration"
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Location = New System.Drawing.Point(223, 4)
+        Me.Label12.Margin = New System.Windows.Forms.Padding(1)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(15, 16)
+        Me.Label12.TabIndex = 5
+        Me.Label12.Text = ": "
+        '
+        'Communication_YN
+        '
+        Me.Communication_YN.Back_color = System.Drawing.Color.White
+        Me.Communication_YN.BackColor = System.Drawing.Color.White
+        Me.Communication_YN.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.Communication_YN.Data_Link_ = "Branch_YN"
+        Me.Communication_YN.Defolt_ = "No"
+        Me.Communication_YN.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Communication_YN.Font_ = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.Communication_YN.Location = New System.Drawing.Point(242, 5)
+        Me.Communication_YN.Margin = New System.Windows.Forms.Padding(1)
+        Me.Communication_YN.Name = "Communication_YN"
+        Me.Communication_YN.ReadOnly = True
+        Me.Communication_YN.Size = New System.Drawing.Size(34, 15)
+        Me.Communication_YN.TabIndex = 6
+        Me.Communication_YN.Text = "No"
+        '
+        'Panel7
+        '
+        Me.Panel7.AutoSize = True
+        Me.Panel7.Controls.Add(Me.Label13)
+        Me.Panel7.Controls.Add(Me.Label14)
+        Me.Panel7.Controls.Add(Me.other_YN)
+        Me.Panel7.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel7.Location = New System.Drawing.Point(0, 152)
+        Me.Panel7.Name = "Panel7"
+        Me.Panel7.Size = New System.Drawing.Size(392, 21)
+        Me.Panel7.TabIndex = 10
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Font = New System.Drawing.Font("Arial", 9.75!)
+        Me.Label13.Location = New System.Drawing.Point(18, 4)
+        Me.Label13.Margin = New System.Windows.Forms.Padding(1)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(83, 16)
+        Me.Label13.TabIndex = 3
+        Me.Label13.Text = "Other Details"
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.Location = New System.Drawing.Point(223, 4)
+        Me.Label14.Margin = New System.Windows.Forms.Padding(1)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(15, 16)
+        Me.Label14.TabIndex = 5
+        Me.Label14.Text = ": "
+        '
+        'other_YN
+        '
+        Me.other_YN.Back_color = System.Drawing.Color.White
+        Me.other_YN.BackColor = System.Drawing.Color.White
+        Me.other_YN.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.other_YN.Data_Link_ = "Branch_YN"
+        Me.other_YN.Defolt_ = "No"
+        Me.other_YN.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.other_YN.Font_ = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.other_YN.Location = New System.Drawing.Point(242, 5)
+        Me.other_YN.Margin = New System.Windows.Forms.Padding(1)
+        Me.other_YN.Name = "other_YN"
+        Me.other_YN.ReadOnly = True
+        Me.other_YN.Size = New System.Drawing.Size(34, 15)
+        Me.other_YN.TabIndex = 6
+        Me.other_YN.Text = "No"
         '
         'Ledger_cfg
         '
@@ -389,7 +501,7 @@ Partial Class Ledger_cfg
         Me.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "Ledger_cfg"
-        Me.Size = New System.Drawing.Size(392, 146)
+        Me.Size = New System.Drawing.Size(392, 219)
         Me.Narration_Panel.ResumeLayout(False)
         Me.Narration_Panel.PerformLayout()
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -397,14 +509,18 @@ Partial Class Ledger_cfg
         CType(Me.BindingSource2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel4.ResumeLayout(False)
         Me.Panel4.PerformLayout()
-        Me.Panel1.ResumeLayout(False)
-        Me.Panel1.PerformLayout()
-        Me.Panel2.ResumeLayout(False)
-        Me.Panel2.PerformLayout()
-        Me.Panel3.ResumeLayout(False)
-        Me.Panel3.PerformLayout()
         Me.Panel5.ResumeLayout(False)
         Me.Panel5.PerformLayout()
+        Me.Panel3.ResumeLayout(False)
+        Me.Panel3.PerformLayout()
+        Me.Panel2.ResumeLayout(False)
+        Me.Panel2.PerformLayout()
+        Me.Panel1.ResumeLayout(False)
+        Me.Panel1.PerformLayout()
+        Me.Panel6.ResumeLayout(False)
+        Me.Panel6.PerformLayout()
+        Me.Panel7.ResumeLayout(False)
+        Me.Panel7.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -438,4 +554,12 @@ Partial Class Ledger_cfg
     Friend WithEvents Label9 As Label
     Friend WithEvents Label10 As Label
     Friend WithEvents Credit_Day_YN As Tools.YN
+    Friend WithEvents Panel6 As Panel
+    Friend WithEvents Label11 As Label
+    Friend WithEvents Label12 As Label
+    Friend WithEvents Communication_YN As Tools.YN
+    Friend WithEvents Panel7 As Panel
+    Friend WithEvents Label13 As Label
+    Friend WithEvents Label14 As Label
+    Friend WithEvents other_YN As Tools.YN
 End Class

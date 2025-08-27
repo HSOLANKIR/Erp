@@ -481,6 +481,12 @@
     <Compile Include="Banking\CHEQUE\CHEQUE_frm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Communication\Communication_Direct_list_ctrl.Designer.vb">
+      <DependentUpon>Communication_Direct_list_ctrl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Communication\Communication_Direct_list_ctrl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Communication\Whatsapp\Other_ctrl\WhatsApp_Button_Option_ctrl.Designer.vb">
       <DependentUpon>WhatsApp_Button_Option_ctrl.vb</DependentUpon>
     </Compile>
@@ -558,6 +564,12 @@
     </Compile>
     <Compile Include="Creation\Inventory\Item_cfg.vb">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Creation\Inventory\Other\Create_Batch_Dialoag.Designer.vb">
+      <DependentUpon>Create_Batch_Dialoag.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Creation\Inventory\Other\Create_Batch_Dialoag.vb">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Creation\Inventory\Other\Rate_Set_popup.Designer.vb">
       <DependentUpon>Rate_Set_popup.vb</DependentUpon>
@@ -1472,6 +1484,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Print_\Printing\Direct_print_mod.vb" />
+    <Compile Include="Print_\Printing\Export_Report_DIaloag.Designer.vb">
+      <DependentUpon>Export_Report_DIaloag.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Print_\Printing\Export_Report_DIaloag.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Print_\Printing\Printing_Direct_frm.Designer.vb">
       <DependentUpon>Printing_Direct_frm.vb</DependentUpon>
     </Compile>
@@ -1818,6 +1836,12 @@
     <Compile Include="Vouchers\Voucher_Usercontrols\stock_journal_controls.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Vouchers\Voucher_Usercontrols\stock_journal_under.Designer.vb">
+      <DependentUpon>stock_journal_under.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Vouchers\Voucher_Usercontrols\stock_journal_under.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Auditing\Audit_Analysis.resx">
@@ -1886,6 +1910,9 @@
     <EmbeddedResource Include="Banking\CHEQUE\CHEQUE_frm.resx">
       <DependentUpon>CHEQUE_frm.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Communication\Communication_Direct_list_ctrl.resx">
+      <DependentUpon>Communication_Direct_list_ctrl.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Communication\Whatsapp\Other_ctrl\WhatsApp_Button_Option_ctrl.resx">
       <DependentUpon>WhatsApp_Button_Option_ctrl.vb</DependentUpon>
     </EmbeddedResource>
@@ -1924,6 +1951,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Creation\Inventory\Item_cfg.resx">
       <DependentUpon>Item_cfg.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Creation\Inventory\Other\Create_Batch_Dialoag.resx">
+      <DependentUpon>Create_Batch_Dialoag.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Creation\Inventory\Other\Rate_Set_popup.resx">
       <DependentUpon>Rate_Set_popup.vb</DependentUpon>
@@ -2378,6 +2408,10 @@
     <EmbeddedResource Include="Other Frm\Progressbar_Box.resx">
       <DependentUpon>Progressbar_Box.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Print_\Custome\ivc_Raj.rdlc" />
+    <EmbeddedResource Include="Print_\Printing\Export_Report_DIaloag.resx">
+      <DependentUpon>Export_Report_DIaloag.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Print_\Printing\Printing_Direct_frm.resx">
       <DependentUpon>Printing_Direct_frm.vb</DependentUpon>
     </EmbeddedResource>
@@ -2577,6 +2611,9 @@
     <EmbeddedResource Include="Vouchers\Voucher_Usercontrols\stock_journal_controls.resx">
       <DependentUpon>stock_journal_controls.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Vouchers\Voucher_Usercontrols\stock_journal_under.resx">
+      <DependentUpon>stock_journal_under.vb</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="Accurate.smtp" />
@@ -2633,6 +2670,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>Database1.mdf</DependentUpon>
     </Content>
+    <None Include="Resources\edit_gif.gif" />
     <None Include="Resources\nolink_gif.gif" />
     <None Include="Resources\link_gif.gif" />
     <None Include="Resources\Erp_icn.ico" />

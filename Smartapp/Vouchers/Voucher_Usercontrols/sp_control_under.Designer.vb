@@ -24,6 +24,9 @@ Partial Class sp_control_under
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.Particuls_Panel = New System.Windows.Forms.Panel()
+        Me.Exp_TXT = New Tools.TXT()
+        Me.Mfg_TXT = New Tools.TXT()
+        Me.Batch_TXT = New Tools.TXT()
         Me.Qty_TXT = New Tools.TXT()
         Me.Item_TXT = New Tools.TXT()
         Me.Unit_Lst = New Tools.TXT()
@@ -31,6 +34,7 @@ Partial Class sp_control_under
         Me.DiscountP_TXT = New Tools.TXT()
         Me.Amount_TXT = New Tools.TXT()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Batch_Period_Label = New System.Windows.Forms.Label()
         Me.discount_amt_lab = New System.Windows.Forms.Label()
         Me.Unit_Alte_Lab = New System.Windows.Forms.Label()
         Me.Qty_Alte_Lab = New System.Windows.Forms.Label()
@@ -42,16 +46,21 @@ Partial Class sp_control_under
         Me.GSTPer_Lab = New System.Windows.Forms.Label()
         Me.GSTAmt_Lab = New System.Windows.Forms.Label()
         Me.GSTType_Lab = New System.Windows.Forms.Label()
-        Me.Unit_Source = New System.Windows.Forms.BindingSource(Me.components)
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.Unit_Source = New System.Windows.Forms.BindingSource(Me.components)
+        Me.Batch_Source = New System.Windows.Forms.BindingSource(Me.components)
         Me.Particuls_Panel.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.GST_Panel.SuspendLayout()
         CType(Me.Unit_Source, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Batch_Source, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Particuls_Panel
         '
+        Me.Particuls_Panel.Controls.Add(Me.Exp_TXT)
+        Me.Particuls_Panel.Controls.Add(Me.Mfg_TXT)
+        Me.Particuls_Panel.Controls.Add(Me.Batch_TXT)
         Me.Particuls_Panel.Controls.Add(Me.Qty_TXT)
         Me.Particuls_Panel.Controls.Add(Me.Item_TXT)
         Me.Particuls_Panel.Controls.Add(Me.Unit_Lst)
@@ -63,6 +72,105 @@ Partial Class sp_control_under
         Me.Particuls_Panel.Name = "Particuls_Panel"
         Me.Particuls_Panel.Size = New System.Drawing.Size(1143, 16)
         Me.Particuls_Panel.TabIndex = 0
+        '
+        'Exp_TXT
+        '
+        Me.Exp_TXT.Auto_Cleane = True
+        Me.Exp_TXT.Back_color = System.Drawing.Color.Empty
+        Me.Exp_TXT.BackColor = System.Drawing.Color.White
+        Me.Exp_TXT.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.Exp_TXT.Data_Link_ = ""
+        Me.Exp_TXT.Decimal_ = 2
+        Me.Exp_TXT.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Exp_TXT.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold)
+        Me.Exp_TXT.Font_ = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold)
+        Me.Exp_TXT.Font_Size = 10
+        Me.Exp_TXT.Font_Style = System.Drawing.FontStyle.Bold
+        Me.Exp_TXT.Format_ = "dd-MM-yyyy"
+        Me.Exp_TXT.Keydown_Support = True
+        Me.Exp_TXT.Location = New System.Drawing.Point(500, 0)
+        Me.Exp_TXT.Msg_Object = Nothing
+        Me.Exp_TXT.Name = "Exp_TXT"
+        Me.Exp_TXT.Select_Auto_Show = True
+        Me.Exp_TXT.Select_Column_Color = "NA"
+        Me.Exp_TXT.Select_Columns = 0
+        Me.Exp_TXT.Select_Filter = "(Name Like '%<value>%' or Alias LIKE '%<value>%') or (Name = 'End of List') or (S" &
+    "tock = 'Create')"
+        Me.Exp_TXT.Select_Hide_Columns = "NA"
+        Me.Exp_TXT.Select_Object = Nothing
+        Me.Exp_TXT.Select_Source = Nothing
+        Me.Exp_TXT.Size = New System.Drawing.Size(80, 15)
+        Me.Exp_TXT.TabIndex = 3
+        Me.Exp_TXT.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.Exp_TXT.Type_ = "Select"
+        Me.Exp_TXT.Val_max = 1000000000
+        Me.Exp_TXT.Val_min = 0
+        Me.Exp_TXT.Visible = False
+        '
+        'Mfg_TXT
+        '
+        Me.Mfg_TXT.Auto_Cleane = True
+        Me.Mfg_TXT.Back_color = System.Drawing.Color.Empty
+        Me.Mfg_TXT.BackColor = System.Drawing.Color.White
+        Me.Mfg_TXT.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.Mfg_TXT.Data_Link_ = ""
+        Me.Mfg_TXT.Decimal_ = 2
+        Me.Mfg_TXT.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Mfg_TXT.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold)
+        Me.Mfg_TXT.Font_ = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold)
+        Me.Mfg_TXT.Font_Size = 10
+        Me.Mfg_TXT.Font_Style = System.Drawing.FontStyle.Bold
+        Me.Mfg_TXT.Format_ = "dd-MM-yyyy"
+        Me.Mfg_TXT.Keydown_Support = True
+        Me.Mfg_TXT.Location = New System.Drawing.Point(420, 0)
+        Me.Mfg_TXT.Msg_Object = Nothing
+        Me.Mfg_TXT.Name = "Mfg_TXT"
+        Me.Mfg_TXT.Select_Auto_Show = True
+        Me.Mfg_TXT.Select_Column_Color = "NA"
+        Me.Mfg_TXT.Select_Columns = 0
+        Me.Mfg_TXT.Select_Filter = "(Name Like '%<value>%' or Alias LIKE '%<value>%') or (Name = 'End of List') or (S" &
+    "tock = 'Create')"
+        Me.Mfg_TXT.Select_Hide_Columns = "NA"
+        Me.Mfg_TXT.Select_Object = Nothing
+        Me.Mfg_TXT.Select_Source = Nothing
+        Me.Mfg_TXT.Size = New System.Drawing.Size(80, 15)
+        Me.Mfg_TXT.TabIndex = 2
+        Me.Mfg_TXT.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.Mfg_TXT.Type_ = "Select"
+        Me.Mfg_TXT.Val_max = 1000000000
+        Me.Mfg_TXT.Val_min = 0
+        Me.Mfg_TXT.Visible = False
+        '
+        'Batch_TXT
+        '
+        Me.Batch_TXT.Auto_Cleane = True
+        Me.Batch_TXT.Back_color = System.Drawing.Color.Empty
+        Me.Batch_TXT.BackColor = System.Drawing.Color.White
+        Me.Batch_TXT.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.Batch_TXT.Data_Link_ = ""
+        Me.Batch_TXT.Decimal_ = 2
+        Me.Batch_TXT.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Batch_TXT.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold)
+        Me.Batch_TXT.Font_ = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold)
+        Me.Batch_TXT.Font_Size = 10
+        Me.Batch_TXT.Font_Style = System.Drawing.FontStyle.Bold
+        Me.Batch_TXT.Format_ = "dd-MM-yyyy"
+        Me.Batch_TXT.Keydown_Support = True
+        Me.Batch_TXT.Location = New System.Drawing.Point(300, 0)
+        Me.Batch_TXT.Msg_Object = Nothing
+        Me.Batch_TXT.Name = "Batch_TXT"
+        Me.Batch_TXT.Select_Auto_Show = True
+        Me.Batch_TXT.Select_Column_Color = "NA"
+        Me.Batch_TXT.Select_Columns = 0
+        Me.Batch_TXT.Select_Filter = "(Name Like '%<value>%') or Stock Like 'Create Batch'"
+        Me.Batch_TXT.Select_Hide_Columns = "NA"
+        Me.Batch_TXT.Select_Object = Nothing
+        Me.Batch_TXT.Select_Source = Nothing
+        Me.Batch_TXT.Size = New System.Drawing.Size(120, 15)
+        Me.Batch_TXT.TabIndex = 1
+        Me.Batch_TXT.Type_ = "Select"
+        Me.Batch_TXT.Val_max = 1000000000
+        Me.Batch_TXT.Val_min = 0
         '
         'Qty_TXT
         '
@@ -90,7 +198,7 @@ Partial Class sp_control_under
         Me.Qty_TXT.Select_Object = Nothing
         Me.Qty_TXT.Select_Source = Nothing
         Me.Qty_TXT.Size = New System.Drawing.Size(70, 15)
-        Me.Qty_TXT.TabIndex = 1
+        Me.Qty_TXT.TabIndex = 4
         Me.Qty_TXT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.Qty_TXT.Type_ = "Num"
         Me.Qty_TXT.Val_max = 1000000000
@@ -154,7 +262,7 @@ Partial Class sp_control_under
         Me.Unit_Lst.Select_Object = Nothing
         Me.Unit_Lst.Select_Source = Nothing
         Me.Unit_Lst.Size = New System.Drawing.Size(50, 15)
-        Me.Unit_Lst.TabIndex = 2
+        Me.Unit_Lst.TabIndex = 5
         Me.Unit_Lst.Type_ = "Select"
         Me.Unit_Lst.Val_max = 1000000000
         Me.Unit_Lst.Val_min = 0
@@ -185,7 +293,7 @@ Partial Class sp_control_under
         Me.Rate_TXT.Select_Object = Nothing
         Me.Rate_TXT.Select_Source = Nothing
         Me.Rate_TXT.Size = New System.Drawing.Size(90, 15)
-        Me.Rate_TXT.TabIndex = 3
+        Me.Rate_TXT.TabIndex = 6
         Me.Rate_TXT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.Rate_TXT.Type_ = "Num"
         Me.Rate_TXT.Val_max = 1000000000
@@ -217,7 +325,7 @@ Partial Class sp_control_under
         Me.DiscountP_TXT.Select_Object = Nothing
         Me.DiscountP_TXT.Select_Source = Nothing
         Me.DiscountP_TXT.Size = New System.Drawing.Size(60, 15)
-        Me.DiscountP_TXT.TabIndex = 4
+        Me.DiscountP_TXT.TabIndex = 7
         Me.DiscountP_TXT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.DiscountP_TXT.Type_ = "Num"
         Me.DiscountP_TXT.Val_max = 100
@@ -249,7 +357,7 @@ Partial Class sp_control_under
         Me.Amount_TXT.Select_Object = Nothing
         Me.Amount_TXT.Select_Source = Nothing
         Me.Amount_TXT.Size = New System.Drawing.Size(100, 15)
-        Me.Amount_TXT.TabIndex = 5
+        Me.Amount_TXT.TabIndex = 8
         Me.Amount_TXT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.Amount_TXT.Type_ = "Num"
         Me.Amount_TXT.Val_max = 1000000000
@@ -258,6 +366,7 @@ Partial Class sp_control_under
         'Panel1
         '
         Me.Panel1.AutoSize = True
+        Me.Panel1.Controls.Add(Me.Batch_Period_Label)
         Me.Panel1.Controls.Add(Me.discount_amt_lab)
         Me.Panel1.Controls.Add(Me.Unit_Alte_Lab)
         Me.Panel1.Controls.Add(Me.Qty_Alte_Lab)
@@ -267,6 +376,17 @@ Partial Class sp_control_under
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(1143, 16)
         Me.Panel1.TabIndex = 1
+        '
+        'Batch_Period_Label
+        '
+        Me.Batch_Period_Label.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Batch_Period_Label.ForeColor = System.Drawing.Color.DimGray
+        Me.Batch_Period_Label.Location = New System.Drawing.Point(479, 0)
+        Me.Batch_Period_Label.Name = "Batch_Period_Label"
+        Me.Batch_Period_Label.Size = New System.Drawing.Size(160, 16)
+        Me.Batch_Period_Label.TabIndex = 12
+        Me.Batch_Period_Label.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.Batch_Period_Label.Visible = False
         '
         'discount_amt_lab
         '
@@ -427,6 +547,7 @@ Partial Class sp_control_under
         Me.GST_Panel.ResumeLayout(False)
         Me.GST_Panel.PerformLayout()
         CType(Me.Unit_Source, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Batch_Source, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -453,4 +574,9 @@ Partial Class sp_control_under
     Friend WithEvents Unit_Alte_Lab As Label
     Friend WithEvents discount_amt_lab As Label
     Friend WithEvents Panel2 As Panel
+    Friend WithEvents Batch_TXT As Tools.TXT
+    Friend WithEvents Exp_TXT As Tools.TXT
+    Friend WithEvents Mfg_TXT As Tools.TXT
+    Friend WithEvents Batch_Period_Label As Label
+    Friend WithEvents Batch_Source As BindingSource
 End Class

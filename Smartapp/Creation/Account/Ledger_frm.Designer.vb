@@ -28,7 +28,17 @@ Partial Class Ledger_frm
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Ledger_frm))
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Panel13 = New System.Windows.Forms.Panel()
+        Me.otherdetails_Panel = New System.Windows.Forms.Panel()
+        Me.Label84 = New System.Windows.Forms.Label()
+        Me.DOB_TXT = New Tools.TXT()
+        Me.Label85 = New System.Windows.Forms.Label()
+        Me.Label82 = New System.Windows.Forms.Label()
+        Me.Aadhaar_TXT = New Tools.TXT()
+        Me.Label83 = New System.Windows.Forms.Label()
+        Me.Panel21 = New System.Windows.Forms.Panel()
+        Me.Label79 = New System.Windows.Forms.Label()
         Me.Panel23 = New System.Windows.Forms.Panel()
+        Me.communication_panel = New System.Windows.Forms.Panel()
         Me.email_yn = New Tools.YN()
         Me.whatsapp_yn = New Tools.YN()
         Me.Panel24 = New System.Windows.Forms.Panel()
@@ -59,7 +69,6 @@ Partial Class Ledger_frm
         Me.Label36 = New System.Windows.Forms.Label()
         Me.Label35 = New System.Windows.Forms.Label()
         Me.Branch_TXT = New Tools.TXT()
-        Me.Panel14 = New System.Windows.Forms.Panel()
         Me.Label34 = New System.Windows.Forms.Label()
         Me.Label33 = New System.Windows.Forms.Label()
         Me.IFSC_TXT = New Tools.TXT()
@@ -137,7 +146,6 @@ Partial Class Ledger_frm
         Me.Panel16 = New System.Windows.Forms.Panel()
         Me.Under_Panel = New System.Windows.Forms.Panel()
         Me.Label47 = New System.Windows.Forms.Label()
-        Me.Panel22 = New System.Windows.Forms.Panel()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Group_TXT = New Tools.TXT()
         Me.Group_Source = New System.Windows.Forms.BindingSource(Me.components)
@@ -176,7 +184,6 @@ Partial Class Ledger_frm
         Me.Label60 = New System.Windows.Forms.Label()
         Me.Label61 = New System.Windows.Forms.Label()
         Me.Label39 = New System.Windows.Forms.Label()
-        Me.Panel18 = New System.Windows.Forms.Panel()
         Me.Panel19 = New System.Windows.Forms.Panel()
         Me.Credit_Days_Panel = New System.Windows.Forms.Panel()
         Me.Label40 = New System.Windows.Forms.Label()
@@ -187,6 +194,7 @@ Partial Class Ledger_frm
         Me.Credit_Limit_TXT = New Tools.TXT()
         Me.Label41 = New System.Windows.Forms.Label()
         Me.Label42 = New System.Windows.Forms.Label()
+        Me.Panel18 = New System.Windows.Forms.Panel()
         Me.GST_Type__BS = New System.Windows.Forms.BindingSource(Me.components)
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -210,7 +218,9 @@ Partial Class Ledger_frm
         Me.State_Source = New System.Windows.Forms.BindingSource(Me.components)
         Me.Panel1.SuspendLayout()
         Me.Panel13.SuspendLayout()
-        Me.Panel23.SuspendLayout()
+        Me.otherdetails_Panel.SuspendLayout()
+        Me.Panel21.SuspendLayout()
+        Me.communication_panel.SuspendLayout()
         Me.Panel24.SuspendLayout()
         Me.Tax_Registration_Panel.SuspendLayout()
         Me.Panel27.SuspendLayout()
@@ -270,7 +280,9 @@ Partial Class Ledger_frm
         '
         'Panel13
         '
-        Me.Panel13.Controls.Add(Me.Panel23)
+        Me.Panel13.BackColor = System.Drawing.Color.White
+        Me.Panel13.Controls.Add(Me.otherdetails_Panel)
+        Me.Panel13.Controls.Add(Me.communication_panel)
         Me.Panel13.Controls.Add(Me.Tax_Registration_Panel)
         Me.Panel13.Controls.Add(Me.Bank_Panel)
         Me.Panel13.Dock = System.Windows.Forms.DockStyle.Fill
@@ -279,28 +291,175 @@ Partial Class Ledger_frm
         Me.Panel13.Size = New System.Drawing.Size(350, 525)
         Me.Panel13.TabIndex = 2
         '
+        'otherdetails_Panel
+        '
+        Me.otherdetails_Panel.Controls.Add(Me.Label84)
+        Me.otherdetails_Panel.Controls.Add(Me.DOB_TXT)
+        Me.otherdetails_Panel.Controls.Add(Me.Label85)
+        Me.otherdetails_Panel.Controls.Add(Me.Label82)
+        Me.otherdetails_Panel.Controls.Add(Me.Aadhaar_TXT)
+        Me.otherdetails_Panel.Controls.Add(Me.Label83)
+        Me.otherdetails_Panel.Controls.Add(Me.Panel21)
+        Me.otherdetails_Panel.Controls.Add(Me.Panel23)
+        Me.otherdetails_Panel.Dock = System.Windows.Forms.DockStyle.Top
+        Me.otherdetails_Panel.Location = New System.Drawing.Point(0, 216)
+        Me.otherdetails_Panel.Name = "otherdetails_Panel"
+        Me.otherdetails_Panel.Size = New System.Drawing.Size(350, 143)
+        Me.otherdetails_Panel.TabIndex = 3
+        Me.otherdetails_Panel.Visible = False
+        '
+        'Label84
+        '
+        Me.Label84.AutoSize = True
+        Me.Label84.Location = New System.Drawing.Point(14, 41)
+        Me.Label84.Name = "Label84"
+        Me.Label84.Size = New System.Drawing.Size(79, 16)
+        Me.Label84.TabIndex = 88
+        Me.Label84.Text = "Date of Birth"
+        '
+        'DOB_TXT
+        '
+        Me.DOB_TXT.Auto_Cleane = True
+        Me.DOB_TXT.Back_color = System.Drawing.Color.White
+        Me.DOB_TXT.BackColor = System.Drawing.Color.White
+        Me.DOB_TXT.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.DOB_TXT.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.DOB_TXT.Data_Link_ = ""
+        Me.DOB_TXT.Decimal_ = 2
+        Me.DOB_TXT.Font = New System.Drawing.Font("Arial", 11.0!)
+        Me.DOB_TXT.Font_ = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold)
+        Me.DOB_TXT.Font_Size = 11
+        Me.DOB_TXT.Font_Style = System.Drawing.FontStyle.Bold
+        Me.DOB_TXT.Format_ = "dd-MM-yyyy"
+        Me.DOB_TXT.Keydown_Support = True
+        Me.DOB_TXT.Location = New System.Drawing.Point(136, 41)
+        Me.DOB_TXT.MaxLength = 15
+        Me.DOB_TXT.Msg_Object = Nothing
+        Me.DOB_TXT.Name = "DOB_TXT"
+        Me.DOB_TXT.Select_Auto_Show = True
+        Me.DOB_TXT.Select_Column_Color = "NA"
+        Me.DOB_TXT.Select_Columns = 0
+        Me.DOB_TXT.Select_Filter = Nothing
+        Me.DOB_TXT.Select_Hide_Columns = "NA"
+        Me.DOB_TXT.Select_Object = Nothing
+        Me.DOB_TXT.Select_Source = Nothing
+        Me.DOB_TXT.Size = New System.Drawing.Size(100, 17)
+        Me.DOB_TXT.TabIndex = 87
+        Me.DOB_TXT.Type_ = "TXT"
+        Me.DOB_TXT.Val_max = 1000000000
+        Me.DOB_TXT.Val_min = 0
+        '
+        'Label85
+        '
+        Me.Label85.AutoSize = True
+        Me.Label85.Location = New System.Drawing.Point(121, 41)
+        Me.Label85.Name = "Label85"
+        Me.Label85.Size = New System.Drawing.Size(11, 16)
+        Me.Label85.TabIndex = 89
+        Me.Label85.Text = ":"
+        '
+        'Label82
+        '
+        Me.Label82.AutoSize = True
+        Me.Label82.Location = New System.Drawing.Point(14, 22)
+        Me.Label82.Name = "Label82"
+        Me.Label82.Size = New System.Drawing.Size(79, 16)
+        Me.Label82.TabIndex = 85
+        Me.Label82.Text = "Aadhaar No."
+        '
+        'Aadhaar_TXT
+        '
+        Me.Aadhaar_TXT.Auto_Cleane = True
+        Me.Aadhaar_TXT.Back_color = System.Drawing.Color.White
+        Me.Aadhaar_TXT.BackColor = System.Drawing.Color.White
+        Me.Aadhaar_TXT.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.Aadhaar_TXT.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.Aadhaar_TXT.Data_Link_ = ""
+        Me.Aadhaar_TXT.Decimal_ = 2
+        Me.Aadhaar_TXT.Font = New System.Drawing.Font("Arial", 11.0!)
+        Me.Aadhaar_TXT.Font_ = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold)
+        Me.Aadhaar_TXT.Font_Size = 11
+        Me.Aadhaar_TXT.Font_Style = System.Drawing.FontStyle.Bold
+        Me.Aadhaar_TXT.Format_ = "dd-MM-yyyy"
+        Me.Aadhaar_TXT.Keydown_Support = True
+        Me.Aadhaar_TXT.Location = New System.Drawing.Point(136, 22)
+        Me.Aadhaar_TXT.MaxLength = 15
+        Me.Aadhaar_TXT.Msg_Object = Nothing
+        Me.Aadhaar_TXT.Name = "Aadhaar_TXT"
+        Me.Aadhaar_TXT.Select_Auto_Show = True
+        Me.Aadhaar_TXT.Select_Column_Color = "NA"
+        Me.Aadhaar_TXT.Select_Columns = 0
+        Me.Aadhaar_TXT.Select_Filter = Nothing
+        Me.Aadhaar_TXT.Select_Hide_Columns = "NA"
+        Me.Aadhaar_TXT.Select_Object = Nothing
+        Me.Aadhaar_TXT.Select_Source = Nothing
+        Me.Aadhaar_TXT.Size = New System.Drawing.Size(145, 17)
+        Me.Aadhaar_TXT.TabIndex = 84
+        Me.Aadhaar_TXT.Type_ = "TXT"
+        Me.Aadhaar_TXT.Val_max = 1000000000
+        Me.Aadhaar_TXT.Val_min = 0
+        '
+        'Label83
+        '
+        Me.Label83.AutoSize = True
+        Me.Label83.Location = New System.Drawing.Point(121, 22)
+        Me.Label83.Name = "Label83"
+        Me.Label83.Size = New System.Drawing.Size(11, 16)
+        Me.Label83.TabIndex = 86
+        Me.Label83.Text = ":"
+        '
+        'Panel21
+        '
+        Me.Panel21.Controls.Add(Me.Label79)
+        Me.Panel21.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel21.Location = New System.Drawing.Point(0, 1)
+        Me.Panel21.Name = "Panel21"
+        Me.Panel21.Size = New System.Drawing.Size(350, 15)
+        Me.Panel21.TabIndex = 0
+        '
+        'Label79
+        '
+        Me.Label79.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Label79.Font = New System.Drawing.Font("Arial", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle))
+        Me.Label79.Location = New System.Drawing.Point(0, 0)
+        Me.Label79.Name = "Label79"
+        Me.Label79.Size = New System.Drawing.Size(350, 15)
+        Me.Label79.TabIndex = 94
+        Me.Label79.Text = "Other Details"
+        Me.Label79.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
         'Panel23
         '
-        Me.Panel23.AutoSize = True
-        Me.Panel23.Controls.Add(Me.email_yn)
-        Me.Panel23.Controls.Add(Me.whatsapp_yn)
-        Me.Panel23.Controls.Add(Me.Panel24)
-        Me.Panel23.Controls.Add(Me.Panel25)
-        Me.Panel23.Controls.Add(Me.Label66)
-        Me.Panel23.Controls.Add(Me.Label67)
-        Me.Panel23.Controls.Add(Me.Label68)
-        Me.Panel23.Controls.Add(Me.Label69)
+        Me.Panel23.BackColor = System.Drawing.Color.LightGray
         Me.Panel23.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel23.Location = New System.Drawing.Point(0, 158)
+        Me.Panel23.Location = New System.Drawing.Point(0, 0)
         Me.Panel23.Name = "Panel23"
-        Me.Panel23.Size = New System.Drawing.Size(350, 58)
-        Me.Panel23.TabIndex = 2
-        Me.Panel23.Visible = False
+        Me.Panel23.Size = New System.Drawing.Size(350, 1)
+        Me.Panel23.TabIndex = 83
+        Me.Panel23.TabStop = True
+        '
+        'communication_panel
+        '
+        Me.communication_panel.AutoSize = True
+        Me.communication_panel.Controls.Add(Me.email_yn)
+        Me.communication_panel.Controls.Add(Me.whatsapp_yn)
+        Me.communication_panel.Controls.Add(Me.Panel24)
+        Me.communication_panel.Controls.Add(Me.Panel25)
+        Me.communication_panel.Controls.Add(Me.Label66)
+        Me.communication_panel.Controls.Add(Me.Label67)
+        Me.communication_panel.Controls.Add(Me.Label68)
+        Me.communication_panel.Controls.Add(Me.Label69)
+        Me.communication_panel.Dock = System.Windows.Forms.DockStyle.Top
+        Me.communication_panel.Location = New System.Drawing.Point(0, 158)
+        Me.communication_panel.Name = "communication_panel"
+        Me.communication_panel.Size = New System.Drawing.Size(350, 58)
+        Me.communication_panel.TabIndex = 2
+        Me.communication_panel.Visible = False
         '
         'email_yn
         '
-        Me.email_yn.Back_color = System.Drawing.Color.FromArgb(CType(CType(215, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(210, Byte), Integer))
-        Me.email_yn.BackColor = System.Drawing.Color.FromArgb(CType(CType(215, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(210, Byte), Integer))
+        Me.email_yn.Back_color = System.Drawing.Color.White
+        Me.email_yn.BackColor = System.Drawing.Color.White
         Me.email_yn.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.email_yn.Data_Link_ = ""
         Me.email_yn.Defolt_ = "No"
@@ -315,8 +474,8 @@ Partial Class Ledger_frm
         '
         'whatsapp_yn
         '
-        Me.whatsapp_yn.Back_color = System.Drawing.Color.FromArgb(CType(CType(215, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(210, Byte), Integer))
-        Me.whatsapp_yn.BackColor = System.Drawing.Color.FromArgb(CType(CType(215, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(210, Byte), Integer))
+        Me.whatsapp_yn.Back_color = System.Drawing.Color.White
+        Me.whatsapp_yn.BackColor = System.Drawing.Color.White
         Me.whatsapp_yn.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.whatsapp_yn.Data_Link_ = ""
         Me.whatsapp_yn.Defolt_ = "No"
@@ -353,8 +512,8 @@ Partial Class Ledger_frm
         'Txt4
         '
         Me.Txt4.Auto_Cleane = True
-        Me.Txt4.Back_color = System.Drawing.Color.FromArgb(CType(CType(215, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(210, Byte), Integer))
-        Me.Txt4.BackColor = System.Drawing.Color.FromArgb(CType(CType(215, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(210, Byte), Integer))
+        Me.Txt4.Back_color = System.Drawing.Color.White
+        Me.Txt4.BackColor = System.Drawing.Color.White
         Me.Txt4.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Txt4.Data_Link_ = ""
         Me.Txt4.Decimal_ = 2
@@ -472,8 +631,8 @@ Partial Class Ledger_frm
         'Txt2
         '
         Me.Txt2.Auto_Cleane = True
-        Me.Txt2.Back_color = System.Drawing.Color.FromArgb(CType(CType(215, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(210, Byte), Integer))
-        Me.Txt2.BackColor = System.Drawing.Color.FromArgb(CType(CType(215, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(210, Byte), Integer))
+        Me.Txt2.Back_color = System.Drawing.Color.White
+        Me.Txt2.BackColor = System.Drawing.Color.White
         Me.Txt2.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Txt2.Data_Link_ = ""
         Me.Txt2.Decimal_ = 2
@@ -525,8 +684,8 @@ Partial Class Ledger_frm
         'GST_TXT
         '
         Me.GST_TXT.Auto_Cleane = True
-        Me.GST_TXT.Back_color = System.Drawing.Color.FromArgb(CType(CType(215, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(210, Byte), Integer))
-        Me.GST_TXT.BackColor = System.Drawing.Color.FromArgb(CType(CType(215, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(210, Byte), Integer))
+        Me.GST_TXT.Back_color = System.Drawing.Color.White
+        Me.GST_TXT.BackColor = System.Drawing.Color.White
         Me.GST_TXT.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.GST_TXT.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.GST_TXT.Data_Link_ = ""
@@ -575,8 +734,8 @@ Partial Class Ledger_frm
         'PAN_TXT
         '
         Me.PAN_TXT.Auto_Cleane = True
-        Me.PAN_TXT.Back_color = System.Drawing.Color.FromArgb(CType(CType(215, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(210, Byte), Integer))
-        Me.PAN_TXT.BackColor = System.Drawing.Color.FromArgb(CType(CType(215, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(210, Byte), Integer))
+        Me.PAN_TXT.Back_color = System.Drawing.Color.White
+        Me.PAN_TXT.BackColor = System.Drawing.Color.White
         Me.PAN_TXT.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.PAN_TXT.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.PAN_TXT.Data_Link_ = ""
@@ -624,7 +783,6 @@ Partial Class Ledger_frm
         Me.Bank_Panel.Controls.Add(Me.Label36)
         Me.Bank_Panel.Controls.Add(Me.Label35)
         Me.Bank_Panel.Controls.Add(Me.Branch_TXT)
-        Me.Bank_Panel.Controls.Add(Me.Panel14)
         Me.Bank_Panel.Controls.Add(Me.Label34)
         Me.Bank_Panel.Controls.Add(Me.Label33)
         Me.Bank_Panel.Controls.Add(Me.IFSC_TXT)
@@ -651,8 +809,8 @@ Partial Class Ledger_frm
         '
         'Yn1
         '
-        Me.Yn1.Back_color = System.Drawing.Color.FromArgb(CType(CType(215, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(210, Byte), Integer))
-        Me.Yn1.BackColor = System.Drawing.Color.FromArgb(CType(CType(215, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(210, Byte), Integer))
+        Me.Yn1.Back_color = System.Drawing.Color.White
+        Me.Yn1.BackColor = System.Drawing.Color.White
         Me.Yn1.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Yn1.Data_Link_ = ""
         Me.Yn1.Defolt_ = "No"
@@ -669,7 +827,7 @@ Partial Class Ledger_frm
         '
         Me.Label18.Dock = System.Windows.Forms.DockStyle.Top
         Me.Label18.Font = New System.Drawing.Font("Arial", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle))
-        Me.Label18.Location = New System.Drawing.Point(0, 1)
+        Me.Label18.Location = New System.Drawing.Point(0, 0)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(350, 17)
         Me.Label18.TabIndex = 93
@@ -687,8 +845,8 @@ Partial Class Ledger_frm
         'Bank_TXT
         '
         Me.Bank_TXT.Auto_Cleane = True
-        Me.Bank_TXT.Back_color = System.Drawing.Color.FromArgb(CType(CType(215, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(210, Byte), Integer))
-        Me.Bank_TXT.BackColor = System.Drawing.Color.FromArgb(CType(CType(215, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(210, Byte), Integer))
+        Me.Bank_TXT.Back_color = System.Drawing.Color.White
+        Me.Bank_TXT.BackColor = System.Drawing.Color.White
         Me.Bank_TXT.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Bank_TXT.Data_Link_ = ""
         Me.Bank_TXT.Decimal_ = 2
@@ -735,8 +893,8 @@ Partial Class Ledger_frm
         'Branch_TXT
         '
         Me.Branch_TXT.Auto_Cleane = True
-        Me.Branch_TXT.Back_color = System.Drawing.Color.FromArgb(CType(CType(215, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(210, Byte), Integer))
-        Me.Branch_TXT.BackColor = System.Drawing.Color.FromArgb(CType(CType(215, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(210, Byte), Integer))
+        Me.Branch_TXT.Back_color = System.Drawing.Color.White
+        Me.Branch_TXT.BackColor = System.Drawing.Color.White
         Me.Branch_TXT.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Branch_TXT.Data_Link_ = ""
         Me.Branch_TXT.Decimal_ = 2
@@ -762,16 +920,6 @@ Partial Class Ledger_frm
         Me.Branch_TXT.Val_max = 1000000000
         Me.Branch_TXT.Val_min = 0
         '
-        'Panel14
-        '
-        Me.Panel14.BackColor = System.Drawing.Color.LightGray
-        Me.Panel14.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel14.Location = New System.Drawing.Point(0, 0)
-        Me.Panel14.Name = "Panel14"
-        Me.Panel14.Size = New System.Drawing.Size(350, 1)
-        Me.Panel14.TabIndex = 92
-        Me.Panel14.TabStop = True
-        '
         'Label34
         '
         Me.Label34.AutoSize = True
@@ -793,8 +941,8 @@ Partial Class Ledger_frm
         'IFSC_TXT
         '
         Me.IFSC_TXT.Auto_Cleane = True
-        Me.IFSC_TXT.Back_color = System.Drawing.Color.FromArgb(CType(CType(215, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(210, Byte), Integer))
-        Me.IFSC_TXT.BackColor = System.Drawing.Color.FromArgb(CType(CType(215, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(210, Byte), Integer))
+        Me.IFSC_TXT.Back_color = System.Drawing.Color.White
+        Me.IFSC_TXT.BackColor = System.Drawing.Color.White
         Me.IFSC_TXT.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.IFSC_TXT.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.IFSC_TXT.Data_Link_ = ""
@@ -843,8 +991,8 @@ Partial Class Ledger_frm
         'AccountNo_TXT
         '
         Me.AccountNo_TXT.Auto_Cleane = True
-        Me.AccountNo_TXT.Back_color = System.Drawing.Color.FromArgb(CType(CType(215, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(210, Byte), Integer))
-        Me.AccountNo_TXT.BackColor = System.Drawing.Color.FromArgb(CType(CType(215, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(210, Byte), Integer))
+        Me.AccountNo_TXT.Back_color = System.Drawing.Color.White
+        Me.AccountNo_TXT.BackColor = System.Drawing.Color.White
         Me.AccountNo_TXT.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.AccountNo_TXT.Data_Link_ = ""
         Me.AccountNo_TXT.Decimal_ = 2
@@ -882,7 +1030,7 @@ Partial Class Ledger_frm
         'Panel4
         '
         Me.Panel4.AutoScroll = True
-        Me.Panel4.BackColor = System.Drawing.Color.Beige
+        Me.Panel4.BackColor = System.Drawing.Color.White
         Me.Panel4.Controls.Add(Me.CHEQUE_details)
         Me.Panel4.Controls.Add(Me.Duty_TAX_Panel)
         Me.Panel4.Controls.Add(Me.Address_Panel)
@@ -907,7 +1055,7 @@ Partial Class Ledger_frm
         Me.CHEQUE_details.Controls.Add(Me.Label77)
         Me.CHEQUE_details.Controls.Add(Me.Label78)
         Me.CHEQUE_details.Dock = System.Windows.Forms.DockStyle.Top
-        Me.CHEQUE_details.Location = New System.Drawing.Point(0, 370)
+        Me.CHEQUE_details.Location = New System.Drawing.Point(0, 377)
         Me.CHEQUE_details.Name = "CHEQUE_details"
         Me.CHEQUE_details.Size = New System.Drawing.Size(351, 58)
         Me.CHEQUE_details.TabIndex = 4
@@ -915,8 +1063,8 @@ Partial Class Ledger_frm
         '
         'Yn2
         '
-        Me.Yn2.Back_color = System.Drawing.Color.Beige
-        Me.Yn2.BackColor = System.Drawing.Color.Beige
+        Me.Yn2.Back_color = System.Drawing.Color.White
+        Me.Yn2.BackColor = System.Drawing.Color.White
         Me.Yn2.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Yn2.Data_Link_ = ""
         Me.Yn2.Defolt_ = "No"
@@ -932,8 +1080,8 @@ Partial Class Ledger_frm
         '
         'Yn5
         '
-        Me.Yn5.Back_color = System.Drawing.Color.Beige
-        Me.Yn5.BackColor = System.Drawing.Color.Beige
+        Me.Yn5.Back_color = System.Drawing.Color.White
+        Me.Yn5.BackColor = System.Drawing.Color.White
         Me.Yn5.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Yn5.Data_Link_ = ""
         Me.Yn5.Defolt_ = "No"
@@ -1022,7 +1170,7 @@ Partial Class Ledger_frm
         Me.Duty_TAX_Panel.Controls.Add(Me.Panel26)
         Me.Duty_TAX_Panel.Controls.Add(Me.Panel28)
         Me.Duty_TAX_Panel.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Duty_TAX_Panel.Location = New System.Drawing.Point(0, 295)
+        Me.Duty_TAX_Panel.Location = New System.Drawing.Point(0, 302)
         Me.Duty_TAX_Panel.Name = "Duty_TAX_Panel"
         Me.Duty_TAX_Panel.Size = New System.Drawing.Size(351, 75)
         Me.Duty_TAX_Panel.TabIndex = 3
@@ -1060,8 +1208,8 @@ Partial Class Ledger_frm
         'Txt6
         '
         Me.Txt6.Auto_Cleane = True
-        Me.Txt6.Back_color = System.Drawing.Color.Beige
-        Me.Txt6.BackColor = System.Drawing.Color.Beige
+        Me.Txt6.Back_color = System.Drawing.Color.White
+        Me.Txt6.BackColor = System.Drawing.Color.White
         Me.Txt6.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Txt6.Data_Link_ = ""
         Me.Txt6.Decimal_ = 2
@@ -1126,8 +1274,8 @@ Partial Class Ledger_frm
         'Type_of_Duty_TXT
         '
         Me.Type_of_Duty_TXT.Auto_Cleane = True
-        Me.Type_of_Duty_TXT.Back_color = System.Drawing.Color.Beige
-        Me.Type_of_Duty_TXT.BackColor = System.Drawing.Color.Beige
+        Me.Type_of_Duty_TXT.Back_color = System.Drawing.Color.White
+        Me.Type_of_Duty_TXT.BackColor = System.Drawing.Color.White
         Me.Type_of_Duty_TXT.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Type_of_Duty_TXT.Data_Link_ = ""
         Me.Type_of_Duty_TXT.Decimal_ = 2
@@ -1205,8 +1353,8 @@ Partial Class Ledger_frm
         'Txt5
         '
         Me.Txt5.Auto_Cleane = True
-        Me.Txt5.Back_color = System.Drawing.Color.Beige
-        Me.Txt5.BackColor = System.Drawing.Color.Beige
+        Me.Txt5.Back_color = System.Drawing.Color.White
+        Me.Txt5.BackColor = System.Drawing.Color.White
         Me.Txt5.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Txt5.Data_Link_ = ""
         Me.Txt5.Decimal_ = 2
@@ -1256,7 +1404,7 @@ Partial Class Ledger_frm
         Me.Address_Panel.Dock = System.Windows.Forms.DockStyle.Top
         Me.Address_Panel.Location = New System.Drawing.Point(0, 110)
         Me.Address_Panel.Name = "Address_Panel"
-        Me.Address_Panel.Size = New System.Drawing.Size(351, 185)
+        Me.Address_Panel.Size = New System.Drawing.Size(351, 192)
         Me.Address_Panel.TabIndex = 2
         Me.Address_Panel.Visible = False
         '
@@ -1269,15 +1417,15 @@ Partial Class Ledger_frm
         Me.Panel9.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel9.Location = New System.Drawing.Point(0, 137)
         Me.Panel9.Name = "Panel9"
-        Me.Panel9.Size = New System.Drawing.Size(351, 48)
+        Me.Panel9.Size = New System.Drawing.Size(351, 55)
         Me.Panel9.TabIndex = 2
         Me.Panel9.Visible = False
         '
         'Address_TXT
         '
         Me.Address_TXT.Auto_Cleane = True
-        Me.Address_TXT.Back_color = System.Drawing.Color.Beige
-        Me.Address_TXT.BackColor = System.Drawing.Color.Beige
+        Me.Address_TXT.Back_color = System.Drawing.Color.White
+        Me.Address_TXT.BackColor = System.Drawing.Color.White
         Me.Address_TXT.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Address_TXT.Data_Link_ = ""
         Me.Address_TXT.Decimal_ = 2
@@ -1298,7 +1446,7 @@ Partial Class Ledger_frm
         Me.Address_TXT.Select_Hide_Columns = "NA"
         Me.Address_TXT.Select_Object = Nothing
         Me.Address_TXT.Select_Source = Nothing
-        Me.Address_TXT.Size = New System.Drawing.Size(200, 39)
+        Me.Address_TXT.Size = New System.Drawing.Size(200, 46)
         Me.Address_TXT.TabIndex = 0
         Me.Address_TXT.Type_ = "TXT"
         Me.Address_TXT.Val_max = 1000000000
@@ -1352,8 +1500,8 @@ Partial Class Ledger_frm
         'City_TXT
         '
         Me.City_TXT.Auto_Cleane = True
-        Me.City_TXT.Back_color = System.Drawing.Color.Beige
-        Me.City_TXT.BackColor = System.Drawing.Color.Beige
+        Me.City_TXT.Back_color = System.Drawing.Color.White
+        Me.City_TXT.BackColor = System.Drawing.Color.White
         Me.City_TXT.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.City_TXT.Data_Link_ = ""
         Me.City_TXT.Decimal_ = 2
@@ -1391,8 +1539,8 @@ Partial Class Ledger_frm
         '
         'Yn3
         '
-        Me.Yn3.Back_color = System.Drawing.Color.Beige
-        Me.Yn3.BackColor = System.Drawing.Color.Beige
+        Me.Yn3.Back_color = System.Drawing.Color.White
+        Me.Yn3.BackColor = System.Drawing.Color.White
         Me.Yn3.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Yn3.Data_Link_ = ""
         Me.Yn3.Defolt_ = "No"
@@ -1418,8 +1566,8 @@ Partial Class Ledger_frm
         'Taluka_TXT
         '
         Me.Taluka_TXT.Auto_Cleane = True
-        Me.Taluka_TXT.Back_color = System.Drawing.Color.Beige
-        Me.Taluka_TXT.BackColor = System.Drawing.Color.Beige
+        Me.Taluka_TXT.Back_color = System.Drawing.Color.White
+        Me.Taluka_TXT.BackColor = System.Drawing.Color.White
         Me.Taluka_TXT.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Taluka_TXT.Data_Link_ = ""
         Me.Taluka_TXT.Decimal_ = 2
@@ -1484,8 +1632,8 @@ Partial Class Ledger_frm
         'Pincode_TXT
         '
         Me.Pincode_TXT.Auto_Cleane = True
-        Me.Pincode_TXT.Back_color = System.Drawing.Color.Beige
-        Me.Pincode_TXT.BackColor = System.Drawing.Color.Beige
+        Me.Pincode_TXT.Back_color = System.Drawing.Color.White
+        Me.Pincode_TXT.BackColor = System.Drawing.Color.White
         Me.Pincode_TXT.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Pincode_TXT.Data_Link_ = ""
         Me.Pincode_TXT.Decimal_ = 2
@@ -1524,8 +1672,8 @@ Partial Class Ledger_frm
         'Districe_TXT
         '
         Me.Districe_TXT.Auto_Cleane = True
-        Me.Districe_TXT.Back_color = System.Drawing.Color.Beige
-        Me.Districe_TXT.BackColor = System.Drawing.Color.Beige
+        Me.Districe_TXT.Back_color = System.Drawing.Color.White
+        Me.Districe_TXT.BackColor = System.Drawing.Color.White
         Me.Districe_TXT.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Districe_TXT.Data_Link_ = ""
         Me.Districe_TXT.Decimal_ = 2
@@ -1573,8 +1721,8 @@ Partial Class Ledger_frm
         'State_TXT
         '
         Me.State_TXT.Auto_Cleane = True
-        Me.State_TXT.Back_color = System.Drawing.Color.Beige
-        Me.State_TXT.BackColor = System.Drawing.Color.Beige
+        Me.State_TXT.Back_color = System.Drawing.Color.White
+        Me.State_TXT.BackColor = System.Drawing.Color.White
         Me.State_TXT.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.State_TXT.Data_Link_ = ""
         Me.State_TXT.Decimal_ = 2
@@ -1633,8 +1781,8 @@ Partial Class Ledger_frm
         'Txt1
         '
         Me.Txt1.Auto_Cleane = True
-        Me.Txt1.Back_color = System.Drawing.Color.Beige
-        Me.Txt1.BackColor = System.Drawing.Color.Beige
+        Me.Txt1.Back_color = System.Drawing.Color.White
+        Me.Txt1.BackColor = System.Drawing.Color.White
         Me.Txt1.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Txt1.Data_Link_ = ""
         Me.Txt1.Decimal_ = 2
@@ -1731,8 +1879,8 @@ Partial Class Ledger_frm
         'Phone_TXT
         '
         Me.Phone_TXT.Auto_Cleane = True
-        Me.Phone_TXT.Back_color = System.Drawing.Color.Beige
-        Me.Phone_TXT.BackColor = System.Drawing.Color.Beige
+        Me.Phone_TXT.Back_color = System.Drawing.Color.White
+        Me.Phone_TXT.BackColor = System.Drawing.Color.White
         Me.Phone_TXT.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Phone_TXT.Data_Link_ = ""
         Me.Phone_TXT.Decimal_ = 2
@@ -1770,8 +1918,8 @@ Partial Class Ledger_frm
         'Email_TXT
         '
         Me.Email_TXT.Auto_Cleane = True
-        Me.Email_TXT.Back_color = System.Drawing.Color.Beige
-        Me.Email_TXT.BackColor = System.Drawing.Color.Beige
+        Me.Email_TXT.Back_color = System.Drawing.Color.White
+        Me.Email_TXT.BackColor = System.Drawing.Color.White
         Me.Email_TXT.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Email_TXT.Data_Link_ = ""
         Me.Email_TXT.Decimal_ = 2
@@ -1838,7 +1986,6 @@ Partial Class Ledger_frm
         '
         Me.Under_Panel.AutoSize = True
         Me.Under_Panel.Controls.Add(Me.Label47)
-        Me.Under_Panel.Controls.Add(Me.Panel22)
         Me.Under_Panel.Controls.Add(Me.Label3)
         Me.Under_Panel.Controls.Add(Me.Group_TXT)
         Me.Under_Panel.Controls.Add(Me.Label4)
@@ -1853,21 +2000,11 @@ Partial Class Ledger_frm
         '
         Me.Label47.Dock = System.Windows.Forms.DockStyle.Top
         Me.Label47.Font = New System.Drawing.Font("Arial", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle))
-        Me.Label47.Location = New System.Drawing.Point(0, 1)
+        Me.Label47.Location = New System.Drawing.Point(0, 0)
         Me.Label47.Name = "Label47"
         Me.Label47.Size = New System.Drawing.Size(351, 17)
         Me.Label47.TabIndex = 88
         Me.Label47.Text = "Group Details"
-        '
-        'Panel22
-        '
-        Me.Panel22.BackColor = System.Drawing.Color.LightGray
-        Me.Panel22.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel22.Location = New System.Drawing.Point(0, 0)
-        Me.Panel22.Name = "Panel22"
-        Me.Panel22.Size = New System.Drawing.Size(351, 1)
-        Me.Panel22.TabIndex = 83
-        Me.Panel22.TabStop = True
         '
         'Label3
         '
@@ -1881,8 +2018,8 @@ Partial Class Ledger_frm
         'Group_TXT
         '
         Me.Group_TXT.Auto_Cleane = True
-        Me.Group_TXT.Back_color = System.Drawing.Color.Beige
-        Me.Group_TXT.BackColor = System.Drawing.Color.Beige
+        Me.Group_TXT.Back_color = System.Drawing.Color.White
+        Me.Group_TXT.BackColor = System.Drawing.Color.White
         Me.Group_TXT.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Group_TXT.Data_Link_ = ""
         Me.Group_TXT.Decimal_ = 2
@@ -1898,7 +2035,8 @@ Partial Class Ledger_frm
         Me.Group_TXT.Select_Auto_Show = True
         Me.Group_TXT.Select_Column_Color = "NA"
         Me.Group_TXT.Select_Columns = 0
-        Me.Group_TXT.Select_Filter = "Name LIKE '%<value>%' or [Under Group] LIKE '%<value>%'"
+        Me.Group_TXT.Select_Filter = "Name LIKE '%<value>%' or [Under Group] LIKE '%<value>%' or [Under Group] LIKE 'Cr" &
+    "eate'"
         Me.Group_TXT.Select_Hide_Columns = "0"
         Me.Group_TXT.Select_Object = Nothing
         Me.Group_TXT.Select_Source = Me.Group_Source
@@ -1938,7 +2076,7 @@ Partial Class Ledger_frm
         '
         'Panel2
         '
-        Me.Panel2.BackColor = System.Drawing.Color.OldLace
+        Me.Panel2.BackColor = System.Drawing.Color.White
         Me.Panel2.Controls.Add(Me.Panel17)
         Me.Panel2.Controls.Add(Me.Panel6)
         Me.Panel2.Controls.Add(Me.Label48)
@@ -1996,8 +2134,8 @@ Partial Class Ledger_frm
         'Note_TXT
         '
         Me.Note_TXT.Auto_Cleane = True
-        Me.Note_TXT.Back_color = System.Drawing.Color.OldLace
-        Me.Note_TXT.BackColor = System.Drawing.Color.OldLace
+        Me.Note_TXT.Back_color = System.Drawing.Color.White
+        Me.Note_TXT.BackColor = System.Drawing.Color.White
         Me.Note_TXT.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Note_TXT.Data_Link_ = ""
         Me.Note_TXT.Decimal_ = 2
@@ -2046,8 +2184,8 @@ Partial Class Ledger_frm
         'Discription_TXT
         '
         Me.Discription_TXT.Auto_Cleane = True
-        Me.Discription_TXT.Back_color = System.Drawing.Color.OldLace
-        Me.Discription_TXT.BackColor = System.Drawing.Color.OldLace
+        Me.Discription_TXT.Back_color = System.Drawing.Color.White
+        Me.Discription_TXT.BackColor = System.Drawing.Color.White
         Me.Discription_TXT.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Discription_TXT.Data_Link_ = ""
         Me.Discription_TXT.Decimal_ = 2
@@ -2084,7 +2222,7 @@ Partial Class Ledger_frm
         '
         'Panel6
         '
-        Me.Panel6.BackColor = System.Drawing.Color.LemonChiffon
+        Me.Panel6.BackColor = System.Drawing.Color.White
         Me.Panel6.Controls.Add(Me.Panel8)
         Me.Panel6.Controls.Add(Me.Label45)
         Me.Panel6.Controls.Add(Me.Label44)
@@ -2151,7 +2289,7 @@ Partial Class Ledger_frm
         '
         'Panel7
         '
-        Me.Panel7.BackColor = System.Drawing.Color.DarkGray
+        Me.Panel7.BackColor = System.Drawing.Color.LightGray
         Me.Panel7.Dock = System.Windows.Forms.DockStyle.Left
         Me.Panel7.Location = New System.Drawing.Point(0, 0)
         Me.Panel7.Name = "Panel7"
@@ -2170,8 +2308,8 @@ Partial Class Ledger_frm
         'Alias_TXT
         '
         Me.Alias_TXT.Auto_Cleane = True
-        Me.Alias_TXT.Back_color = System.Drawing.Color.OldLace
-        Me.Alias_TXT.BackColor = System.Drawing.Color.OldLace
+        Me.Alias_TXT.Back_color = System.Drawing.Color.White
+        Me.Alias_TXT.BackColor = System.Drawing.Color.White
         Me.Alias_TXT.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Alias_TXT.Data_Link_ = ""
         Me.Alias_TXT.Decimal_ = 2
@@ -2219,8 +2357,8 @@ Partial Class Ledger_frm
         'Name_TXT
         '
         Me.Name_TXT.Auto_Cleane = True
-        Me.Name_TXT.Back_color = System.Drawing.Color.OldLace
-        Me.Name_TXT.BackColor = System.Drawing.Color.OldLace
+        Me.Name_TXT.Back_color = System.Drawing.Color.White
+        Me.Name_TXT.BackColor = System.Drawing.Color.White
         Me.Name_TXT.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Name_TXT.Data_Link_ = ""
         Me.Name_TXT.Decimal_ = 2
@@ -2262,17 +2400,17 @@ Partial Class Ledger_frm
         Me.Panel3.Location = New System.Drawing.Point(0, 81)
         Me.Panel3.Name = "Panel3"
         Me.Panel3.Size = New System.Drawing.Size(702, 1)
-        Me.Panel3.TabIndex = 30
+        Me.Panel3.TabIndex = 103
         Me.Panel3.TabStop = True
         '
         'Administrative_panel
         '
         Me.Administrative_panel.AutoScroll = True
-        Me.Administrative_panel.BackColor = System.Drawing.Color.MistyRose
+        Me.Administrative_panel.BackColor = System.Drawing.Color.White
         Me.Administrative_panel.Controls.Add(Me.Panel15)
         Me.Administrative_panel.Controls.Add(Me.Label39)
-        Me.Administrative_panel.Controls.Add(Me.Panel18)
         Me.Administrative_panel.Controls.Add(Me.Panel19)
+        Me.Administrative_panel.Controls.Add(Me.Panel18)
         Me.Administrative_panel.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Administrative_panel.Location = New System.Drawing.Point(0, 607)
         Me.Administrative_panel.Name = "Administrative_panel"
@@ -2304,8 +2442,8 @@ Partial Class Ledger_frm
         'Txt3
         '
         Me.Txt3.Auto_Cleane = False
-        Me.Txt3.Back_color = System.Drawing.Color.MistyRose
-        Me.Txt3.BackColor = System.Drawing.Color.MistyRose
+        Me.Txt3.Back_color = System.Drawing.Color.White
+        Me.Txt3.BackColor = System.Drawing.Color.White
         Me.Txt3.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Txt3.Data_Link_ = ""
         Me.Txt3.Decimal_ = 2
@@ -2339,8 +2477,8 @@ Partial Class Ledger_frm
         'Opning_Balance_TXT
         '
         Me.Opning_Balance_TXT.Auto_Cleane = True
-        Me.Opning_Balance_TXT.Back_color = System.Drawing.Color.MistyRose
-        Me.Opning_Balance_TXT.BackColor = System.Drawing.Color.MistyRose
+        Me.Opning_Balance_TXT.Back_color = System.Drawing.Color.White
+        Me.Opning_Balance_TXT.BackColor = System.Drawing.Color.White
         Me.Opning_Balance_TXT.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Opning_Balance_TXT.Data_Link_ = ""
         Me.Opning_Balance_TXT.Decimal_ = 2
@@ -2396,24 +2534,14 @@ Partial Class Ledger_frm
         Me.Label39.TabIndex = 56
         Me.Label39.Text = ":"
         '
-        'Panel18
-        '
-        Me.Panel18.BackColor = System.Drawing.Color.DarkGray
-        Me.Panel18.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel18.Location = New System.Drawing.Point(223, 0)
-        Me.Panel18.Name = "Panel18"
-        Me.Panel18.Size = New System.Drawing.Size(479, 1)
-        Me.Panel18.TabIndex = 95
-        Me.Panel18.TabStop = True
-        '
         'Panel19
         '
         Me.Panel19.Controls.Add(Me.Credit_Days_Panel)
         Me.Panel19.Controls.Add(Me.Credit_Panel)
         Me.Panel19.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Panel19.Location = New System.Drawing.Point(0, 0)
+        Me.Panel19.Location = New System.Drawing.Point(0, 1)
         Me.Panel19.Name = "Panel19"
-        Me.Panel19.Size = New System.Drawing.Size(223, 72)
+        Me.Panel19.Size = New System.Drawing.Size(223, 71)
         Me.Panel19.TabIndex = 0
         '
         'Credit_Days_Panel
@@ -2441,8 +2569,8 @@ Partial Class Ledger_frm
         'Txt9
         '
         Me.Txt9.Auto_Cleane = True
-        Me.Txt9.Back_color = System.Drawing.Color.MistyRose
-        Me.Txt9.BackColor = System.Drawing.Color.MistyRose
+        Me.Txt9.Back_color = System.Drawing.Color.White
+        Me.Txt9.BackColor = System.Drawing.Color.White
         Me.Txt9.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Txt9.Data_Link_ = ""
         Me.Txt9.Decimal_ = 0
@@ -2503,8 +2631,8 @@ Partial Class Ledger_frm
         'Credit_Limit_TXT
         '
         Me.Credit_Limit_TXT.Auto_Cleane = True
-        Me.Credit_Limit_TXT.Back_color = System.Drawing.Color.MistyRose
-        Me.Credit_Limit_TXT.BackColor = System.Drawing.Color.MistyRose
+        Me.Credit_Limit_TXT.Back_color = System.Drawing.Color.White
+        Me.Credit_Limit_TXT.BackColor = System.Drawing.Color.White
         Me.Credit_Limit_TXT.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Credit_Limit_TXT.Data_Link_ = ""
         Me.Credit_Limit_TXT.Decimal_ = 2
@@ -2550,6 +2678,16 @@ Partial Class Ledger_frm
         Me.Label42.Size = New System.Drawing.Size(85, 19)
         Me.Label42.TabIndex = 59
         Me.Label42.Text = "Credit Limit"
+        '
+        'Panel18
+        '
+        Me.Panel18.BackColor = System.Drawing.Color.DarkGray
+        Me.Panel18.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel18.Location = New System.Drawing.Point(0, 0)
+        Me.Panel18.Name = "Panel18"
+        Me.Panel18.Size = New System.Drawing.Size(702, 1)
+        Me.Panel18.TabIndex = 95
+        Me.Panel18.TabStop = True
         '
         'DataGridView1
         '
@@ -2744,8 +2882,11 @@ Partial Class Ledger_frm
         Me.Panel1.ResumeLayout(False)
         Me.Panel13.ResumeLayout(False)
         Me.Panel13.PerformLayout()
-        Me.Panel23.ResumeLayout(False)
-        Me.Panel23.PerformLayout()
+        Me.otherdetails_Panel.ResumeLayout(False)
+        Me.otherdetails_Panel.PerformLayout()
+        Me.Panel21.ResumeLayout(False)
+        Me.communication_panel.ResumeLayout(False)
+        Me.communication_panel.PerformLayout()
         Me.Panel24.ResumeLayout(False)
         Me.Panel24.PerformLayout()
         Me.Tax_Registration_Panel.ResumeLayout(False)
@@ -2821,7 +2962,6 @@ Partial Class Ledger_frm
     Friend WithEvents Label49 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents Label1 As Label
-    Friend WithEvents Panel3 As Panel
     Friend WithEvents Panel4 As Panel
     Friend WithEvents Label14 As Label
     Friend WithEvents PAN_TXT As Tools.TXT
@@ -2876,7 +3016,6 @@ Partial Class Ledger_frm
     Friend WithEvents Label44 As Label
     Friend WithEvents Label46 As Label
     Friend WithEvents Panel18 As Panel
-    Friend WithEvents Panel14 As Panel
     Friend WithEvents Panel12 As Panel
     Friend WithEvents Panel16 As Panel
     Friend WithEvents Address_Panel As Panel
@@ -2930,7 +3069,6 @@ Partial Class Ledger_frm
     Friend WithEvents Label17 As Label
     Friend WithEvents Label54 As Label
     Friend WithEvents Label47 As Label
-    Friend WithEvents Panel22 As Panel
     Friend WithEvents Label18 As Label
     Friend WithEvents Yn1 As Tools.YN
     Friend WithEvents Label55 As Label
@@ -2944,7 +3082,7 @@ Partial Class Ledger_frm
     Friend WithEvents Panel13 As Panel
     Friend WithEvents Save_TXT As Tools.TXT
     Friend WithEvents bg_Panel As Panel
-    Friend WithEvents Panel23 As Panel
+    Friend WithEvents communication_panel As Panel
     Friend WithEvents Panel24 As Panel
     Friend WithEvents Label64 As Label
     Friend WithEvents Txt4 As Tools.TXT
@@ -2994,4 +3132,15 @@ Partial Class Ledger_frm
     Friend WithEvents Panel19 As Panel
     Friend WithEvents Label40 As Label
     Friend WithEvents State_Source As BindingSource
+    Friend WithEvents otherdetails_Panel As Panel
+    Friend WithEvents Panel21 As Panel
+    Friend WithEvents Label79 As Label
+    Friend WithEvents Panel23 As Panel
+    Friend WithEvents Label82 As Label
+    Friend WithEvents Aadhaar_TXT As Tools.TXT
+    Friend WithEvents Label83 As Label
+    Friend WithEvents Label84 As Label
+    Friend WithEvents DOB_TXT As Tools.TXT
+    Friend WithEvents Label85 As Label
+    Friend WithEvents Panel3 As Panel
 End Class

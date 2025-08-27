@@ -138,9 +138,8 @@ Public Class Attendance_sheet_frm
             Try
                 Defolt_Select_Emp = Find_DT_Value(Database_File.cre, "TBL_Payroll_Employee", "ID", $"Name = '{Grid1.CurrentRow.Cells(0).Value.ToString}'")
                 Defolt_Select_attendacetype = Find_DT_Value(Database_File.cre, "TBL_Payroll_Att_Production_Type", "ID", $"Name = '{Grid1.Columns(Grid1.CurrentCell.ColumnIndex).HeaderText}'")
-
             Catch ex As Exception
-                MsgBox(ex.Message)
+                'MsgBox(ex.Message)
             End Try
         End If
 
@@ -211,9 +210,13 @@ WHERE em.Visible = 'Approval' and at.Visible = 'Approval'", cn)
 
                 Last_ = r("e_Name")
             End While
-            If dt.Rows(dt.Rows.Count - 1)(0) <> Last_ Then
-                dt.Rows.Add(ro)
-            End If
+            Try
+                If dt.Rows(dt.Rows.Count - 1)(0) <> Last_ Then
+                    dt.Rows.Add(ro)
+                End If
+            Catch ex As Exception
+
+            End Try
             Grid1.DataSource = dt
         End If
 

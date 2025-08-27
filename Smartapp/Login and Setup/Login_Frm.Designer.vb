@@ -56,6 +56,10 @@ Partial Class Login_Frm
         Me.Panel4 = New System.Windows.Forms.Panel()
         Me.Server_Connection_Panel = New System.Windows.Forms.Panel()
         Me.Panel8 = New System.Windows.Forms.Panel()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.Label9 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.ProgressBar1 = New Tools.ProgressBag_Custom()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -63,10 +67,6 @@ Partial Class Login_Frm
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Panel11 = New System.Windows.Forms.Panel()
         Me.PictureBox11 = New System.Windows.Forms.PictureBox()
-        Me.Label9 = New System.Windows.Forms.Label()
-        Me.Label12 = New System.Windows.Forms.Label()
-        Me.Label13 = New System.Windows.Forms.Label()
-        Me.Label14 = New System.Windows.Forms.Label()
         CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -477,6 +477,46 @@ Partial Class Login_Frm
         Me.Panel8.Size = New System.Drawing.Size(405, 328)
         Me.Panel8.TabIndex = 105
         '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label14.Location = New System.Drawing.Point(62, 231)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(42, 16)
+        Me.Label14.TabIndex = 105
+        Me.Label14.Text = "Wait.."
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label13.Location = New System.Drawing.Point(62, 191)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(42, 16)
+        Me.Label13.TabIndex = 104
+        Me.Label13.Text = "Wait.."
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label12.Location = New System.Drawing.Point(62, 152)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(42, 16)
+        Me.Label12.TabIndex = 103
+        Me.Label12.Text = "Wait.."
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.Location = New System.Drawing.Point(62, 111)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(42, 16)
+        Me.Label9.TabIndex = 102
+        Me.Label9.Text = "Wait.."
+        '
         'Label4
         '
         Me.Label4.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -558,46 +598,6 @@ Partial Class Login_Frm
         Me.PictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBox11.TabIndex = 1
         Me.PictureBox11.TabStop = False
-        '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.Location = New System.Drawing.Point(62, 111)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(42, 16)
-        Me.Label9.TabIndex = 102
-        Me.Label9.Text = "Wait.."
-        '
-        'Label12
-        '
-        Me.Label12.AutoSize = True
-        Me.Label12.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label12.Location = New System.Drawing.Point(62, 152)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(42, 16)
-        Me.Label12.TabIndex = 103
-        Me.Label12.Text = "Wait.."
-        '
-        'Label13
-        '
-        Me.Label13.AutoSize = True
-        Me.Label13.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label13.Location = New System.Drawing.Point(62, 191)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(42, 16)
-        Me.Label13.TabIndex = 104
-        Me.Label13.Text = "Wait.."
-        '
-        'Label14
-        '
-        Me.Label14.AutoSize = True
-        Me.Label14.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label14.Location = New System.Drawing.Point(62, 231)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(42, 16)
-        Me.Label14.TabIndex = 105
-        Me.Label14.Text = "Wait.."
         '
         'Login_Frm
         '

@@ -288,6 +288,7 @@ CREATE TABLE 'TBL_Ledger' (
 	'Communication_Whatsapp'	TEXT,
 	'Communication_Email'	TEXT,
 	'CHEQUE_Print'	TEXT,
+	'Aadhaar'	TEXT,
 	PRIMARY KEY('Id' AUTOINCREMENT)
 );
 
@@ -605,9 +606,11 @@ CREATE TABLE 'TBL_VC_item_Details' (
 	'Rate2'	TEXT,
 	'Amount1'	TEXT,
 	'Amount2'	TEXT,
+	'Batch_No'	TEXT,
+	'Mfg_Date'	Date,
+	'Exp_Date'	Date,
 	PRIMARY KEY('ID' AUTOINCREMENT)
 );
-
 
 CREATE TABLE 'TBL_Communication' (
 	'ID'	INTEGER NOT NULL UNIQUE,

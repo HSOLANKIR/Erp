@@ -15,6 +15,7 @@ Public Class Ledger_cfg
             GST_YN.Text = Boolean_TXT(.cfg_GST_Details_YN)
             Credit_YN.Text = Boolean_TXT(.cfg_Credit_Limit_YN)
             Credit_Day_YN.Text = Boolean_TXT(.cfg_Credit_Days_YN)
+            Communication_YN.Text = Boolean_TXT(.cfg_Communication_YN)
         End With
     End Function
     Public Function Save_Data()
@@ -23,6 +24,8 @@ Public Class Ledger_cfg
         Update_cfg(Database_File.lnk, "cfg_Ledger", "GST_Details_YN", GST_YN.Text)
         Update_cfg(Database_File.lnk, "cfg_Ledger", "Credit_Limit_YN", Credit_YN.Text)
         Update_cfg(Database_File.lnk, "cfg_Ledger", "Credit_Days_YN", Credit_Day_YN.Text)
+        Update_cfg(Database_File.lnk, "cfg_Ledger", "Communication_YN", Communication_YN.Text)
+        Update_cfg(Database_File.lnk, "cfg_Ledger", "other_YN", other_YN.Text)
     End Function
     Private Function List_set()
 
@@ -34,6 +37,8 @@ Public Class Ledger_cfg
             .cfg_GST_Details_YN = YN_Boolean(GST_YN.Text)
             .cfg_Credit_Limit_YN = YN_Boolean(Credit_YN.Text)
             .cfg_Credit_Days_YN = YN_Boolean(Credit_Day_YN.Text)
+            .cfg_Communication_YN = YN_Boolean(Communication_YN.Text)
+            .cfg_other_YN = YN_Boolean(other_YN.Text)
         End With
     End Function
     Private Sub Branch_YN_TextChanged(sender As Object, e As EventArgs) Handles Address_YN.TextChanged

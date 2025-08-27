@@ -63,6 +63,7 @@ Module GENDRAL_mod
             Return False
         End If
 
+
     End Function
     Public Function obj_center(obj As Object, bg As Object) As Point
         Dim Poi As Point = New Point(bg.ClientSize.Width / 2 - obj.Size.Width / 2, bg.ClientSize.Height / 2 - obj.Size.Height / 2)

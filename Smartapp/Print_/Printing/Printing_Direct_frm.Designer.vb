@@ -23,7 +23,7 @@ Partial Class Printing_Direct_frm
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Me.Panel1 = New System.Windows.Forms.Panel()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Printing_Direct_frm))
         Me.Panel4 = New System.Windows.Forms.Panel()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.Panel6 = New System.Windows.Forms.Panel()
@@ -59,7 +59,9 @@ Partial Class Printing_Direct_frm
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
+        Me.Panel10 = New System.Windows.Forms.Panel()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.Button5 = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
@@ -70,7 +72,12 @@ Partial Class Printing_Direct_frm
         Me.Label28 = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Load_Panel = New System.Windows.Forms.Panel()
-        Me.Panel1.SuspendLayout()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Panel16 = New System.Windows.Forms.Panel()
+        Me.Label43 = New System.Windows.Forms.Label()
+        Me.Label44 = New System.Windows.Forms.Label()
+        Me.Panel17 = New System.Windows.Forms.Panel()
+        Me.PictureBox4 = New System.Windows.Forms.PictureBox()
         Me.Panel4.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.Panel6.SuspendLayout()
@@ -80,20 +87,11 @@ Partial Class Printing_Direct_frm
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Load_Panel.SuspendLayout()
+        Me.Panel1.SuspendLayout()
+        Me.Panel16.SuspendLayout()
+        Me.Panel17.SuspendLayout()
+        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'Panel1
-        '
-        Me.Panel1.BackColor = System.Drawing.Color.White
-        Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel1.Controls.Add(Me.Panel4)
-        Me.Panel1.Controls.Add(Me.Panel3)
-        Me.Panel1.Controls.Add(Me.Panel2)
-        Me.Panel1.Location = New System.Drawing.Point(12, 28)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(536, 269)
-        Me.Panel1.TabIndex = 0
-        Me.Panel1.Visible = False
         '
         'Panel4
         '
@@ -101,16 +99,16 @@ Partial Class Printing_Direct_frm
         Me.Panel4.Controls.Add(Me.Panel8)
         Me.Panel4.Controls.Add(Me.Panel9)
         Me.Panel4.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel4.Location = New System.Drawing.Point(0, 69)
+        Me.Panel4.Location = New System.Drawing.Point(257, 151)
         Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(534, 141)
+        Me.Panel4.Size = New System.Drawing.Size(602, 141)
         Me.Panel4.TabIndex = 9
         '
         'TableLayoutPanel1
         '
         Me.TableLayoutPanel1.ColumnCount = 2
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 174.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.Panel6, 1, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.Panel5, 0, 0)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
@@ -118,7 +116,7 @@ Partial Class Printing_Direct_frm
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(534, 139)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(602, 139)
         Me.TableLayoutPanel1.TabIndex = 9
         '
         'Panel6
@@ -137,10 +135,10 @@ Partial Class Printing_Direct_frm
         Me.Panel6.Controls.Add(Me.Label18)
         Me.Panel6.Controls.Add(Me.Label19)
         Me.Panel6.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel6.Location = New System.Drawing.Point(385, 1)
+        Me.Panel6.Location = New System.Drawing.Point(429, 1)
         Me.Panel6.Margin = New System.Windows.Forms.Padding(1)
         Me.Panel6.Name = "Panel6"
-        Me.Panel6.Size = New System.Drawing.Size(148, 137)
+        Me.Panel6.Size = New System.Drawing.Size(172, 137)
         Me.Panel6.TabIndex = 1
         '
         'Label15
@@ -159,7 +157,7 @@ Partial Class Printing_Direct_frm
         Me.Label21.Font = New System.Drawing.Font("Arial", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label21.Location = New System.Drawing.Point(0, 0)
         Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(148, 20)
+        Me.Label21.Size = New System.Drawing.Size(172, 20)
         Me.Label21.TabIndex = 9
         Me.Label21.Text = "Page Margin"
         Me.Label21.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -284,7 +282,7 @@ Partial Class Printing_Direct_frm
         Me.Panel5.Location = New System.Drawing.Point(1, 1)
         Me.Panel5.Margin = New System.Windows.Forms.Padding(1)
         Me.Panel5.Name = "Panel5"
-        Me.Panel5.Size = New System.Drawing.Size(382, 137)
+        Me.Panel5.Size = New System.Drawing.Size(426, 137)
         Me.Panel5.TabIndex = 0
         '
         'Label8
@@ -293,7 +291,7 @@ Partial Class Printing_Direct_frm
         Me.Label8.Font = New System.Drawing.Font("Arial", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label8.Location = New System.Drawing.Point(0, 0)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(381, 20)
+        Me.Label8.Size = New System.Drawing.Size(425, 20)
         Me.Label8.TabIndex = 14
         Me.Label8.Text = "Page Details"
         Me.Label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -360,7 +358,7 @@ Partial Class Printing_Direct_frm
         '
         Me.Panel7.BackColor = System.Drawing.Color.LightGray
         Me.Panel7.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel7.Location = New System.Drawing.Point(381, 0)
+        Me.Panel7.Location = New System.Drawing.Point(425, 0)
         Me.Panel7.Name = "Panel7"
         Me.Panel7.Size = New System.Drawing.Size(1, 137)
         Me.Panel7.TabIndex = 15
@@ -371,7 +369,7 @@ Partial Class Printing_Direct_frm
         Me.Panel8.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Panel8.Location = New System.Drawing.Point(0, 140)
         Me.Panel8.Name = "Panel8"
-        Me.Panel8.Size = New System.Drawing.Size(534, 1)
+        Me.Panel8.Size = New System.Drawing.Size(602, 1)
         Me.Panel8.TabIndex = 16
         '
         'Panel9
@@ -380,7 +378,7 @@ Partial Class Printing_Direct_frm
         Me.Panel9.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel9.Location = New System.Drawing.Point(0, 0)
         Me.Panel9.Name = "Panel9"
-        Me.Panel9.Size = New System.Drawing.Size(534, 1)
+        Me.Panel9.Size = New System.Drawing.Size(602, 1)
         Me.Panel9.TabIndex = 17
         '
         'Panel3
@@ -392,10 +390,11 @@ Partial Class Printing_Direct_frm
         Me.Panel3.Controls.Add(Me.Label3)
         Me.Panel3.Controls.Add(Me.Label6)
         Me.Panel3.Controls.Add(Me.Label7)
+        Me.Panel3.Controls.Add(Me.Panel10)
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel3.Location = New System.Drawing.Point(0, 0)
+        Me.Panel3.Location = New System.Drawing.Point(257, 82)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(534, 69)
+        Me.Panel3.Size = New System.Drawing.Size(602, 69)
         Me.Panel3.TabIndex = 8
         '
         'Txt2
@@ -407,6 +406,7 @@ Partial Class Printing_Direct_frm
         Me.Txt2.Data_Link_ = ""
         Me.Txt2.Decimal_ = 0
         Me.Txt2.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.Txt2.Font_ = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold)
         Me.Txt2.Font_Size = 10
         Me.Txt2.Font_Style = System.Drawing.FontStyle.Bold
         Me.Txt2.Format_ = "dd-MM-yyyy"
@@ -436,6 +436,7 @@ Partial Class Printing_Direct_frm
         Me.Txt1.Data_Link_ = ""
         Me.Txt1.Decimal_ = 0
         Me.Txt1.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.Txt1.Font_ = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold)
         Me.Txt1.Font_Size = 10
         Me.Txt1.Font_Style = System.Drawing.FontStyle.Bold
         Me.Txt1.Format_ = "dd-MM-yyyy"
@@ -461,11 +462,11 @@ Partial Class Printing_Direct_frm
         '
         Me.Label1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Label1.Font = New System.Drawing.Font("Arial", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(0, 0)
+        Me.Label1.Location = New System.Drawing.Point(0, 1)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(534, 20)
+        Me.Label1.Size = New System.Drawing.Size(602, 20)
         Me.Label1.TabIndex = 8
-        Me.Label1.Text = "Printer Information"
+        Me.Label1.Text = "Printer Details"
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'Label2
@@ -508,27 +509,48 @@ Partial Class Printing_Direct_frm
         Me.Label7.TabIndex = 5
         Me.Label7.Text = "Copys"
         '
+        'Panel10
+        '
+        Me.Panel10.BackColor = System.Drawing.Color.LightGray
+        Me.Panel10.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel10.Location = New System.Drawing.Point(0, 0)
+        Me.Panel10.Name = "Panel10"
+        Me.Panel10.Size = New System.Drawing.Size(602, 1)
+        Me.Panel10.TabIndex = 16
+        '
         'Panel2
         '
+        Me.Panel2.Controls.Add(Me.Button5)
         Me.Panel2.Controls.Add(Me.Button3)
         Me.Panel2.Controls.Add(Me.Button4)
         Me.Panel2.Controls.Add(Me.Button2)
         Me.Panel2.Controls.Add(Me.Button1)
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel2.Location = New System.Drawing.Point(0, 217)
+        Me.Panel2.Location = New System.Drawing.Point(257, 294)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(534, 50)
+        Me.Panel2.Size = New System.Drawing.Size(602, 50)
         Me.Panel2.TabIndex = 0
+        '
+        'Button5
+        '
+        Me.Button5.BackColor = System.Drawing.Color.Honeydew
+        Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button5.Location = New System.Drawing.Point(484, 9)
+        Me.Button5.Name = "Button5"
+        Me.Button5.Size = New System.Drawing.Size(111, 33)
+        Me.Button5.TabIndex = 4
+        Me.Button5.Text = "&S : Share"
+        Me.Button5.UseVisualStyleBackColor = False
         '
         'Button3
         '
         Me.Button3.BackColor = System.Drawing.Color.MistyRose
         Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button3.Location = New System.Drawing.Point(385, 9)
+        Me.Button3.Location = New System.Drawing.Point(365, 9)
         Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(108, 33)
+        Me.Button3.Size = New System.Drawing.Size(111, 33)
         Me.Button3.TabIndex = 3
-        Me.Button3.Text = "&E : PDF"
+        Me.Button3.Text = "&E : Export"
         Me.Button3.UseVisualStyleBackColor = False
         '
         'Button4
@@ -536,9 +558,9 @@ Partial Class Printing_Direct_frm
         Me.Button4.BackColor = System.Drawing.Color.OldLace
         Me.Button4.Enabled = False
         Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button4.Location = New System.Drawing.Point(41, 9)
+        Me.Button4.Location = New System.Drawing.Point(8, 9)
         Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(108, 33)
+        Me.Button4.Size = New System.Drawing.Size(111, 33)
         Me.Button4.TabIndex = 0
         Me.Button4.Text = "C : &Config."
         Me.Button4.UseVisualStyleBackColor = False
@@ -547,9 +569,9 @@ Partial Class Printing_Direct_frm
         '
         Me.Button2.BackColor = System.Drawing.Color.PaleTurquoise
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.Location = New System.Drawing.Point(271, 9)
+        Me.Button2.Location = New System.Drawing.Point(246, 9)
         Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(108, 33)
+        Me.Button2.Size = New System.Drawing.Size(111, 33)
         Me.Button2.TabIndex = 2
         Me.Button2.Text = "P : &Print"
         Me.Button2.UseVisualStyleBackColor = False
@@ -558,9 +580,9 @@ Partial Class Printing_Direct_frm
         '
         Me.Button1.BackColor = System.Drawing.Color.Bisque
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Location = New System.Drawing.Point(156, 9)
+        Me.Button1.Location = New System.Drawing.Point(127, 9)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(108, 33)
+        Me.Button1.Size = New System.Drawing.Size(111, 33)
         Me.Button1.TabIndex = 1
         Me.Button1.Text = "R : P&review"
         Me.Button1.UseVisualStyleBackColor = False
@@ -573,7 +595,7 @@ Partial Class Printing_Direct_frm
         'ReportViewer1
         '
         Me.ReportViewer1.DocumentMapWidth = 38
-        Me.ReportViewer1.Location = New System.Drawing.Point(363, 325)
+        Me.ReportViewer1.Location = New System.Drawing.Point(284, 420)
         Me.ReportViewer1.Name = "ReportViewer1"
         Me.ReportViewer1.ServerReport.BearerToken = Nothing
         Me.ReportViewer1.Size = New System.Drawing.Size(40, 40)
@@ -589,14 +611,14 @@ Partial Class Printing_Direct_frm
         Me.Label28.Name = "Label28"
         Me.Label28.Size = New System.Drawing.Size(230, 16)
         Me.Label28.TabIndex = 5
-        Me.Label28.Text = "Please wait..."
+        Me.Label28.Text = "Please wait Load Printing Data"
         Me.Label28.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'PictureBox1
         '
         Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.PictureBox1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PictureBox1.Image = Global.Management.My.Resources.Resources.copy_animation_icn
+        Me.PictureBox1.Image = Global.Management.My.Resources.Resources.edit_gif
         Me.PictureBox1.Location = New System.Drawing.Point(0, 0)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(230, 193)
@@ -615,14 +637,83 @@ Partial Class Printing_Direct_frm
         Me.Load_Panel.Size = New System.Drawing.Size(232, 211)
         Me.Load_Panel.TabIndex = 1
         '
+        'Panel1
+        '
+        Me.Panel1.BackColor = System.Drawing.Color.White
+        Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel1.Controls.Add(Me.Panel2)
+        Me.Panel1.Controls.Add(Me.Panel4)
+        Me.Panel1.Controls.Add(Me.Panel3)
+        Me.Panel1.Controls.Add(Me.Panel16)
+        Me.Panel1.Controls.Add(Me.Label44)
+        Me.Panel1.Controls.Add(Me.Panel17)
+        Me.Panel1.Location = New System.Drawing.Point(11, 12)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(861, 346)
+        Me.Panel1.TabIndex = 3
+        Me.Panel1.Visible = False
+        '
+        'Panel16
+        '
+        Me.Panel16.Controls.Add(Me.Label43)
+        Me.Panel16.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel16.Location = New System.Drawing.Point(257, 37)
+        Me.Panel16.Name = "Panel16"
+        Me.Panel16.Size = New System.Drawing.Size(602, 45)
+        Me.Panel16.TabIndex = 4
+        '
+        'Label43
+        '
+        Me.Label43.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Label43.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label43.ForeColor = System.Drawing.Color.Black
+        Me.Label43.Location = New System.Drawing.Point(0, 0)
+        Me.Label43.Name = "Label43"
+        Me.Label43.Padding = New System.Windows.Forms.Padding(0, 5, 0, 0)
+        Me.Label43.Size = New System.Drawing.Size(602, 45)
+        Me.Label43.TabIndex = 97
+        '
+        'Label44
+        '
+        Me.Label44.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Label44.Font = New System.Drawing.Font("Arial Black", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label44.ForeColor = System.Drawing.Color.SeaGreen
+        Me.Label44.Location = New System.Drawing.Point(257, 0)
+        Me.Label44.Name = "Label44"
+        Me.Label44.Size = New System.Drawing.Size(602, 37)
+        Me.Label44.TabIndex = 2
+        Me.Label44.Text = "Printing Dialog"
+        Me.Label44.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'Panel17
+        '
+        Me.Panel17.Controls.Add(Me.PictureBox4)
+        Me.Panel17.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Panel17.Location = New System.Drawing.Point(0, 0)
+        Me.Panel17.Name = "Panel17"
+        Me.Panel17.Size = New System.Drawing.Size(257, 344)
+        Me.Panel17.TabIndex = 99
+        '
+        'PictureBox4
+        '
+        Me.PictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.PictureBox4.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PictureBox4.Image = CType(resources.GetObject("PictureBox4.Image"), System.Drawing.Image)
+        Me.PictureBox4.Location = New System.Drawing.Point(0, 0)
+        Me.PictureBox4.Name = "PictureBox4"
+        Me.PictureBox4.Size = New System.Drawing.Size(257, 344)
+        Me.PictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBox4.TabIndex = 1
+        Me.PictureBox4.TabStop = False
+        '
         'Printing_Direct_frm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.LightGoldenrodYellow
-        Me.ClientSize = New System.Drawing.Size(666, 363)
-        Me.Controls.Add(Me.ReportViewer1)
+        Me.ClientSize = New System.Drawing.Size(884, 370)
         Me.Controls.Add(Me.Panel1)
+        Me.Controls.Add(Me.ReportViewer1)
         Me.Controls.Add(Me.Load_Panel)
         Me.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ForeColor = System.Drawing.Color.Black
@@ -635,8 +726,7 @@ Partial Class Printing_Direct_frm
         Me.ShowIcon = False
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Printing"
-        Me.Panel1.ResumeLayout(False)
+        Me.Text = "Printing Dialog"
         Me.Panel4.ResumeLayout(False)
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.Panel6.ResumeLayout(False)
@@ -649,11 +739,13 @@ Partial Class Printing_Direct_frm
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Load_Panel.ResumeLayout(False)
+        Me.Panel1.ResumeLayout(False)
+        Me.Panel16.ResumeLayout(False)
+        Me.Panel17.ResumeLayout(False)
+        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
-
-    Friend WithEvents Panel1 As Panel
     Friend WithEvents Panel2 As Panel
     Friend WithEvents Button2 As Button
     Friend WithEvents Button1 As Button
@@ -700,4 +792,12 @@ Partial Class Printing_Direct_frm
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents Load_Panel As Panel
     Friend WithEvents Button3 As Button
+    Friend WithEvents Button5 As Button
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents Panel16 As Panel
+    Friend WithEvents Label43 As Label
+    Friend WithEvents Label44 As Label
+    Friend WithEvents Panel17 As Panel
+    Friend WithEvents PictureBox4 As PictureBox
+    Friend WithEvents Panel10 As Panel
 End Class

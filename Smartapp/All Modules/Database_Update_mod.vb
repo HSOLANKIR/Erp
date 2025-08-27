@@ -27,8 +27,28 @@ Module Database_Update_mod
         If Val(db_v.ToString.Replace(".", "")) <= 1058 Then
             u_1058(frm)
         End If
+        If Val(db_v.ToString.Replace(".", "")) <= 1059 Then
+            u_1059(frm)
+        End If
 
 
+    End Function
+    Private Function u_1059(frm As Database_repair_frm) As Boolean
+        Dim Qry_str As List(Of String) = New List(Of String)
+        Try
+            Dim cn As New SQLiteConnection
+            If open_MSSQL_Cstm(Database_File.cre, cn) = True Then
+                cmd = New SQLiteCommand("UPDATE TBL_VC_item_Details
+SET Batch_No = 'Primary Batch'
+WHERE Batch_No IS NULL or Batch_No = '';", cn)
+                cmd.ExecuteNonQuery()
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            MessageBox.Show(ex.Message, "Update Version : 1.0.5.9", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+        Return True
     End Function
     Private Function u_1058(frm As Database_repair_frm) As Boolean
         Dim r As SQLiteDataReader

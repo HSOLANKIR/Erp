@@ -1,6 +1,7 @@
 ﻿Imports System.ComponentModel
 Imports System.Drawing.Printing
 Imports System.IO
+Imports System.Runtime.InteropServices
 Imports System.Xml
 Imports Microsoft.Reporting.WinForms
 
@@ -95,30 +96,15 @@ Public Class Printing_frm
 
         For Each fi In aryFi
             strFileSize = (Math.Round(fi.Length / 1024)).ToString()
-            Select_2.Items.Add(fi.Name)
-
+            ListBox1.Items.Add(fi.Name)
             If fi.Name = defolt_report Then
                 dft_ = True
             End If
+
         Next
     End Function
     Dim dft_ As Boolean = False
 
-    Private Sub Select_2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Select_2.SelectedIndexChanged
-        ReportViewer1.LocalReport.ReportPath = Print_Path & "\" & Select_2.Text
-        Print_Param = Link_xml_printing(Print_Path & "\" & Select_2.Text.ToString.Split(".").First & ".xml")
-        Try
-            ReportViewer1.LocalReport.SetParameters(Print_Param)
-        Catch ex As Exception
-
-        End Try
-
-        For Each d As ReportDataSource In ReportData
-            ReportViewer1.LocalReport.DataSources.Add(d)
-        Next
-
-        Change_Report_Format()
-    End Sub
     Private Function Change_Report_Format()
         ReportViewer1.RefreshReport()
         t_m = ReportViewer1.LocalReport.GetDefaultPageSettings.Margins.Top
@@ -141,7 +127,7 @@ Public Class Printing_frm
         ReportViewer1.PrintDialog()
     End Sub
 
-    Private Sub PictureBox2_Click(sender As Object, e As EventArgs) Handles PictureBox2.Click, Label2.Click
+    Private Sub PictureBox2_Click(sender As Object, e As EventArgs) Handles PictureBox2.Click
         Dim saveFileDialog1 As New SaveFileDialog()
         saveFileDialog1.Filter = "*PDF files (*.pdf)|*.pdf"
         saveFileDialog1.FileName = Print_Name
@@ -222,7 +208,7 @@ Public Class Printing_frm
         End If
     End Sub
 
-    Private Sub PictureBox3_Click(sender As Object, e As EventArgs) Handles PictureBox3.Click, Label3.Click
+    Private Sub PictureBox3_Click(sender As Object, e As EventArgs) Handles PictureBox3.Click
         Dim saveFileDialog1 As New SaveFileDialog()
         saveFileDialog1.Filter = "*Excel files (*.xlsx)|*.xlsx"
         saveFileDialog1.FileName = Print_Name
@@ -231,7 +217,7 @@ Public Class Printing_frm
         End If
     End Sub
 
-    Private Sub PictureBox4_Click(sender As Object, e As EventArgs) Handles PictureBox4.Click, Label4.Click
+    Private Sub PictureBox4_Click(sender As Object, e As EventArgs) Handles PictureBox4.Click
         Dim saveFileDialog1 As New SaveFileDialog()
         saveFileDialog1.Filter = "*Excel files (*.docx)|*.docx"
         saveFileDialog1.FileName = Print_Name
@@ -239,9 +225,29 @@ Public Class Printing_frm
             word_export(saveFileDialog1.FileName)
         End If
     End Sub
-
+    Private Function Create_File_Name() As String
+        Dim OPT_Hint As String = ((Val(Now.Date.Day) + Val(Now.Date.Millisecond) + Val(Now.Date.Second) & Val(Val(Now.TimeOfDay.Hours + Now.TimeOfDay.Minutes & Now.Date.Month + Now.Date.Day)) + Val(Val(Now.Date.Year))) - Val(Now.TimeOfDay.Seconds) + Val(Now.TimeOfDay.Milliseconds)) * 12552
+        Return Val(OPT_Hint) * 999
+    End Function
     Private Sub PictureBox8_Click(sender As Object, e As EventArgs) Handles PictureBox8.Click, Label9.Click
+        Dim path As String = ""
 
+        If CheckBox1.Checked = True Then
+            path = Application.StartupPath & $"\_other_savefiles\{Create_File_Name()}.pdf"
+            pdf_export(path)
+        End If
+        If CheckBox2.Checked = True Then
+            path = Application.StartupPath & $"\_other_savefiles\{Create_File_Name()}.xlsx"
+            excel_export(path)
+        End If
+        If CheckBox3.Checked = True Then
+            path = Application.StartupPath & $"\_other_savefiles\{Create_File_Name()}.docx"
+            word_export(path)
+        End If
+
+        Direct_Communication_frm.path_ = path
+        Direct_Communication_frm.ifSingal = True
+        Direct_Communication_frm.ShowDialog()
     End Sub
 
     Private Sub load_panel_Paint(sender As Object, e As PaintEventArgs) Handles load_panel.Paint
@@ -254,22 +260,29 @@ Public Class Printing_frm
 
     Private Sub BackgroundWorker1_RunWorkerCompleted(sender As Object, e As RunWorkerCompletedEventArgs) Handles Load_background.RunWorkerCompleted
         Try
-            Select_2.SelectedIndex = 0
-            ReportViewer1.LocalReport.ReportPath = Print_Path & "\" & Select_2.Text
-            ReportViewer1.LocalReport.SetParameters(Print_Param)
+            ListBox1.SelectedIndex = 0
+            'ReportViewer1.LocalReport.ReportPath = Print_Path & "\" & Select_2.Text
+            'ReportViewer1.LocalReport.SetParameters(Print_Param)
 
-            ReportViewer1.RefreshReport()
+            'ReportViewer1.RefreshReport()
         Catch ex As Exception
 
         End Try
 
         If dft_ = True Then
-            Select_2.Text = defolt_report
+            SetDefaultSelectionManual()
         End If
 
         Select_1.Text = Primary_Printer
         Change_Report_Format()
         Panel_Manag(bg_Panel)
+    End Sub
+
+    Private Sub SetDefaultSelectionManual()
+        Dim index As Integer = ListBox1.FindString(defolt_report)
+        If index >= 0 Then
+            ListBox1.SelectedIndex = index
+        End If
     End Sub
 
     Private Sub PictureBox7_Click(sender As Object, e As EventArgs) Handles PictureBox7.Click, Label8.Click
@@ -282,5 +295,112 @@ Public Class Printing_frm
 
     Private Sub Label15_Click(sender As Object, e As EventArgs) Handles Label15.Click
         ReportViewer1.GetTotalPages
+    End Sub
+
+    Private Sub Label2_Click(sender As Object, e As EventArgs)
+        If CheckBox1.Checked = True Then
+            Dim saveFileDialog1 As New SaveFileDialog()
+            saveFileDialog1.Filter = "*PDF files (*.pdf)|*.pdf"
+            saveFileDialog1.FileName = Print_Name
+            If saveFileDialog1.ShowDialog = DialogResult.OK Then
+                pdf_export(saveFileDialog1.FileName)
+            End If
+        End If
+        If CheckBox2.Checked = True Then
+            Dim saveFileDialog1 As New SaveFileDialog()
+            saveFileDialog1.Filter = "*Excel files (*.xlsx)|*.xlsx"
+            saveFileDialog1.FileName = Print_Name
+            If saveFileDialog1.ShowDialog = DialogResult.OK Then
+                excel_export(saveFileDialog1.FileName)
+            End If
+        End If
+        If CheckBox3.Checked = True Then
+            Dim saveFileDialog1 As New SaveFileDialog()
+            saveFileDialog1.Filter = "*Excel files (*.docx)|*.docx"
+            saveFileDialog1.FileName = Print_Name
+            If saveFileDialog1.ShowDialog = DialogResult.OK Then
+                word_export(saveFileDialog1.FileName)
+            End If
+        End If
+
+    End Sub
+    Private Sub ListBox1_DrawItem(sender As Object, e As DrawItemEventArgs) Handles ListBox1.DrawItem
+        If e.Index < 0 Then Exit Sub
+
+        Dim listBox As ListBox = CType(sender, ListBox)
+        Dim itemText As String = listBox.Items(e.Index).ToString()
+
+        ' Determine background color
+        Dim backColor As Color
+        If (e.State And DrawItemState.Selected) = DrawItemState.Selected Then
+            backColor = Color.FromArgb(254, 197, 48) ' Your custom selection color
+        Else
+            backColor = listBox.BackColor
+        End If
+
+        ' Draw background
+        Using backBrush As New SolidBrush(backColor)
+            e.Graphics.FillRectangle(backBrush, e.Bounds)
+        End Using
+
+        ' Draw text
+        Using textBrush As New SolidBrush(listBox.ForeColor)
+            e.Graphics.DrawString(itemText, e.Font, textBrush, e.Bounds)
+        End Using
+
+        ' Draw focus rectangle if needed
+        e.DrawFocusRectangle()
+    End Sub
+
+    Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox1.SelectedIndexChanged
+        ReportViewer1.LocalReport.DataSources.Clear()
+
+        ReportViewer1.LocalReport.ReportPath = Print_Path & "\" & ListBox1.SelectedItem
+        Print_Param = Link_xml_printing(Print_Path & "\" & ListBox1.SelectedItem.ToString.Split(".").First & ".xml")
+        Try
+            ReportViewer1.LocalReport.SetParameters(Print_Param)
+        Catch ex As Exception
+
+        End Try
+
+        For Each d As ReportDataSource In ReportData
+            ReportViewer1.LocalReport.DataSources.Add(d)
+        Next
+
+        Dim pageSettings As New PageSettings()
+        pageSettings.PaperSize = ReportViewer1.LocalReport.GetDefaultPageSettings.PaperSize
+        pageSettings.Margins = ReportViewer1.LocalReport.GetDefaultPageSettings.Margins
+        pageSettings.Landscape = ReportViewer1.LocalReport.GetDefaultPageSettings.IsLandscape
+        ReportViewer1.SetPageSettings(pageSettings)
+
+        ReportViewer1.LocalReport.Refresh()
+        Change_Report_Format()
+    End Sub
+
+    Private Sub Load_background_ProgressChanged(sender As Object, e As ProgressChangedEventArgs) Handles Load_background.ProgressChanged
+
+    End Sub
+
+    Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox1.CheckedChanged
+        If CheckBox1.Checked = True Then
+            CheckBox2.Checked = False
+            CheckBox3.Checked = False
+        End If
+    End Sub
+
+    Private Sub CheckBox2_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox2.CheckedChanged
+        If CheckBox2.Checked = True Then
+            CheckBox1.Checked = False
+            CheckBox3.Checked = False
+        End If
+
+    End Sub
+
+    Private Sub CheckBox3_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox3.CheckedChanged
+        If CheckBox3.Checked = True Then
+            CheckBox1.Checked = False
+            CheckBox2.Checked = False
+        End If
+
     End Sub
 End Class

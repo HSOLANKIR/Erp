@@ -12,6 +12,9 @@ Public Class sp_control_under
     Public Property Cess_ID As String
     Public Property Cess_Per As Integer
     Public Property Cess_Amount As Decimal
+    Public Property Batch_Enable As Boolean = False
+    Public Property Mfg_Enable As Boolean = False
+    Public Property Exp_Enable As Boolean = False
 
     Public Property GST_Enable As Boolean = False
     Public Property GST_Type As String
@@ -58,6 +61,8 @@ Public Class sp_control_under
         discount_amt_lab.Location = Rate_TXT.Location
 
 
+
+
         Array.ForEach(Me.Controls.OfType(Of TXT)().ToArray(),
               Sub(lbl) lbl.BackColor = Obj.BackColor)
 
@@ -67,12 +72,17 @@ Public Class sp_control_under
     End Function
     Dim it_list As List_frm
     Dim un_list As List_frm
+    Dim batch_list As List_frm
 
     Public Function List_set()
         it_list = New List_frm
         List_Setup("List of Stock Items", Select_List.Right_Dock, Select_List_Format.Defolt, Item_TXT, it_list, Obj.BindingSource1, 420)
         it_list.Set_COlor(5)
-        it_list.System_Data_integer = 1
+        If Me__Control_ID = 1 Then
+            it_list.System_Data_integer = 2
+        Else
+            it_list.System_Data_integer = 1
+        End If
 
         Dt_Unit = New DataTable
         Dt_Unit.Columns.Add("Name")
@@ -88,6 +98,32 @@ Public Class sp_control_under
         Next
         un_list.List_Grid.Columns(0).Visible = True
         un_list.List_Grid.Columns(0).AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+
+
+        Dt_Batch = New DataTable
+        Dt_Batch.Columns.Add("Name")
+        Dt_Batch.Columns.Add("Mfg")
+        Dt_Batch.Columns.Add("Exp")
+        Dt_Batch.Columns.Add("Stock")
+        If Inventory_Vouchers_frm.Voucher_type_ = "Inward" Then
+            Dt_Batch.Rows.Add("", "", "", "Create Batch")
+        End If
+
+        Dt_Batch.Rows.Add("Primary Batch", "", "", "")
+        Batch_Source.DataSource = Dt_Batch
+
+        batch_list = New List_frm
+        List_Setup("List of Batch", Select_List.Botom, Select_List_Format.Custome, Batch_TXT, batch_list, Batch_Source, 500)
+        batch_list.List_Grid.ColumnHeadersVisible = True
+        batch_list.List_Grid.Columns(0).HeaderText = "Batch No."
+        batch_list.List_Grid.Columns(0).AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        batch_list.List_Grid.Columns(1).Width = 90
+        batch_list.List_Grid.Columns(2).Width = 90
+        batch_list.List_Grid.Columns(3).Width = 150
+        batch_list.List_Grid.Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+        If Inventory_Vouchers_frm.Voucher_type_ = "Inward" Then
+            batch_list.System_Data_integer = 1
+        End If
     End Function
 
     Private Sub Item_TXT_TextChanged(sender As Object, e As EventArgs) Handles Item_TXT.TextChanged
@@ -130,6 +166,15 @@ Public Class sp_control_under
                 Amount_TXT.Text = ""
                 Amount_TXT.Enabled = False
 
+                Batch_TXT.Text = ""
+                Batch_TXT.Enabled = False
+
+                Mfg_TXT.Text = ""
+                Mfg_TXT.Enabled = False
+
+                Exp_TXT.Text = ""
+                Exp_TXT.Enabled = False
+
 
                 SP_acc_details_fill()
                 SubTotal_Cal()
@@ -156,6 +201,35 @@ Public Class sp_control_under
                 Unit1_Value = it_list.List_Grid.CurrentRow.Cells("A_Unit1_Value").Value.ToString
                 Unit2_Value = it_list.List_Grid.CurrentRow.Cells("A_Unit2_Value").Value.ToString
 
+                Batch_Enable = YN_Boolean(it_list.List_Grid.CurrentRow.Cells("Batch_YN").Value.ToString, False)
+                Mfg_Enable = YN_Boolean(it_list.List_Grid.CurrentRow.Cells("Mfg").Value.ToString, False)
+                Exp_Enable = YN_Boolean(it_list.List_Grid.CurrentRow.Cells("Exp").Value.ToString, False)
+
+                If Batches_YN = True And Batch_Enable = True Then
+                    Batch_TXT.Visible = True
+                    Batch_data_Fill()
+
+                    If Mfg_Enable = True Then
+                        Mfg_TXT.Visible = True
+                    Else
+                        Mfg_TXT.Visible = False
+                    End If
+
+                    If Exp_Enable = True Then
+                        Exp_TXT.Visible = True
+                    Else
+                        Exp_TXT.Visible = False
+                    End If
+                Else
+                    Batch_TXT.Text = ""
+                    Batch_TXT.Visible = False
+
+                    Mfg_TXT.Text = ""
+                    Mfg_TXT.Visible = False
+
+                    Exp_TXT.Text = ""
+                    Exp_TXT.Visible = False
+                End If
                 Unit_data_fill()
 
                 If Old_ID <> Item_TXT.Data_Link_ Then
@@ -180,6 +254,46 @@ Public Class sp_control_under
             End If
         End If
     End Sub
+    Private Function Batch_data_Fill()
+        Dim cn As New SQLiteConnection
+        Dim r As SQLiteDataReader
+        Dt_Batch.Rows.Clear()
+        If Inventory_Vouchers_frm.Voucher_type_ = "Inward" Then
+            Dt_Batch.Rows.Add("", "", "", "Create Batch")
+        End If
+
+        If open_MSSQL_Cstm(Database_File.cre, cn) = True Then
+            cmd = New SQLiteCommand($"SELECT vi.Item, vi.Batch_No,vi.Mfg_Date,vi.Exp_Date,
+SUM(CASE WHEN vi.Type = 'Credit' THEN vi.Qty1 ELSE -vi.Qty1 END) AS Stock
+FROM TBL_VC_item_Details vi
+where vi.Item = '{Item_TXT.Data_Link_}'
+GROUP BY vi.Item, vi.Batch_No,vi.Mfg_Date,vi.Exp_Date
+ORDER BY CASE WHEN Batch_No = 'Primary Batch' THEN 1 ELSE 2 END,vi.Exp_Date;", cn)
+
+            'My.Computer.Clipboard.SetText(cmd.CommandText)
+            r = cmd.ExecuteReader
+            Dim dr As DataRow
+            While r.Read
+                dr = Dt_Batch.NewRow
+                dr("Name") = r("Batch_No").ToString
+                dr("Mfg") = Date_Formate(r("Mfg_Date").ToString)
+                dr("Exp") = Date_Formate(r("Exp_Date").ToString)
+                dr("Stock") = $"{Val(r("Stock").ToString)} {Unit1_Symbol}"
+                Dt_Batch.Rows.Add(dr)
+            End While
+            r.Close()
+        End If
+        If Inventory_Vouchers_frm.Voucher_type_ = "Inward" Then
+            If Dt_Batch.Rows.Count = 1 Then
+                Dt_Batch.Rows.Add("Primary Batch", "", "", "")
+            End If
+        Else
+            If Dt_Batch.Rows.Count = 0 Then
+                Dt_Batch.Rows.Add("Primary Batch", "", "", "")
+            End If
+        End If
+
+    End Function
     Private Function Rate_Valu() As Decimal
         Dim Rate As Decimal = 0
         With Inventory_Vouchers_frm
@@ -386,9 +500,14 @@ Public Class sp_control_under
 
         Amount_TXT.Text = SubTo - nUmBeR_FORMATE(Dis_)
 
+
+
+
+
         GST_Calculation()
     End Function
     Dim Dt_Unit As DataTable
+    Dim Dt_Batch As DataTable
     Public Function Unit_data_fill()
         Dt_Unit.Rows.Clear()
 
@@ -507,9 +626,6 @@ Public Class sp_control_under
                 End If
             End If
             NOT_Clear()
-            Dim Me_index As Integer = Obj.stock_panel.Controls.IndexOf(Me) + 1
-
-
             If Obj.stock_panel.Controls.Count = Me__Control_ID Then
                 Obj.Add_New()
             End If
@@ -578,5 +694,73 @@ Public Class sp_control_under
 
     Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs) Handles Panel1.Paint
 
+    End Sub
+
+    Private Sub Mfg_TXT_TextChanged(sender As Object, e As EventArgs) Handles Mfg_TXT.TextChanged, Exp_TXT.TextChanged
+        Batch_Period_Cal()
+    End Sub
+    Private Function Batch_Period_Cal()
+
+        Try
+            Dim D1 As Date = CDate(Mfg_TXT.Text)
+            Dim D2 As Date = CDate(Exp_TXT.Text)
+
+            Batch_Period_Label.Text = $"{DateDiff(DateInterval.Day, D1, D2)} Days"
+        Catch ex As Exception
+            Batch_Period_Label.Text = ""
+        End Try
+
+    End Function
+
+    Private Sub Mfg_TXT_LostFocus(sender As Object, e As EventArgs) Handles Mfg_TXT.LostFocus, Exp_TXT.LostFocus
+        sender.Text = Date_Formate(sender.Text)
+    End Sub
+
+    Private Sub Batch_TXT_TextChanged(sender As Object, e As EventArgs) Handles Batch_TXT.TextChanged
+
+    End Sub
+
+    Private Sub Batch_TXT_VisibleChanged(sender As Object, e As EventArgs) Handles Batch_TXT.VisibleChanged
+        Mfg_TXT.Visible = Batch_TXT.Visible
+        Exp_TXT.Visible = Batch_TXT.Visible
+        Batch_Period_Label.Visible = Batch_TXT.Visible
+        Batch_Period_Label.Location = Mfg_TXT.Location
+
+        Exp_TXT.BringToFront()
+    End Sub
+
+    Private Sub Batch_TXT_KeyDown(sender As Object, e As KeyEventArgs) Handles Batch_TXT.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            If batch_list.List_Grid.CurrentRow.Cells("Stock").Value = "Create Batch" Then
+                batch_list.List_Grid.CurrentRow.Cells("Name").Value = Batch_TXT.Text
+                Exit Sub
+            End If
+
+            Dim Old_Batch As String = Batch_TXT.Text
+            If Old_Batch <> batch_list.List_Grid.CurrentRow.Cells("Name").Value Then
+                Try
+                    Mfg_TXT.Text = CDate(batch_list.List_Grid.CurrentRow.Cells("Mfg").Value)
+                Catch ex As Exception
+                    Mfg_TXT.Text = ""
+                End Try
+                Try
+                    Exp_TXT.Text = CDate(batch_list.List_Grid.CurrentRow.Cells("Exp").Value)
+                Catch ex As Exception
+                    Exp_TXT.Text = ""
+                End Try
+            End If
+        End If
+    End Sub
+
+    Private Sub Exp_TXT_KeyDown(sender As Object, e As KeyEventArgs) Handles Exp_TXT.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            Try
+                If CDate(Mfg_TXT.Text) > CDate(Exp_TXT.Text) Then
+                    Mfg_TXT.Focus()
+                End If
+            Catch ex As Exception
+
+            End Try
+        End If
     End Sub
 End Class

@@ -70,7 +70,8 @@ Public Class Stock_Item_frm
     Dim Marckating_List As List_frm
     Private Function List_set()
         sg_list = New List_frm
-        List_Setup("List of Stock Groups", Select_List.Right_Dock, Select_List_Format.Defolt, Group_TXT, sg_list, Group_source, 320, {"Create|Alt + C", "Alter|Ctrl + Enter"})
+        List_Setup("List of Stock Groups", Select_List.Right_Dock, Select_List_Format.Defolt, Group_TXT, sg_list, Group_source, 320)
+        sg_list.System_Data_integer = 1
 
         unit_list = New List_frm
         List_Setup("List of Units", Select_List.Right, Select_List_Format.Defolt, Unit_TXT, unit_list, Unit_Source, 320)
@@ -183,18 +184,19 @@ Public Class Stock_Item_frm
             dt.Columns.Add("UnderID")
             dt.Columns.Add("Under")
             dt.Columns.Add("Head")
+            dt.Rows.Add("", "Create")
             dt.Rows.Add("Primary", "", "0")
             cmd = New SQLiteCommand("Select * From TBL_Stock_Group where (Head = 'Stock' or Head = 'All') and Visible = 'Approval'", cn)
             Dim r As SQLiteDataReader
             r = cmd.ExecuteReader
             While r.Read
                 dr = dt.NewRow
-                dr("Name") = r("Name")
+                dr("Name") = r("Name").ToString
                 dr("ID") = r("ID")
-                dr("Nickname") = r("Nickname")
-                dr("UnderID") = r("Under")
+                dr("Nickname") = r("Nickname").ToString
+                dr("UnderID") = r("Under").ToString
                 dr("Under") = Find_DT_Value(Database_File.cre, "TBL_Stock_Group", "Name", "(Company = 'All' or Company = '" & Company_ID_str & "') and (Visible = 'Approval') and (ID = '" & r("Under") & "')")
-                dr("Head") = r("Head")
+                dr("Head") = r("Head").ToString
                 dt.Rows.Add(dr)
             End While
             r.Close()
@@ -1328,6 +1330,16 @@ DELETE FROM TBL_Item_Rate Where Item = '{VC_ID_}';
 
     Private Sub Group_TXT_KeyDown(sender As Object, e As KeyEventArgs) Handles Group_TXT.KeyDown
         If e.KeyCode = Keys.Enter Then
+
+            If sg_list.List_Grid.CurrentRow.Cells(1).Value.ToString = "Create" Then
+                Cell("Stock Group", "", "Create_Close", "")
+                Stock_Group_frm.close_focus_obj = sender
+                Stock_Group_frm.Name_TXT.Text = Group_TXT.Text
+                SendKeys.Send("+{TAB}")
+                Exit Sub
+            End If
+
+
             Under_ID = sg_list.List_Grid.CurrentRow.Cells(2).Value
             Under = sg_list.List_Grid.CurrentRow.Cells(0).Value
 
@@ -1339,6 +1351,7 @@ DELETE FROM TBL_Item_Rate Where Item = '{VC_ID_}';
         If e.KeyCode = Keys.C AndAlso e.Modifiers = Keys.Alt Then
             Cell("Stock Group", "", "Create_Close", "")
             Stock_Group_frm.close_focus_obj = sender
+            Stock_Group_frm.Name_TXT.Text = Group_TXT.Text
         ElseIf e.KeyCode = Keys.Enter AndAlso e.Modifiers = Keys.Control Then
             Cell("Stock Group", "", "Alter_Close", Under_ID)
             Stock_Group_frm.close_focus_obj = sender

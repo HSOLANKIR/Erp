@@ -1128,9 +1128,11 @@ From TBL_Ledger ld WHERE ld.Visible = 'Approval' and ld.[Group] = '7'", cn)
                             Export_PDF(cfg_print_path, path, rdlc_report_data)
                             Communication_Pass(idx, path, rdlc_report_name)
                         Next
+                        Direct_Communication_frm.ifSingal = False
                         Direct_Communication_frm.ShowDialog()
                     End With
                 Else
+
                     With Journal_controls1
                         For Each bg_p As Panel In .bg_panel.Controls.OfType(Of Panel)()
                             Dim idx As Integer = .Find_Idx(bg_p)
@@ -1139,6 +1141,7 @@ From TBL_Ledger ld WHERE ld.Visible = 'Approval' and ld.[Group] = '7'", cn)
                             Export_PDF(cfg_print_path, path, rdlc_report_data)
                             Communication_Pass(idx, path, rdlc_report_name)
                         Next
+                        Direct_Communication_frm.ifSingal = False
                         Direct_Communication_frm.ShowDialog()
                     End With
                 End If

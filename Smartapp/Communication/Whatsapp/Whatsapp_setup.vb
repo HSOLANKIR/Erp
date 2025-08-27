@@ -62,8 +62,8 @@ Public Class Whatsapp_setup
     Private Function Update_Data()
         Dim cn As New SQLiteConnection
         If open_MSSQL_Cstm(Database_File.cfgs, cn) = True Then
-            Update_(cn, "Whatsapp_API", API_TXT.Text, "")
-            Update_(cn, "Whatsapp_Number", Number_TXT.Text, "")
+            Update_(cn, "Whatsapp_API", API_TXT.Text, Number_TXT.Text)
+            'Update_(cn, "Whatsapp_Number", Number_TXT.Text, "")
         End If
     End Function
 
@@ -110,13 +110,12 @@ VALUES('{Head}','General')", cn)
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        'Button1.Visible = False
-        'Label6.Visible = False
-        'Label8.Visible = True
-        'BackgroundWorker1.RunWorkerAsync()
+        Button1.Visible = False
+        Label6.Visible = False
+        Label8.Visible = True
+        BackgroundWorker1.RunWorkerAsync()
 
-
-        WhatsApp_Qr_Login_dialoag.ShowDialog()
+        'WhatsApp_Qr_Login_dialoag.ShowDialog()
 
     End Sub
 
@@ -159,11 +158,14 @@ VALUES('{Head}','General')", cn)
     End Sub
 
     Private Sub Label10_Click(sender As Object, e As EventArgs) Handles Label10.Click
-        Process.Start("https://wh.cryptonixtechnology.in/en/register")
+        Process.Start("https://wh.cryptonixtechnology.in/public")
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Update_Data()
+        Wh_Local_API = API_TXT.Text
+        Wh_Local_No = Number_TXT.Text
+        Main_Frm.WHLogin_B.RunWorkerAsync()
         Me.DialogResult = DialogResult.OK
     End Sub
 End Class

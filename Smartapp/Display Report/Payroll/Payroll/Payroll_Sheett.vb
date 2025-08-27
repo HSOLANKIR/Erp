@@ -132,21 +132,18 @@ Public Class Payroll_Sheett
     Dim Defolt_Select_Emp As String = 0
     Dim Defolt_Select_pyHead As Integer = 0
     Public Function Fill_Grid()
-
         If Grid1.Rows.Count <> 0 Then
             Try
                 Defolt_Select_Emp = Find_DT_Value(Database_File.cre, "TBL_Payroll_Employee", "ID", $"Name = '{Grid1.CurrentRow.Cells(0).Value.ToString}'")
                 Defolt_Select_pyHead = Find_DT_Value(Database_File.cre, "TBL_Payhead", "ID", $"Name = '{Grid1.Columns(Grid1.CurrentCell.ColumnIndex).HeaderText}'")
 
             Catch ex As Exception
-                MsgBox(ex.Message)
+                'MsgBox(ex.Message)
             End Try
         End If
-
         Dim Last_ As String = ""
 
         SUM_tbl = New DataTable
-
         'Create New Data Tabale
         Dim dt As New DataTable
         Dim cn As New SQLiteConnection
@@ -165,7 +162,6 @@ Public Class Payroll_Sheett
                 End If
             End While
             r.Close()
-
             SUM_tbl.Rows.Add("")
 
             cmd = New SQLiteCommand($"Select em.ID as e_ID,em.Name as e_Name,phd.ID as a_ID,phd.Name as a_Name,
@@ -210,13 +206,16 @@ WHERE em.Visible = 'Approval' and phd.Visible = 'Approval'", cn)
                 Last_ = r("e_Name")
             End While
 
-            If dt.Rows(dt.Rows.Count - 1)(0) <> Last_ Then
-                dt.Rows.Add(ro)
-            End If
+            Try
+                If dt.Rows(dt.Rows.Count - 1)(0) <> Last_ Then
+                    dt.Rows.Add(ro)
+                End If
+            Catch ex As Exception
+
+            End Try
 
             Grid1.DataSource = dt
         End If
-
 
         With Grid1
 
@@ -225,7 +224,6 @@ WHERE em.Visible = 'Approval' and phd.Visible = 'Approval'", cn)
                 .Columns(i).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
                 .DefaultCellStyle.WrapMode = DataGridViewTriState.True
             Next
-
             .Columns(0).Width = 200
             .Columns(0).Frozen = True
 

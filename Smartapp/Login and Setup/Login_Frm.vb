@@ -809,6 +809,10 @@ INSERT INTO TBL_dft_Company_Details (Path,Cmp_ID,Name) VALUES ('{Connection_Path
         User_TXT.Focus()
     End Sub
 
+    Private Sub Label2_Click(sender As Object, e As EventArgs) Handles Label2.Click
+
+    End Sub
+
     Private Sub Import_Company_Data_Panel_Paint(sender As Object, e As PaintEventArgs)
         obj_center(sender, Me)
     End Sub

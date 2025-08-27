@@ -24,6 +24,9 @@ Partial Class sp_controls
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.Head_Item = New System.Windows.Forms.Label()
         Me.Head_Quantity = New System.Windows.Forms.Label()
         Me.Head_Rate = New System.Windows.Forms.Label()
@@ -157,6 +160,9 @@ Partial Class sp_controls
         '
         'Panel1
         '
+        Me.Panel1.Controls.Add(Me.Label3)
+        Me.Panel1.Controls.Add(Me.Label2)
+        Me.Panel1.Controls.Add(Me.Label1)
         Me.Panel1.Controls.Add(Me.Head_Item)
         Me.Panel1.Controls.Add(Me.Head_Quantity)
         Me.Panel1.Controls.Add(Me.Head_Rate)
@@ -171,14 +177,49 @@ Partial Class sp_controls
         Me.Panel1.Size = New System.Drawing.Size(1143, 20)
         Me.Panel1.TabIndex = 2
         '
+        'Label3
+        '
+        Me.Label3.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Label3.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.ForeColor = System.Drawing.Color.Red
+        Me.Label3.Location = New System.Drawing.Point(500, 1)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(80, 18)
+        Me.Label3.TabIndex = 11
+        Me.Label3.Text = "Exp. Date"
+        Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'Label2
+        '
+        Me.Label2.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Label2.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.ForeColor = System.Drawing.Color.Blue
+        Me.Label2.Location = New System.Drawing.Point(420, 1)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(80, 18)
+        Me.Label2.TabIndex = 10
+        Me.Label2.Text = "Mfg. Date"
+        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'Label1
+        '
+        Me.Label1.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Label1.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(300, 1)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(120, 18)
+        Me.Label1.TabIndex = 9
+        Me.Label1.Text = "Batch No."
+        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
         'Head_Item
         '
-        Me.Head_Item.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Head_Item.Dock = System.Windows.Forms.DockStyle.Left
         Me.Head_Item.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Head_Item.Location = New System.Drawing.Point(0, 1)
         Me.Head_Item.Name = "Head_Item"
         Me.Head_Item.Padding = New System.Windows.Forms.Padding(30, 0, 0, 0)
-        Me.Head_Item.Size = New System.Drawing.Size(743, 18)
+        Me.Head_Item.Size = New System.Drawing.Size(300, 18)
         Me.Head_Item.TabIndex = 1
         Me.Head_Item.Text = "Name of Item"
         Me.Head_Item.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -1300,4 +1341,7 @@ Partial Class sp_controls
     Friend WithEvents Panel51 As Panel
     Friend WithEvents Panel52 As Panel
     Friend WithEvents Panel53 As Panel
+    Friend WithEvents Label1 As Label
+    Friend WithEvents Label2 As Label
+    Friend WithEvents Label3 As Label
 End Class

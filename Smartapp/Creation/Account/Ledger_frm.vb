@@ -56,9 +56,12 @@ Public Class Ledger_frm
         dt.Columns.Add("Name")
         dt.Columns.Add("Under Group")
         dt.Columns.Add("ID")
+
+        dt.Rows.Add("", "Create")
+
         Dim dr As DataRow
         If open_MSSQL_Cstm(Database_File.cre, cn) Then
-            cmd = New SQLiteCommand("Select ID,Name,(Select [Name] From TBL_Acc_Group agg where agg.ID = ag.UserGroup) as Under_Group From TBL_Acc_Group ag where " & Company_Visible_Filter, cn)
+            cmd = New SQLiteCommand("Select ID,Name,(Select [Name] From TBL_Acc_Group agg where agg.ID = ag.UserGroup) as Under_Group From TBL_Acc_Group ag where " & Company_Visible_Filter(), cn)
             Dim r As SQLiteDataReader
             r = cmd.ExecuteReader
             While r.Read
@@ -398,6 +401,7 @@ Public Class Ledger_frm
             Administrative_Group(True)
             Duty_And_TAX_Group(False)
             CHEQUE_details_Group(False)
+            Other_Details_Group(False)
         ElseIf und = "Duties & Taxes" Or und = "Sales Accounts" Or und = "Purchase Accounts" Then
             Duty_And_TAX_Group(True)
             TAX_Registration_Group(False)
@@ -406,6 +410,7 @@ Public Class Ledger_frm
             Bank_Group(False)
             Administrative_Group(True)
             CHEQUE_details_Group(False)
+            Other_Details_Group(False)
             If und = "Duties & Taxes" Then
                 Duty_TAX_Source_fill("Duties & Taxes")
                 Txt6.Enabled = True
@@ -426,6 +431,7 @@ Public Class Ledger_frm
             Bank_Group(True)
             Administrative_Group(True)
             CHEQUE_details_Group(False)
+            Other_Details_Group(True)
         ElseIf und = "Bank Accounts" Then
             CHEQUE_details_Group(True)
             Duty_And_TAX_Group(False)
@@ -434,6 +440,7 @@ Public Class Ledger_frm
             Address_Group(True)
             Bank_Group(True)
             Administrative_Group(True)
+            Other_Details_Group(False)
         ElseIf und = "Capital Account" Then
             Duty_And_TAX_Group(False)
             TAX_Registration_Group(False)
@@ -441,6 +448,7 @@ Public Class Ledger_frm
             Address_Group(True)
             Bank_Group(True)
             Administrative_Group(True)
+            Other_Details_Group(True)
         ElseIf und = "Loans (Liability)" Then
             Duty_And_TAX_Group(False)
             TAX_Registration_Group(False)
@@ -449,6 +457,7 @@ Public Class Ledger_frm
             Bank_Group(True)
             Administrative_Group(True)
             CHEQUE_details_Group(False)
+            Other_Details_Group(False)
         ElseIf und = "Current Liabilities" Then
             Duty_And_TAX_Group(False)
             TAX_Registration_Group(False)
@@ -456,6 +465,7 @@ Public Class Ledger_frm
             Address_Group(True)
             Bank_Group(True)
             Administrative_Group(True)
+            Other_Details_Group(False)
         ElseIf und = "Fixed Assets" Then
             Duty_And_TAX_Group(False)
             TAX_Registration_Group(False)
@@ -464,6 +474,7 @@ Public Class Ledger_frm
             Bank_Group(False)
             Administrative_Group(True)
             CHEQUE_details_Group(False)
+            Other_Details_Group(False)
         ElseIf und = "Investments" Then
             Duty_And_TAX_Group(False)
             TAX_Registration_Group(False)
@@ -472,6 +483,7 @@ Public Class Ledger_frm
             Bank_Group(False)
             Administrative_Group(True)
             CHEQUE_details_Group(False)
+            Other_Details_Group(False)
         ElseIf und = "Current Assets" Then
             Duty_And_TAX_Group(False)
             TAX_Registration_Group(False)
@@ -480,6 +492,7 @@ Public Class Ledger_frm
             Bank_Group(False)
             Administrative_Group(True)
             CHEQUE_details_Group(False)
+            Other_Details_Group(False)
         ElseIf und = "Branch / Divisions" Then
             Duty_And_TAX_Group(False)
             TAX_Registration_Group(True)
@@ -488,6 +501,7 @@ Public Class Ledger_frm
             Bank_Group(True)
             Administrative_Group(True)
             CHEQUE_details_Group(False)
+            Other_Details_Group(False)
         ElseIf und = "Misc. Expenses (ASSET)" Then
             Duty_And_TAX_Group(False)
             TAX_Registration_Group(False)
@@ -496,6 +510,7 @@ Public Class Ledger_frm
             Bank_Group(False)
             Administrative_Group(True)
             CHEQUE_details_Group(False)
+            Other_Details_Group(False)
         ElseIf und = "Suspense A/c" Then
             Duty_And_TAX_Group(False)
             TAX_Registration_Group(False)
@@ -504,6 +519,7 @@ Public Class Ledger_frm
             Bank_Group(True)
             Administrative_Group(True)
             CHEQUE_details_Group(False)
+            Other_Details_Group(False)
         ElseIf und = "Direct Incomes" Then
             Duty_And_TAX_Group(False)
             TAX_Registration_Group(False)
@@ -512,6 +528,7 @@ Public Class Ledger_frm
             Bank_Group(False)
             Administrative_Group(True)
             CHEQUE_details_Group(False)
+            Other_Details_Group(False)
         ElseIf und = "Indirect Incomes" Then
             Duty_And_TAX_Group(False)
             TAX_Registration_Group(False)
@@ -520,6 +537,7 @@ Public Class Ledger_frm
             Bank_Group(False)
             Administrative_Group(True)
             CHEQUE_details_Group(False)
+            Other_Details_Group(False)
         ElseIf und = "Direct Expenses" Then
             Duty_And_TAX_Group(False)
             TAX_Registration_Group(False)
@@ -527,6 +545,7 @@ Public Class Ledger_frm
             Address_Group(False)
             Bank_Group(False)
             Administrative_Group(True)
+            Other_Details_Group(False)
         ElseIf und = "Indirect Expenses" Then
             Duty_And_TAX_Group(False)
             TAX_Registration_Group(False)
@@ -535,6 +554,7 @@ Public Class Ledger_frm
             Bank_Group(False)
             Administrative_Group(True)
             CHEQUE_details_Group(False)
+            Other_Details_Group(False)
         ElseIf und = "Reserves & Surplus" Then
             Duty_And_TAX_Group(False)
             TAX_Registration_Group(False)
@@ -543,6 +563,7 @@ Public Class Ledger_frm
             Bank_Group(False)
             Administrative_Group(True)
             CHEQUE_details_Group(False)
+            Other_Details_Group(False)
         ElseIf und = "Bank OD A/c" Then
             CHEQUE_details_Group(True)
             Duty_And_TAX_Group(False)
@@ -551,6 +572,7 @@ Public Class Ledger_frm
             Address_Group(True)
             Bank_Group(True)
             Administrative_Group(True)
+            Other_Details_Group(False)
         ElseIf und = "Secured Loans" Then
             Duty_And_TAX_Group(False)
             TAX_Registration_Group(False)
@@ -559,6 +581,7 @@ Public Class Ledger_frm
             Bank_Group(True)
             Administrative_Group(True)
             CHEQUE_details_Group(False)
+            Other_Details_Group(False)
         ElseIf und = "Provisions" Then
             Duty_And_TAX_Group(False)
             TAX_Registration_Group(False)
@@ -567,6 +590,7 @@ Public Class Ledger_frm
             Bank_Group(False)
             Administrative_Group(True)
             CHEQUE_details_Group(False)
+            Other_Details_Group(False)
         ElseIf und = "Sundry Creditors" Then
             Duty_And_TAX_Group(False)
             TAX_Registration_Group(True)
@@ -575,6 +599,7 @@ Public Class Ledger_frm
             Bank_Group(True)
             Administrative_Group(True)
             CHEQUE_details_Group(False)
+            Other_Details_Group(True)
         ElseIf und = "Stock-in-Hand" Then
             Duty_And_TAX_Group(False)
             TAX_Registration_Group(False)
@@ -583,6 +608,7 @@ Public Class Ledger_frm
             Bank_Group(False)
             Administrative_Group(True)
             CHEQUE_details_Group(False)
+            Other_Details_Group(False)
         ElseIf und = "Deposits (Asset)" Then
             Duty_And_TAX_Group(False)
             TAX_Registration_Group(False)
@@ -591,6 +617,7 @@ Public Class Ledger_frm
             Bank_Group(True)
             Administrative_Group(True)
             CHEQUE_details_Group(False)
+            Other_Details_Group(False)
         ElseIf und = "Loans & Advances (Asset)" Then
             Duty_And_TAX_Group(False)
             TAX_Registration_Group(False)
@@ -599,6 +626,7 @@ Public Class Ledger_frm
             Bank_Group(True)
             Administrative_Group(True)
             CHEQUE_details_Group(False)
+            Other_Details_Group(False)
         ElseIf und = "Sundry Debtors" Then
             Duty_And_TAX_Group(False)
             TAX_Registration_Group(False)
@@ -607,6 +635,7 @@ Public Class Ledger_frm
             Bank_Group(True)
             Administrative_Group(True)
             CHEQUE_details_Group(False)
+            Other_Details_Group(True)
         ElseIf und = "Cash-in-Hand" Then
             Duty_And_TAX_Group(False)
             TAX_Registration_Group(False)
@@ -615,19 +644,27 @@ Public Class Ledger_frm
             Bank_Group(True)
             Administrative_Group(True)
             CHEQUE_details_Group(False)
+            Other_Details_Group(True)
         End If
         Set_Frm()
         Panel9.Visible = Address_Panel.Visible
         'cfg_()
     End Function
-    Private Function Social_Midia_Group(Ob As Boolean)
-        Contect_Panel.Visible = Ob
-
-        If Features_mod.Communication_YN = True And Ob = True Then
-            Panel23.Visible = True
+    Private Function Other_Details_Group(Ob As Boolean)
+        If Ob = True And cfg_other_YN = True Then
+            otherdetails_Panel.Visible = True
         Else
-            Panel23.Visible = False
+            otherdetails_Panel.Visible = False
         End If
+    End Function
+    Private Function Social_Midia_Group(Ob As Boolean)
+        If Communication_YN = True And Ob = True And cfg_Communication_YN = True Then
+            communication_panel.Visible = True
+        Else
+            communication_panel.Visible = False
+        End If
+
+        Contect_Panel.Visible = Ob
     End Function
     Private Function TAX_Registration_Group(Ob As Boolean)
         If cfg_GST_Details_YN = True Then
@@ -754,7 +791,8 @@ Public Class Ledger_frm
         Panel5.SendToBack()
 
         Tax_Registration_Panel.BringToFront()
-        Panel23.BringToFront()
+        communication_panel.BringToFront()
+        otherdetails_Panel.BringToFront()
     End Function
 
     Private Sub Type_of_Duty_TXT_TextChanged(sender As Object, e As EventArgs) Handles Type_of_Duty_TXT.TextChanged
@@ -818,6 +856,8 @@ Public Class Ledger_frm
             If H = "GST_Details_YN" Then cfg_GST_Details_YN = YN_Boolean(V, True)
             If H = "Credit_Limit_YN" Then cfg_Credit_Limit_YN = YN_Boolean(V, False)
             If H = "Credit_Days_YN" Then cfg_Credit_Days_YN = YN_Boolean(V, False)
+            If H = "Communication_YN" Then cfg_Communication_YN = YN_Boolean(V, False)
+            If H = "other_YN" Then cfg_other_YN = YN_Boolean(V, False)
         End While
         r.Close()
 
@@ -1011,7 +1051,9 @@ ld.Company = 'All'", cn)
     Private Function Insurt_Value() As Boolean
         If VC_Type_ = "Create" OrElse VC_Type_ = "Create_Close" Then
             If open_MSSQL(Database_File.cre) = True Then
-                qury = "INSERT INTO TBL_Ledger (Name,Alise,[Group],Phone,Email,Country,PinCode,State,Dis,Taluka,City,Address,OB_CR,OB_DR,Cradit,Cradit_Days,GST_Type,GSTNo,PANCardNo,DocumentType,DocumentNo,BankName,AccountNo,Branch,IFSCCode,Company,Visible,TypeOfDuty,TAX_Type,TAX_Class,PercentageOfCalculation,Discription,Note,[User],Date_install,PC,Communication_Type,Communication_Whatsapp,Communication_Email,CHEQUE_Print) VALUES (@Name, @Alise, @Group, @Phone, @Email,@Country, @PinCode, @State, @Dis,@Taluka, @City, @Address, @OB_CR, @OB_DR, @Cradit,@Cradit_Days, @GST_Type,@GSTNo, @PANCardNo, @DocumentType, @DocumentNo, @BankName, @AccountNo, @Branch, @IFSCCode, @Company, @Visible, @TypeOfDuty, @TAX_Type, @TAX_Class,@PercentageOfCalculation,@Discription,@Note,@User,@Install_,@PC,@comType,@w,@e,@CHEQUE_Print)"
+                qury = "INSERT INTO TBL_Ledger (Name,Alise,[Group],Phone,Email,Country,PinCode,State,Dis,Taluka,City,Address,OB_CR,OB_DR,Cradit,Cradit_Days,GST_Type,GSTNo,PANCardNo,DocumentType,DocumentNo,BankName,AccountNo,Branch,IFSCCode,Company,Visible,TypeOfDuty,TAX_Type,TAX_Class,PercentageOfCalculation,Discription,Note,[User],Date_install,PC,Communication_Type,Communication_Whatsapp,Communication_Email,CHEQUE_Print,Aadhaar,DOB) 
+VALUES 
+(@Name, @Alise, @Group, @Phone, @Email,@Country, @PinCode, @State, @Dis,@Taluka, @City, @Address, @OB_CR, @OB_DR, @Cradit,@Cradit_Days, @GST_Type,@GSTNo, @PANCardNo, @DocumentType, @DocumentNo, @BankName, @AccountNo, @Branch, @IFSCCode, @Company, @Visible, @TypeOfDuty, @TAX_Type, @TAX_Class,@PercentageOfCalculation,@Discription,@Note,@User,@Install_,@PC,@comType,@w,@e,@CHEQUE_Print,@Aadhaar,@DOB)"
                 cmd = New SQLiteCommand(qury, con)
                 Try
                     With cmd.Parameters
@@ -1032,6 +1074,12 @@ ld.Company = 'All'", cn)
                         .AddWithValue("@w", whatsapp_yn.Text)
                         .AddWithValue("@e", email_yn.Text)
 
+                        .AddWithValue("@Aadhaar", Aadhaar_TXT.Text)
+                        If DOB_TXT.Text = Nothing Then
+                            .AddWithValue("@DOB", DBNull.Value)
+                        Else
+                            .AddWithValue("@DOB", CDate(DOB_TXT.Text))
+                        End If
 
                         If Txt3.Text = "Cr" Then
                             .AddWithValue("@OB_CR", Val(Opning_Balance_TXT.Text.Trim))
@@ -1080,7 +1128,7 @@ ld.Company = 'All'", cn)
             End If
         Else
             If open_MSSQL(Database_File.cre) Then
-                qury = $"UPDATE TBL_Ledger SET Name = @Name,Alise = @Alise,[Group] = @Group,Phone = @Phone,Email = @Email,Country = @Country,PinCode = @PinCode,State = @State,Dis = @Dis,Taluka = @Taluka,City = @City,Address = @Address,OB_CR = @OB_CR,OB_DR = @OB_DR,Cradit = @Cradit,Cradit_Days = @Cradit_Days,GSTNo = @GSTNo,GST_Type = @GST_Type,PANCardNo = @PANCardNo,DocumentType = @DocumentType,DocumentNo = @DocumentNo,BankName = @BankName,AccountNo = @AccountNo,Branch = @Branch,IFSCCode = @IFSCCode,Visible = @Visible,TypeOfDuty = @TypeOfDuty,TAX_Type = @TAX_Type,TAX_Class = @TAX_Class,PercentageOfCalculation = @PercentageOfCalculation,Discription = @Discription,Note = @Note,[User] = @User,Date_Install = @Install_,PC = @PC,Communication_Type = @comType,Communication_Whatsapp = @w,Communication_Email = @e,CHEQUE_Print = @CHEQUE_Print WHERE ID = '{VC_ID_}'"
+                qury = $"UPDATE TBL_Ledger SET Name = @Name,Alise = @Alise,[Group] = @Group,Phone = @Phone,Email = @Email,Country = @Country,PinCode = @PinCode,State = @State,Dis = @Dis,Taluka = @Taluka,City = @City,Address = @Address,OB_CR = @OB_CR,OB_DR = @OB_DR,Cradit = @Cradit,Cradit_Days = @Cradit_Days,GSTNo = @GSTNo,GST_Type = @GST_Type,PANCardNo = @PANCardNo,DocumentType = @DocumentType,DocumentNo = @DocumentNo,BankName = @BankName,AccountNo = @AccountNo,Branch = @Branch,IFSCCode = @IFSCCode,Visible = @Visible,TypeOfDuty = @TypeOfDuty,TAX_Type = @TAX_Type,TAX_Class = @TAX_Class,PercentageOfCalculation = @PercentageOfCalculation,Discription = @Discription,Note = @Note,[User] = @User,Date_Install = @Install_,PC = @PC,Communication_Type = @comType,Communication_Whatsapp = @w,Communication_Email = @e,CHEQUE_Print = @CHEQUE_Print,Aadhaar = @Aadhaar,DOB = @DOB WHERE ID = '{VC_ID_}'"
                 cmd = New SQLiteCommand(qury, con)
 
                 Try
@@ -1102,6 +1150,12 @@ ld.Company = 'All'", cn)
                         .AddWithValue("@w", whatsapp_yn.Text)
                         .AddWithValue("@e", email_yn.Text)
 
+                        .AddWithValue("@Aadhaar", Aadhaar_TXT.Text)
+                        If DOB_TXT.Text = Nothing Then
+                            .AddWithValue("@DOB", DBNull.Value)
+                        Else
+                            .AddWithValue("@DOB", CDate(DOB_TXT.Text))
+                        End If
                         .AddWithValue("@CHEQUE_Print", Yn5.Text)
 
 
@@ -1387,6 +1441,8 @@ ld.Company = 'All'", cn)
             AccountNo_TXT.Text = ""
             Opning_Balance_TXT.Text = ""
             Credit_Limit_TXT.Text = ""
+            Aadhaar_TXT.Text = ""
+            DOB_TXT.Text = ""
             Name_TXT.Focus()
             NOT_("The entry you entered has been successfully accepted", NOT_Type.Success)
             DataGridView1.Rows.Clear()
@@ -1467,6 +1523,13 @@ ld.Company = 'All'", cn)
         Txt4.Text = Find_DT_Value(Database_File.cre, "TBL_Ledger", "Communication_Type", "ID = '" & VC_ID_ & "'")
         whatsapp_yn.Text = Find_DT_Value(Database_File.cre, "TBL_Ledger", "Communication_Whatsapp", "ID = '" & VC_ID_ & "'")
         email_yn.Text = Find_DT_Value(Database_File.cre, "TBL_Ledger", "Communication_Email", "ID = '" & VC_ID_ & "'")
+
+        Aadhaar_TXT.Text = Find_DT_Value(Database_File.cre, "TBL_Ledger", "Aadhaar", "ID = '" & VC_ID_ & "'")
+        Try
+            DOB_TXT.Text = CDate(Find_DT_Value(Database_File.cre, "TBL_Ledger", "DOB", "ID = '" & VC_ID_ & "'"))
+        Catch ex As Exception
+
+        End Try
 
         If Txt4.Text = Nothing Then
             Txt4.Text = "By Group (Default)"
@@ -1877,7 +1940,8 @@ ld.Company = 'All'", cn)
     Dim crdr_list As List_frm
     Private Function List_set()
         ag_list = New List_frm
-        List_Setup("List of Account Groups", Select_List.Right_Dock, Select_List_Format.Defolt, Group_TXT, ag_list, Group_Source, 320, {"Create|Alt + C", "Alter|Ctrl + Enter"})
+        List_Setup("List of Account Groups", Select_List.Right_Dock, Select_List_Format.Defolt, Group_TXT, ag_list, Group_Source, 320)
+        ag_list.System_Data_integer = 1
 
         State_list = New List_frm
         List_Setup("List of State", Select_List.Right_Dock, Select_List_Format.Singel, State_TXT, State_list, State_Source, 320)
@@ -1926,6 +1990,13 @@ ld.Company = 'All'", cn)
     End Sub
     Private Sub Group_TXT_KeyDown(sender As Object, e As KeyEventArgs) Handles Group_TXT.KeyDown
         If e.KeyCode = Keys.Enter Then
+            If ag_list.List_Grid.CurrentRow.Cells(1).Value = "Create" Then
+                Cell("Account Group", "", "Create_Close", "")
+                Acc_Group_frm.close_focus_obj = sender
+                Exit Sub
+            End If
+
+
             Under_ID = ag_list.List_Grid.CurrentRow.Cells(2).Value
             Group_TXT.Data_Link_ = ag_list.List_Grid.CurrentRow.Cells(2).Value
             Under = ag_list.List_Grid.CurrentRow.Cells(0).Value
@@ -1952,7 +2023,6 @@ ld.Company = 'All'", cn)
 
         If e.KeyCode = Keys.C AndAlso e.Modifiers = Keys.Alt Then
             Cell("Account Group", "", "Create_Close", "")
-
             Acc_Group_frm.close_focus_obj = sender
         ElseIf e.KeyCode = Keys.Enter AndAlso e.Modifiers = Keys.Control Then
             Cell("Account Group", "", "Alter", Under_ID)
@@ -2307,6 +2377,8 @@ ld.Company = 'All'", cn)
     Public cfg_GST_Details_YN As Boolean = True
     Public cfg_Credit_Limit_YN As Boolean = False
     Public cfg_Credit_Days_YN As Boolean = False
+    Public cfg_Communication_YN As Boolean = False
+    Public cfg_other_YN As Boolean = False
     Public Function Create_Database_Table()
         Dim cn As New SQLiteConnection
         Dim create_ As Boolean = False
@@ -2344,5 +2416,17 @@ ld.Company = 'All'", cn)
 
     Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click
         Update_cfg(Database_File.lnk, "cfg_Ledger", "Address_YN", "No")
+    End Sub
+
+    Private Sub Txt8_TextChanged(sender As Object, e As EventArgs) Handles DOB_TXT.TextChanged
+
+    End Sub
+
+    Private Sub Txt8_LostFocus(sender As Object, e As EventArgs) Handles DOB_TXT.LostFocus
+        Try
+            DOB_TXT.Text = CDate(Date_Formate(DOB_TXT.Text)).ToString(Date_Format_fech)
+        Catch ex As Exception
+
+        End Try
     End Sub
 End Class

@@ -2,6 +2,7 @@
 Imports System.Drawing.Printing
 Imports System.IO
 Imports Microsoft.Reporting.WinForms
+Imports Microsoft.Win32
 
 Public Class Printing_Direct_frm
 
@@ -14,7 +15,6 @@ Public Class Printing_Direct_frm
     Public Frm_ As Object
     Public cfg_frm As New Object
     Private Sub Printing_Direct_frm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
         obj_center(Load_Panel, Me)
 
         Printer_Driver_Find()
@@ -23,16 +23,7 @@ Public Class Printing_Direct_frm
         Txt2.Text = Primary_Printer
 
         Load_data()
-
-        If IsNothing(cfg_frm) Then
-            Button4.Enabled = False
-            SendKeys.Send("{TAB}")
-        Else
-            Button4.Enabled = True
-            SendKeys.Send("{TAB}")
-            SendKeys.Send("{TAB}")
-        End If
-
+        ReportViewer1.RefreshReport()
 
     End Sub
     Dim ag_list As List_frm
@@ -76,20 +67,13 @@ Public Class Printing_Direct_frm
         ReportViewer1.LocalReport.ReportPath = ReportPath & ".rdlc"
         For Each d As ReportDataSource In ReportData
             ReportViewer1.LocalReport.DataSources.Add(d)
+            Report.DataSources.Add(d)
         Next
 
         Dim parmm = Link_xml_printing(ReportPath & ".xml")
 
         Report.SetParameters(parmm)
         ReportViewer1.LocalReport.SetParameters(parmm)
-
-        ReportViewer1.RefreshReport()
-
-
-
-        For i As Integer = 0 To 100
-            Refresh_Data()
-        Next
 
     End Function
 
@@ -108,18 +92,12 @@ Public Class Printing_Direct_frm
             Label16.Text = .Margins.Right / 100 & " in."
         End With
 
-        Label23.Text = ReportViewer1.GetTotalPages & " Pages"
+        Label23.Text = $"{ReportViewer1.GetTotalPages()} Pages"
 
         obj_center(Panel1, Me)
 
         Load_Panel.Visible = False
         Panel1.Visible = True
-
-
-
-        'For i As Integer = 0 To 100
-        'Next
-
     End Function
     Private Sub Printing_Direct_frm_Enter(sender As Object, e As EventArgs) Handles Me.Enter
 
@@ -137,12 +115,6 @@ Public Class Printing_Direct_frm
 
     Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs) Handles Panel1.Paint
         obj_center(sender, Me)
-    End Sub
-
-    Private Sub BackgroundWorker1_DoWork(sender As Object, e As DoWorkEventArgs)
-        For i As Integer = 0 To 100
-            Refresh_Data()
-        Next
     End Sub
     Private Sub Panel7_Paint(sender As Object, e As PaintEventArgs) Handles Load_Panel.Paint
         obj_center(Load_Panel, Me)
@@ -194,11 +166,6 @@ Public Class Printing_Direct_frm
     Private Sub Printing_Direct_frm_GotFocus(sender As Object, e As EventArgs) Handles Me.GotFocus
 
     End Sub
-
-    Private Sub Button3_Click(sender As Object, e As EventArgs)
-        Refresh_Data()
-    End Sub
-
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
         With Print_Cfg_Dialoag
             .Ctrl = cfg_frm
@@ -222,12 +189,7 @@ Public Class Printing_Direct_frm
     End Sub
 
     Private Sub Button3_Click_1(sender As Object, e As EventArgs) Handles Button3.Click
-        Dim saveFileDialog1 As New SaveFileDialog()
-        saveFileDialog1.Filter = "*PDF files (*.pdf)|*.pdf"
-        saveFileDialog1.FileName = ExportName
-        If saveFileDialog1.ShowDialog = DialogResult.OK Then
-            pdf_export(saveFileDialog1.FileName)
-        End If
+        Export_Report_DIaloag.ShowDialog()
     End Sub
     Public Function pdf_export(path As String)
         Dim byteViewer As Byte() = ReportViewer1.LocalReport.Render("PDF")
@@ -235,4 +197,62 @@ Public Class Printing_Direct_frm
         newFile.Write(byteViewer, 0, byteViewer.Length)
         newFile.Close()
     End Function
+
+    Private Sub Load_Back_DoWork(sender As Object, e As DoWorkEventArgs)
+
+    End Sub
+
+    Private Sub Load_Back_RunWorkerCompleted(sender As Object, e As RunWorkerCompletedEventArgs)
+
+    End Sub
+
+    Private Sub ReportViewer1_Load(sender As Object, e As RenderingCompleteEventArgs) Handles ReportViewer1.RenderingComplete
+        Refresh_Data()
+
+
+
+        If TypeOf cfg_frm Is UserControl Then
+            Button4.Enabled = True
+            SendKeys.Send("{TAB}")
+            SendKeys.Send("{TAB}")
+        Else
+            Button4.Enabled = False
+            SendKeys.Send("{TAB}")
+        End If
+
+        'Try
+        '    If IsNothing(cfg_frm.Name) Then
+        '        Button4.Enabled = False
+        '        SendKeys.Send("{TAB}")
+        '    Else
+        '        Button4.Enabled = True
+        '        SendKeys.Send("{TAB}")
+        '        SendKeys.Send("{TAB}")
+        '    End If
+        'Catch ex As Exception
+        '    Button4.Enabled = False
+        '    SendKeys.Send("{TAB}")
+        'End Try
+    End Sub
+    Private Function Create_File_Name() As String
+        Dim OPT_Hint As String = ((Val(Now.Date.Day) + Val(Now.Date.Millisecond) + Val(Now.Date.Second) & Val(Val(Now.TimeOfDay.Hours + Now.TimeOfDay.Minutes & Now.Date.Month + Now.Date.Day)) + Val(Val(Now.Date.Year))) - Val(Now.TimeOfDay.Seconds) + Val(Now.TimeOfDay.Milliseconds)) * 12552
+        Return Val(OPT_Hint) * 999
+    End Function
+    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+        Dim path As String = ""
+        path = Application.StartupPath & $"\_other_savefiles\{Create_File_Name()}.pdf"
+        pdf_export(path)
+
+        Direct_Communication_frm.path_ = path
+        Direct_Communication_frm.ifSingal = True
+        Direct_Communication_frm.Show()
+    End Sub
+
+    Private Sub Label26_Click(sender As Object, e As EventArgs) Handles Label26.Click
+
+    End Sub
+
+    Private Sub Label23_Click(sender As Object, e As EventArgs) Handles Label23.Click
+
+    End Sub
 End Class

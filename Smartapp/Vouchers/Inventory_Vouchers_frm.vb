@@ -263,7 +263,6 @@ from TBL_Ledger LD where {Branch_Enable_Ledger("LD.id", Branch_ID)} {Head_Filter
                 .AddWithValue("@Filter_Date", CDate(Date_TXT.Text).AddDays(1).ToString(Lite_date_Format))
 
                 r = cmd.ExecuteReader
-
                 While r.Read
                     Dim Vlu_ As String
                     Vlu_ = r("Bal_").ToString
@@ -418,6 +417,7 @@ from TBL_Ledger LD where {Branch_Enable_Ledger("LD.id", Branch_ID)} {Head_Filter
 
 
             Stock_journal_controls1.Add_New_S()
+            Stock_journal_controls1.Add_New_P()
             Panel8.Visible = True
             Account_Panel.Visible = False
 
@@ -1070,6 +1070,9 @@ from TBL_Ledger LD where {Branch_Enable_Ledger("LD.id", Branch_ID)} {Head_Filter
                 Dim cess_per As String = c.Cess_Per
                 Dim cess_amt As String = c.Cess_Amount
                 Dim subtotal_ As String = c.Amount_TXT.Text
+                Dim Batch_ As String = c.Batch_TXT.Text
+                Dim Mfg_ As String = c.Mfg_TXT.Text
+                Dim Exp_ As String = c.Exp_TXT.Text
                 Dim Unit2_ As String = $"{c.Qty_Alte_Lab.Text} {c.Unit_Alte_Lab.Text}"
                 Dim mRP As Decimal = Val(Find_DT_Value(Database_File.cre, "TBL_Stock_Item", "MRP", "Name = '" & particuls_ & "' and " & Company_Visible_Filter()))
                 dr = Dt2.NewRow
@@ -1084,38 +1087,52 @@ from TBL_Ledger LD where {Branch_Enable_Ledger("LD.id", Branch_ID)} {Head_Filter
                 dr("Item") = particuls_
                 dr("HSN") = Find_DT_Value(Database_File.cre, "TBL_Stock_Item", "HSN_Code", "Name = '" & particuls_ & "' and " & Company_Visible_Filter())
                 If cfg_YN_print_item_MRP = True And mRP <> 0 Then
-                    dr("MRP") = vbNewLine & "     M.R.P. : " & N2_FORMATE(mRP)
+                    dr("MRP") = N2_FORMATE(mRP)
                 Else
-                    dr("MRP") = ""
+                    dr("MRP") = "NA"
+                End If
+                If Batches_YN = True And c.Batch_Enable = True And Batch_ <> "" Then
+                    dr("Batch_No") = Batch_
+                Else
+                    dr("Batch_No") = "NA"
+                End If
+                If Batches_YN = True And c.Batch_Enable = True And c.Mfg_Enable = True And Mfg_ <> "" Then
+                    dr("Mfg_Date") = Mfg_
+                Else
+                    dr("Mfg_Date") = "NA"
+                End If
+                If Batches_YN = True And c.Batch_Enable = True And c.Exp_Enable = True And Exp_ <> "" Then
+                    dr("Exp_Date") = Exp_
+                Else
+                    dr("Exp_Date") = "NA"
                 End If
                 If description_.Trim <> Nothing Then
-                    dr("Description") = vbNewLine & description_
+                    dr("Description") = $"{vbNewLine & description_}"
                 Else
                     dr("Description") = ""
                 End If
-                dr("Quantity") = Format(Val(qty_), "N2")
+                dr("Quantity") = qty_
                 dr("Unit") = Unit_
-                dr("Rate") = Format(Val(Rate_), "N2")
-                dr("Subtotal") = Format(Val(subtotal_), "N2")
-                If nUmBeR_FORMATE(GST_amt) <> 0 Then
-                    dr("Discount_P") = $"{Format(Val(Discount_per), "N2")}%"
-                    dr("Discount_A") = $"{vbNewLine}{Format(Val(Discount_amt), "N2")}₹"
+                dr("Rate") = N2_FORMATE(Val(Rate_))
+                dr("Subtotal") = N2_FORMATE(Val(subtotal_))
+                If nUmBeR_FORMATE(Discount_per) <> 0 Then
+                    dr("Discount_P") = $"{Value_Decimal_set(Val(Discount_per), 1)}%"
+                    dr("Discount_A") = $"{N2_FORMATE(Val(Discount_amt))}₹"
                 Else
                     dr("Discount_P") = ""
                     dr("Discount_A") = ""
                 End If
 
                 If nUmBeR_FORMATE(GST_amt) <> 0 Then
-                    dr("GST") = $"{Format(Val(GST_per), "N2")}%"
-                    dr("GST_Amt") = $"{vbNewLine}{Format(Val(GST_amt), "N2")}₹"
+                    dr("GST") = $"{Value_Decimal_set(GST_per, 0)}%"
+                    dr("GST_Amt") = $"{N2_FORMATE(Format(Val(GST_amt)))}₹"
                 Else
                     dr("GST") = ""
                     dr("GST_Amt") = ""
                 End If
 
-                dr("Amount") = Format(Val(subtotal_) + Val(GST_amt), "N2")
+                dr("Amount") = N2_FORMATE(Val(subtotal_) + Val(GST_amt))
                 dr("Category") = ""
-                dr("Batch_No") = ""
 
                 dr("Subtotal_Total") = Format(Val(Sp_controls1.sub_total_label.Text), "N2")
                 dr("GST_Amt_Total") = Format(Val(Sp_controls1.Label7.Text), "N2")
@@ -1582,14 +1599,18 @@ from TBL_Ledger LD where {Branch_Enable_Ledger("LD.id", Branch_ID)} {Head_Filter
         Return Val(OPT_Hint) * 999
     End Function
     Private Function Communication_send() As Boolean
-        If Features_mod.Communication_YN = True And cfg_communication_yn = True Then
+        If Features_mod.Communication_YN = True Then
+            Dim path As String = ""
             If Msg_Custom_YN(NOT_Location.Bottom_Right, Color.Black, My.Resources.Communication_animation_icn, Dialoag_Button.Yes_No, "Question?", "Communication", "Do you want to send this<nl>report on WhatsApp and email") = DialogResult.Yes Then
                 With Sp_controls1
                     B_Print()
-                    Dim path As String = Application.StartupPath & $"\_other_savefiles\{Create_File_Name()}.pdf"
+                    Dim Fil_nm As String = $"{Voucher_No_TXT.Text}"
+                    path = Application.StartupPath & $"\_other_savefiles\{path_validation(Fil_nm, "_")}.pdf"
                     Export_PDF(cfg_print_path, path, rdlc_report_data)
                     Communication_Pass(path, rdlc_report_name)
                 End With
+                Direct_Communication_frm.path_ = path
+                Direct_Communication_frm.ifSingal = True
                 Direct_Communication_frm.ShowDialog()
             End If
         End If
@@ -1604,10 +1625,10 @@ from TBL_Ledger LD where {Branch_Enable_Ledger("LD.id", Branch_ID)} {Head_Filter
         Dim whatsapp_allow As Boolean = Chack_Communication_allow(id, "Communication_Whatsapp")
         Dim email_allow As Boolean = Chack_Communication_allow(id, "Communication_Email")
 
-        If email_allow = True Then
+        If email_allow = True And Email_YN_fech = True Then
             em = Find_DT_Value(Database_File.cre, "TBL_Ledger", "Email", $"id = '{id}'")
         End If
-        If whatsapp_allow = True Then
+        If whatsapp_allow = True And Whatsapp_YN_fech = True Then
             wh = Find_DT_Value(Database_File.cre, "TBL_Ledger", "Phone", $"id = '{id}'")
         End If
 
@@ -1728,12 +1749,11 @@ from TBL_Ledger LD where {Branch_Enable_Ledger("LD.id", Branch_ID)} {Head_Filter
                 Next
             End With
         ElseIf Voucher_Type_LB.Text = "Stock Journal" Then
-            For Each bg_p As Panel In Stock_journal_controls1.Source_P.Controls.OfType(Of Panel)()
-                Dim idx As Integer = Stock_journal_controls1.Find_Idx(bg_p)
-                Dim itm As Object = Stock_journal_controls1.Find_Particuls_TXT(idx, True)
-                Dim qty As Object = Stock_journal_controls1.Find_qty_TXT(idx, True)
+            For Each bg_p As stock_journal_under In Stock_journal_controls1.Source_P.Controls.OfType(Of stock_journal_under)()
+                Dim itm As Object = bg_p.Item_TXT
+                Dim qty As Object = bg_p.Qty_TXT
 
-                If Chack_Duplicate(Database_File.cre, "TBL_Stock_Item", "Name", "Name = '" & itm.Text.ToString.Trim & "'") = False Or itm.Text.ToString.Trim = "" Then
+                If Val(itm.Data_Link_) = 0 Then
                     Stock_journal_controls1.Source_P.Controls.Remove(bg_p)
                 Else
                     If cfg_YN_zero = False Then
@@ -1745,12 +1765,11 @@ from TBL_Ledger LD where {Branch_Enable_Ledger("LD.id", Branch_ID)} {Head_Filter
                 End If
             Next
 
-            For Each bg_p As Panel In Stock_journal_controls1.Production_P.Controls.OfType(Of Panel)()
-                Dim idx As Integer = Stock_journal_controls1.Find_Idx(bg_p)
-                Dim itm As Object = Stock_journal_controls1.Find_Particuls_TXT(idx, False)
-                Dim qty As Object = Stock_journal_controls1.Find_qty_TXT(idx, False)
+            For Each bg_p As stock_journal_under In Stock_journal_controls1.Production_P.Controls.OfType(Of stock_journal_under)()
+                Dim itm As Object = bg_p.Item_TXT
+                Dim qty As Object = bg_p.Qty_TXT
 
-                If Chack_Duplicate(Database_File.cre, "TBL_Stock_Item", "Name", $"Name = '{itm.Text.ToString.Trim}'") = False Or itm.Text.ToString.Trim = "" Then
+                If Val(itm.Data_Link_) = 0 Then
                     Stock_journal_controls1.Production_P.Controls.Remove(bg_p)
                 Else
                     If cfg_YN_zero = False Then
@@ -2162,7 +2181,7 @@ from TBL_Ledger LD where {Branch_Enable_Ledger("LD.id", Branch_ID)} {Head_Filter
                     IGSTID_ = ""
                 End If
                 dt_Head.Rows.Add(HeadID_, Val(nUmBeR_FORMATE(vlu)))
-                cmd = New SQLiteCommand("INSERT INTO TBL_VC_item_Details (Tra_ID,Date,Item,HSN_Code,Qty,Unit_Type,Rate,Discount_P,Discount_A,GST_per,GST_Type,Cess_ID,Cess_per,Cess_Amt,CGST,SGST,IGST,Amount,Type,Description,CGST_ID,SGST_ID,IGST_ID,Ledger_ID,Unit1,Unit2,Qty1,Qty2,Unit,Rate1,Rate2,Amount1,Amount2) VALUES (@Tra_ID,@Date_,@Item,@HSN_Code,@Qty,@Unit_Type,@Rate,@Discount_P,@Discount_A,@GST_per,@GST_Type,@Cess_ID,@Cess_per,@Cess_Amt,@CGST,@SGST,@IGST,@Amount,@Type,@Description,@CGST_ID,@SGST_ID,@IGST_ID,@Ledger_ID,@Unit1,@Unit2,@Qty1,@Qty2,@Unit,@Rate1,@Rate2,@Amount1,@Amount2)", cn)
+                cmd = New SQLiteCommand("INSERT INTO TBL_VC_item_Details (Tra_ID,Date,Item,HSN_Code,Qty,Unit_Type,Rate,Discount_P,Discount_A,GST_per,GST_Type,Cess_ID,Cess_per,Cess_Amt,CGST,SGST,IGST,Amount,Type,Description,CGST_ID,SGST_ID,IGST_ID,Ledger_ID,Unit1,Unit2,Qty1,Qty2,Unit,Rate1,Rate2,Amount1,Amount2,Batch_No,Mfg_Date,Exp_Date) VALUES (@Tra_ID,@Date_,@Item,@HSN_Code,@Qty,@Unit_Type,@Rate,@Discount_P,@Discount_A,@GST_per,@GST_Type,@Cess_ID,@Cess_per,@Cess_Amt,@CGST,@SGST,@IGST,@Amount,@Type,@Description,@CGST_ID,@SGST_ID,@IGST_ID,@Ledger_ID,@Unit1,@Unit2,@Qty1,@Qty2,@Unit,@Rate1,@Rate2,@Amount1,@Amount2,@Batch_No,@Mfg_Date,@Exp_Date)", cn)
                 With cmd.Parameters
                     .AddWithValue("@Tra_ID", Tra_ID)
                     .AddWithValue("@Date_", CDate(Date_TXT.Text))
@@ -2197,6 +2216,21 @@ from TBL_Ledger LD where {Branch_Enable_Ledger("LD.id", Branch_ID)} {Head_Filter
                     .AddWithValue("@Amount1", c.Qty1 * c.Rate1)
                     .AddWithValue("@Amount2", c.Qty2 * c.Rate2)
 
+                    If c.Batch_TXT.Text = "" Then
+                        .AddWithValue("@Batch_No", "Primary Batch")
+                    Else
+                        .AddWithValue("@Batch_No", c.Batch_TXT.Text)
+                    End If
+                    If Date_Formate(c.Mfg_TXT.Text) <> "" Then
+                        .AddWithValue("@Mfg_Date", CDate(c.Mfg_TXT.Text))
+                    Else
+                        .AddWithValue("@Mfg_Date", DBNull.Value)
+                    End If
+                    If Date_Formate(c.Exp_TXT.Text) <> "" Then
+                        .AddWithValue("@Exp_Date", CDate(c.Exp_TXT.Text))
+                    Else
+                        .AddWithValue("@Exp_Date", DBNull.Value)
+                    End If
 
 
                     If TAX_Type = "CS" Then
@@ -2226,50 +2260,47 @@ from TBL_Ledger LD where {Branch_Enable_Ledger("LD.id", Branch_ID)} {Head_Filter
             Insurt_GST_Data(cn, dt_GST)
         ElseIf Voucher_Type_LB.Text = "Stock Journal" Then
 
-            Dim P_ As New Queue(Of Panel)()
+            Dim P_ As New Queue(Of stock_journal_under)()
 
-            P_ = New Queue(Of Panel)()
-            For Each bg_p As Panel In Stock_journal_controls1.Production_P.Controls.OfType(Of Panel)()
+            P_ = New Queue(Of stock_journal_under)()
+            For Each bg_p As stock_journal_under In Stock_journal_controls1.Production_P.Controls.OfType(Of stock_journal_under)()
                 P_.Enqueue(bg_p)
             Next
 
-            For Each bg_p As Panel In P_.Reverse
-                Dim idx As Integer = Stock_journal_controls1.Find_Idx(bg_p)
-                Dim itm As String = Stock_journal_controls1.Find_AccID_Label(idx, False).Text
-                Dim qty As String = Stock_journal_controls1.Find_qty_TXT(idx, False).Text
+            For Each c As stock_journal_under In P_.Reverse
+                Dim itm As String = c.Item_TXT.Data_Link_
+                Dim qty As String = c.Qty_TXT.Text
 
+                Dim Unit1 As String = c.Unit1_ID
+                Dim Unit2 As String = c.Unit2_ID
 
-                Dim Unit1 As String = Stock_journal_controls1.Find_Unit1_Label(idx, False).Text
-                Dim Unit2 As String = Stock_journal_controls1.Find_Unit2_Label(idx, False).Text
+                Dim Qty1 As String = c.Qty1
+                Dim Qty2 As String = c.Qty2
 
-                Dim Qty1 As String = Stock_journal_controls1.Find_Qty1(idx, False).Text
-                Dim Qty2 As String = Stock_journal_controls1.Find_Qty2(idx, False).Text
-
-                Dim Unit_ As String = "Frist"
-
-                cmd = New SQLiteCommand("INSERT INTO TBL_VC_item_Details (Tra_ID,Date,Item,HSN_Code,Qty,Unit_Type,Rate,Discount_P,Discount_A,GST_per,GST_Type,Cess_ID,Cess_per,Cess_Amt,CGST,SGST,IGST,Amount,Type,Description,CGST_ID,SGST_ID,IGST_ID,Ledger_ID,Unit1,Unit2,Qty1,Qty2,Unit,Rate1,Rate2,Amount1,Amount2) VALUES (@Tra_ID,@Date_,@Item,@HSN_Code,@Qty,@Unit_Type,@Rate,@Discount_P,@Discount_A,@GST_per,@GST_Type,@Cess_ID,@Cess_per,@Cess_Amt,@CGST,@SGST,@IGST,@Amount,@Type,@Description,@CGST_ID,@SGST_ID,@IGST_ID,@Ledger_ID,@Unit1,@Unit2,@Qty1,@Qty2,@Unit,@Rate1,@Rate2,@Amount1,@Amount2)", cn)
+                cmd = New SQLiteCommand("INSERT INTO TBL_VC_item_Details (Tra_ID,Date,Item,HSN_Code,Qty,Unit_Type,Rate,Discount_P,Discount_A,GST_per,GST_Type,Cess_ID,Cess_per,Cess_Amt,CGST,SGST,IGST,Amount,Type,Description,CGST_ID,SGST_ID,IGST_ID,Ledger_ID,Unit1,Unit2,Qty1,Qty2,Unit,Rate1,Rate2,Amount1,Amount2,Batch_No,Mfg_Date,Exp_Date) VALUES (@Tra_ID,@Date_,@Item,@HSN_Code,@Qty,@Unit_Type,@Rate,@Discount_P,@Discount_A,@GST_per,@GST_Type,@Cess_ID,@Cess_per,@Cess_Amt,@CGST,@SGST,@IGST,@Amount,@Type,@Description,@CGST_ID,@SGST_ID,@IGST_ID,@Ledger_ID,@Unit1,@Unit2,@Qty1,@Qty2,@Unit,@Rate1,@Rate2,@Amount1,@Amount2,@Batch_No,@Mfg_Date,@Exp_Date)", cn)
                 With cmd.Parameters
                     .AddWithValue("@Tra_ID", Tra_ID)
                     .AddWithValue("@Date_", CDate(Date_TXT.Text))
                     .AddWithValue("@Item", itm)
                     .AddWithValue("@HSN_Code", "")
                     .AddWithValue("@Qty", nUmBeR_FORMATE(qty))
-                    .AddWithValue("@Unit_Type", Unit_)
-                    .AddWithValue("@Rate", nUmBeR_FORMATE("0.00"))
-                    .AddWithValue("@GST_per", nUmBeR_FORMATE("0.00"))
+                    .AddWithValue("@Unit_Type", "")
+                    .AddWithValue("@Rate", Val(c.Rate_TXT.Text))
+                    .AddWithValue("@GST_per", Val("0.00"))
                     .AddWithValue("@GST_Type", TAX_Type)
 
                     .AddWithValue("@Unit1", Unit1)
                     .AddWithValue("@Unit2", Unit2)
                     .AddWithValue("@Qty1", Qty1)
                     .AddWithValue("@Qty2", Qty2)
-                    .AddWithValue("@Unit", Qty1)
+                    .AddWithValue("@Unit", c.Unit_Lst.Data_Link_)
 
-                    .AddWithValue("@Rate1", "")
-                    .AddWithValue("@Rate2", "")
 
-                    .AddWithValue("@Amount1", "")
-                    .AddWithValue("@Amount2", "")
+                    .AddWithValue("@Rate1", c.Rate1)
+                    .AddWithValue("@Rate2", c.Rate2)
+
+                    .AddWithValue("@Amount1", c.Qty1 * c.Rate1)
+                    .AddWithValue("@Amount2", c.Qty2 * c.Rate2)
 
 
                     .AddWithValue("@Discount_P", nUmBeR_FORMATE("0.00"))
@@ -2291,40 +2322,53 @@ from TBL_Ledger LD where {Branch_Enable_Ledger("LD.id", Branch_ID)} {Head_Filter
                     .AddWithValue("@SGST_ID", "")
                     .AddWithValue("@IGST_ID", "")
 
-                    .AddWithValue("@Amount", "0")
+                    .AddWithValue("@Amount", Val(c.Amount_TXT.Text))
+
+
+                    If c.Batch_TXT.Text = "" Then
+                        .AddWithValue("@Batch_No", "Primary Batch")
+                    Else
+                        .AddWithValue("@Batch_No", c.Batch_TXT.Text)
+                    End If
+                    If Date_Formate(c.Mfg_TXT.Text) <> "" Then
+                        .AddWithValue("@Mfg_Date", CDate(c.Mfg_TXT.Text))
+                    Else
+                        .AddWithValue("@Mfg_Date", DBNull.Value)
+                    End If
+                    If Date_Formate(c.Exp_TXT.Text) <> "" Then
+                        .AddWithValue("@Exp_Date", CDate(c.Exp_TXT.Text))
+                    Else
+                        .AddWithValue("@Exp_Date", DBNull.Value)
+                    End If
                     cmd.ExecuteNonQuery()
                 End With
-                Dim Data_ As String = Stock_journal_controls1.Find_Other_data(idx, False).Text
             Next
 
-            P_ = New Queue(Of Panel)()
+            P_ = New Queue(Of stock_journal_under)()
 
-            For Each bg_p As Panel In Stock_journal_controls1.Source_P.Controls.OfType(Of Panel)()
+            For Each bg_p As stock_journal_under In Stock_journal_controls1.Source_P.Controls.OfType(Of stock_journal_under)()
                 P_.Enqueue(bg_p)
             Next
 
-            For Each bg_p As Panel In P_.Reverse
-                Dim idx As Integer = Stock_journal_controls1.Find_Idx(bg_p)
-                Dim itm As String = Stock_journal_controls1.Find_AccID_Label(idx, True).Text
-                Dim qty As String = Stock_journal_controls1.Find_qty_TXT(idx, True).Text
+            For Each c As stock_journal_under In P_.Reverse
+                Dim itm As String = c.Item_TXT.Data_Link_
+                Dim qty As String = c.Qty_TXT.Text
 
-                Dim Unit1 As String = Stock_journal_controls1.Find_Unit1_Label(idx, True).Text
-                Dim Unit2 As String = Stock_journal_controls1.Find_Unit2_Label(idx, True).Text
+                Dim Unit1 As String = c.Unit1_ID
+                Dim Unit2 As String = c.Unit2_ID
 
-                Dim Qty1 As String = Stock_journal_controls1.Find_Qty1(idx, True).Text
-                Dim Qty2 As String = Stock_journal_controls1.Find_Qty2(idx, True).Text
+                Dim Qty1 As String = c.Qty1
+                Dim Qty2 As String = c.Qty2
 
-                Dim Unit_ As String = "Frist"
-
-                cmd = New SQLiteCommand("INSERT INTO TBL_VC_item_Details (Tra_ID,Date,Item,HSN_Code,Qty,Unit_Type,Rate,Discount_P,Discount_A,GST_per,GST_Type,Cess_ID,Cess_per,Cess_Amt,CGST,SGST,IGST,Amount,Type,Description,CGST_ID,SGST_ID,IGST_ID,Ledger_ID,Unit1,Unit2,Qty1,Qty2,Unit,Rate1,Rate2,Amount1,Amount2) VALUES (@Tra_ID,@Date_,@Item,@HSN_Code,@Qty,@Unit_Type,@Rate,@Discount_P,@Discount_A,@GST_per,@GST_Type,@Cess_ID,@Cess_per,@Cess_Amt,@CGST,@SGST,@IGST,@Amount,@Type,@Description,@CGST_ID,@SGST_ID,@IGST_ID,@Ledger_ID,@Unit1,@Unit2,@Qty1,@Qty2,@Unit,@Rate1,@Rate2,@Amount1,@Amount2)", cn)
+                cmd = New SQLiteCommand("INSERT INTO TBL_VC_item_Details (Tra_ID,Date,Item,HSN_Code,Qty,Unit_Type,Rate,Discount_P,Discount_A,GST_per,GST_Type,Cess_ID,Cess_per,Cess_Amt,CGST,SGST,IGST,Amount,Type,Description,CGST_ID,SGST_ID,IGST_ID,Ledger_ID,Unit1,Unit2,Qty1,Qty2,Unit,Rate1,Rate2,Amount1,Amount2,Batch_No,Mfg_Date,Exp_Date) VALUES (@Tra_ID,@Date_,@Item,@HSN_Code,@Qty,@Unit_Type,@Rate,@Discount_P,@Discount_A,@GST_per,@GST_Type,@Cess_ID,@Cess_per,@Cess_Amt,@CGST,@SGST,@IGST,@Amount,@Type,@Description,@CGST_ID,@SGST_ID,@IGST_ID,@Ledger_ID,@Unit1,@Unit2,@Qty1,@Qty2,@Unit,@Rate1,@Rate2,@Amount1,@Amount2,@Batch_No,@Mfg_Date,@Exp_Date)", cn)
                 With cmd.Parameters
                     .AddWithValue("@Tra_ID", Tra_ID)
                     .AddWithValue("@Date_", CDate(Date_TXT.Text))
                     .AddWithValue("@Item", itm)
                     .AddWithValue("@HSN_Code", "")
                     .AddWithValue("@Qty", nUmBeR_FORMATE(qty))
-                    .AddWithValue("@Unit_Type", Unit_)
-                    .AddWithValue("@Rate", nUmBeR_FORMATE("0.00"))
+                    .AddWithValue("@Unit_Type", "")
+                    .AddWithValue("@Rate", Val(c.Rate_TXT.Text))
                     .AddWithValue("@GST_per", nUmBeR_FORMATE("0.00"))
                     .AddWithValue("@GST_Type", TAX_Type)
                     .AddWithValue("@Description", "")
@@ -2337,14 +2381,13 @@ from TBL_Ledger LD where {Branch_Enable_Ledger("LD.id", Branch_ID)} {Head_Filter
                     .AddWithValue("@Unit2", Unit2)
                     .AddWithValue("@Qty1", Qty1)
                     .AddWithValue("@Qty2", Qty2)
-                    .AddWithValue("@Unit", Qty1)
+                    .AddWithValue("@Unit", c.Unit_Lst.Data_Link_)
 
-                    .AddWithValue("@Rate1", "")
-                    .AddWithValue("@Rate2", "")
+                    .AddWithValue("@Rate1", c.Rate1)
+                    .AddWithValue("@Rate2", c.Rate2)
 
-                    .AddWithValue("@Amount1", "")
-                    .AddWithValue("@Amount2", "")
-
+                    .AddWithValue("@Amount1", c.Qty1 * c.Rate1)
+                    .AddWithValue("@Amount2", c.Qty2 * c.Rate2)
 
                     .AddWithValue("@Type", "Debit")
 
@@ -2360,12 +2403,26 @@ from TBL_Ledger LD where {Branch_Enable_Ledger("LD.id", Branch_ID)} {Head_Filter
                     .AddWithValue("@SGST_ID", "")
                     .AddWithValue("@IGST_ID", "")
 
-                    .AddWithValue("@Amount", "0")
+                    .AddWithValue("@Amount", Val(c.Amount_TXT.Text))
 
+                    If c.Batch_TXT.Text = "" Then
+                        .AddWithValue("@Batch_No", "Primary Batch")
+                    Else
+                        .AddWithValue("@Batch_No", c.Batch_TXT.Text)
+                    End If
+                    If Date_Formate(c.Mfg_TXT.Text) <> "" Then
+                        .AddWithValue("@Mfg_Date", CDate(c.Mfg_TXT.Text))
+                    Else
+                        .AddWithValue("@Mfg_Date", DBNull.Value)
+                    End If
+                    If Date_Formate(c.Exp_TXT.Text) <> "" Then
+                        .AddWithValue("@Exp_Date", CDate(c.Exp_TXT.Text))
+                    Else
+                        .AddWithValue("@Exp_Date", DBNull.Value)
+                    End If
 
                     cmd.ExecuteNonQuery()
                 End With
-                Dim Data_ As String = Stock_journal_controls1.Find_Other_data(idx, True).Text
             Next
         End If
 
@@ -3124,12 +3181,22 @@ WHERE vi.Tra_ID = '{Tra_ID_}' and (Select vc.Visible From TBL_VC vc where vc.Tra
         Stock_journal_controls1.Production_P.Controls.Clear()
 
         ProgressBar1.Value = 0
-        Dim q As String = $"Select *,(Select it.name From TBL_Stock_Item it where it.id = item) as item_name,
-(Select it.Tax_Type From TBL_Stock_Item it where it.id = item) as TAX_ID,
-(Select un.Symbol From TBL_Inventory_Unit un where un.id = vi.Unit) as Unit_Name,
-(Select un.Decimal From TBL_Inventory_Unit un where un.id = vi.Unit) as Unit_Decimal,
-(Select it.Alter_Unit_Val1 From TBL_Stock_Item it where it.id = item) as Unit1_vlu,
-(Select it.Alter_Unit_Val2 From TBL_Stock_Item it where it.id = item) as Unit2_vlu,
+        Dim q As String = $"Select *,
+(Select ifnull(SUM(vvi.Qty),0) -
+
+(Select ifnull(SUM(vi1.Qty),0) From TBL_VC_item_Details vi1 where vi1.Item = vvi.Item and (Select vc.Order_No From TBL_VC vc where vc.Tra_ID = vi1.Tra_ID and vc.Type = 'Head' and vc.Visible = 'Approval' and vc.Tra_ID <> {Tra_ID}) = vvi.Tra_ID)
+
+From TBL_VC_item_Details vvi
+where vvi.Tra_ID = vi.Tra_ID and vvi.Item = vi.Item) as Order_Qty,
+(Select it.name From TBL_Stock_Item it where it.id = item) as item_name,
+(Select un.Symbol From TBL_Inventory_Unit un where un.id = vi.Unit) as Unit_Curr,
+(Select un.Decimal From TBL_Inventory_Unit un where un.id = vi.Unit) as Unit_Decimal_Curr,
+(Select un.Symbol From TBL_Inventory_Unit un where un.id = vi.Unit1) as Unit_1,
+(Select un.Decimal From TBL_Inventory_Unit un where un.id = vi.Unit1) as Unit_Decimal_1,
+(Select un.Symbol From TBL_Inventory_Unit un where un.id = vi.Unit2) as Unit_2,
+(Select un.Decimal From TBL_Inventory_Unit un where un.id = vi.Unit2) as Unit_Decimal_2,
+(Select it.Alter_Unit_Val1 From TBL_Stock_Item it where it.id = item) as Unit_Valuation_1,
+(Select it.Alter_Unit_Val2 From TBL_Stock_Item it where it.id = item) as Unit_Valuation_2,
 (Select it.Batch_YN From TBL_Stock_Item it where it.id = item) as Batch_YN,
 (Select it.Mfg_YN From TBL_Stock_Item it where it.id = item) as Mfg_YN,
 (Select it.Exp_YN From TBL_Stock_Item it where it.id = item) as Exp_YN
@@ -3143,65 +3210,92 @@ WHERE vi.Tra_ID = '{Tra_ID_}' and (Select vc.Visible From TBL_VC vc where vc.Tra
         End While
         rC.Close()
 
-
-
-
         cmd = New SQLiteCommand(q, cn)
         Using r As SQLiteDataReader = cmd.ExecuteReader
             While r.Read
                 ProgressBar1.Value += 1
                 Dim Item As String = r("item_name").ToString
-                Dim Unit As String = r("Unit_Name").ToString
                 Dim Va As Decimal = Format(Val(r("Amount")), "0.00")
 
                 If r("Type") = "Debit" Then
-                    With Stock_journal_controls1
-                        .Add_New_S()
-                        Dim idx As Integer = (.Source_P.Controls.Count)
-                        .Find_Particuls_TXT(idx, True).Text = Item.Trim
+                    With Stock_journal_controls1.Add_New_S()
+                        .Item_TXT.Text = Item.Trim
+                        .Item_TXT.Data_Link_ = r("item")
+                        .Qty_TXT.Text = Val(r("Qty").ToString)
+                        .Qty_TXT.Decimal_ = Val(r("Unit_Decimal_Curr").ToString)
+                        .Qty1 = Val(r("Qty1").ToString)
+                        .Qty2 = Val(r("Qty2").ToString)
+                        .Rate_TXT.Text = r("Rate").ToString
+                        .Amount_TXT.Text = Va
 
-                        .Find_AccID_Label(idx, True).Text = r("item")
-                        .Find_qty_TXT(idx, True).Text = r("Qty").ToString
+                        .Unit_Lst.Text = r("Unit_Curr").ToString
+                        .Unit_Lst.Data_Link_ = r("Unit").ToString
 
-                        .Find_unit_lab(idx, True).Text = r("Unit_Name").ToString
-                        .find_decimal_lab(idx, True).Text = r("Unit_Decimal").ToString
+                        .Unit1_ID = r("Unit1").ToString
+                        .Unit1_Symbol = r("Unit_1").ToString
+                        .Unit1_Decimal = r("Unit_Decimal_1").ToString
+                        .Unit1_Value = Val(r("Unit_Valuation_1").ToString)
 
-                        .Find_Unit1_Label(idx, True).Text = r("Unit1").ToString
-                        .Find_Unit2_Label(idx, True).Text = r("Unit2").ToString
+                        .Unit2_ID = r("Unit2").ToString
+                        .Unit2_Symbol = r("Unit_2").ToString
+                        .Unit2_Decimal = r("Unit_Decimal_2").ToString
+                        .Unit2_Value = Val(r("Unit_Valuation_2").ToString)
 
-                        .Find_Unit1_Value(idx, True).Text = r("Unit1_vlu").ToString
-                        .Find_Unit2_Value(idx, True).Text = r("Unit2_vlu").ToString
+                        .Qty1 = r("Qty1").ToString
+                        .Qty2 = r("Qty2").ToString
 
+                        .Batch_Enable = YN_Boolean(r("Batch_YN").ToString, False)
+                        .Batch_TXT.Text = (r("Batch_No").ToString)
+                        .Mfg_TXT.Text = Date_Formate(r("Mfg_Date").ToString)
+                        .Exp_TXT.Text = Date_Formate(r("Exp_Date").ToString)
 
-                        .Find_Other_data(idx, True).Text = Fill_vc_Item_Other_Data(cn, r("ID"))
-                        .Unit_Details_Fill(idx, True)
-                        .fill_balance_S(.Find_Particuls_TXT(idx, True))
+                        .Discription_Label.Text = (r("Description").ToString)
+
+                        .Unit_data_fill()
+                        .SubTotal_Cal()
+                        .Set_Object_()
                     End With
                 ElseIf r("Type") = "Credit" Then
-                    With Stock_journal_controls1
-                        .Add_New_P()
-                        Dim idx As Integer = (.Production_P.Controls.Count)
-                        .Find_Particuls_TXT(idx, False).Text = Item.Trim
+                    With Stock_journal_controls1.Add_New_P()
+                        .Item_TXT.Text = Item.Trim
+                        .Item_TXT.Data_Link_ = r("item")
+                        .Qty_TXT.Text = Val(r("Qty").ToString)
+                        .Qty_TXT.Decimal_ = Val(r("Unit_Decimal_Curr").ToString)
+                        .Qty1 = Val(r("Qty1").ToString)
+                        .Qty2 = Val(r("Qty2").ToString)
+                        .Rate_TXT.Text = r("Rate").ToString
+                        .Amount_TXT.Text = Va
 
-                        .Find_AccID_Label(idx, False).Text = r("item")
-                        .Find_qty_TXT(idx, False).Text = r("Qty").ToString
+                        .Unit_Lst.Text = r("Unit_Curr").ToString
+                        .Unit_Lst.Data_Link_ = r("Unit").ToString
 
-                        .Find_unit_lab(idx, False).Text = r("Unit_Name").ToString
-                        .find_decimal_lab(idx, False).Text = r("Unit_Decimal").ToString
+                        .Unit1_ID = r("Unit1").ToString
+                        .Unit1_Symbol = r("Unit_1").ToString
+                        .Unit1_Decimal = r("Unit_Decimal_1").ToString
+                        .Unit1_Value = Val(r("Unit_Valuation_1").ToString)
 
-                        .Find_Unit1_Label(idx, False).Text = r("Unit1").ToString
-                        .Find_Unit2_Label(idx, False).Text = r("Unit2").ToString
+                        .Unit2_ID = r("Unit2").ToString
+                        .Unit2_Symbol = r("Unit_2").ToString
+                        .Unit2_Decimal = r("Unit_Decimal_2").ToString
+                        .Unit2_Value = Val(r("Unit_Valuation_2").ToString)
 
-                        .Find_Unit1_Value(idx, False).Text = r("Unit1_vlu").ToString
-                        .Find_Unit2_Value(idx, False).Text = r("Unit2_vlu").ToString
+                        .Qty1 = r("Qty1").ToString
+                        .Qty2 = r("Qty2").ToString
 
-                        .Find_Other_data(idx, False).Text = Fill_vc_Item_Other_Data(cn, r("ID"))
+                        .Batch_Enable = YN_Boolean(r("Batch_YN").ToString, False)
+                        .Batch_TXT.Text = (r("Batch_No").ToString)
+                        .Mfg_TXT.Text = Date_Formate(r("Mfg_Date").ToString)
+                        .Exp_TXT.Text = Date_Formate(r("Exp_Date").ToString)
 
-                        .Unit_Details_Fill(idx, False)
-                        .fill_balance_P(.Find_Particuls_TXT(idx, False))
+                        .Discription_Label.Text = (r("Description").ToString)
+
+                        .Unit_data_fill()
+                        .SubTotal_Cal()
+                        .Set_Object_()
                     End With
                 End If
             End While
+            Stock_journal_controls1.SUM()
         End Using
 
         cstm_control_mng(Stock_journal_controls1)
@@ -3307,6 +3401,11 @@ where vvi.Tra_ID = vi.Tra_ID and vvi.Item = vi.Item) as Order_Qty,
 
                     .Cess_Per = (r("Cess_Per").ToString)
                     .Cess_Amount = (r("Cess_Amt").ToString)
+
+                    .Batch_Enable = YN_Boolean(r("Batch_YN").ToString, False)
+                    .Batch_TXT.Text = (r("Batch_No").ToString)
+                    .Mfg_TXT.Text = Date_Formate(r("Mfg_Date").ToString)
+                    .Exp_TXT.Text = Date_Formate(r("Exp_Date").ToString)
 
                     .Discription_Label.Text = (r("Description").ToString)
 
@@ -4274,7 +4373,7 @@ From TBL_VC vcM where Tra_ID = '{ID}'", conn)
         End If
     End Sub
 
-    Dim Head_Filter_on_CLass As String = ""
+    Dim Head_Filter_on_CLass As String = " AND ((LD.[Group] = '27') or (LD.[Group] = '22') or (LD.[Group] = '26') or (LD.[Group] = '7'))"
     Private Function Class_Data_fill(Class_ID As String)
 
         'Head Filter

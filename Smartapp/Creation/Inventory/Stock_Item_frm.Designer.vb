@@ -23,8 +23,8 @@ Partial Class Stock_Item_frm
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Stock_Item_frm))
         Me.Panel5 = New System.Windows.Forms.Panel()
         Me.Panel14 = New System.Windows.Forms.Panel()
@@ -73,8 +73,6 @@ Partial Class Stock_Item_frm
         Me.Panel19 = New System.Windows.Forms.Panel()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.Panel20 = New System.Windows.Forms.Panel()
-        Me.Panel12 = New System.Windows.Forms.Panel()
-        Me.Panel13 = New System.Windows.Forms.Panel()
         Me.Panel26 = New System.Windows.Forms.Panel()
         Me.Panel35 = New System.Windows.Forms.Panel()
         Me.Txt3 = New Tools.TXT()
@@ -93,6 +91,7 @@ Partial Class Stock_Item_frm
         Me.Label52 = New System.Windows.Forms.Label()
         Me.MRP_TXT = New Tools.TXT()
         Me.Label40 = New System.Windows.Forms.Label()
+        Me.Panel4 = New System.Windows.Forms.Panel()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Panel21 = New System.Windows.Forms.Panel()
         Me.Panel41 = New System.Windows.Forms.Panel()
@@ -141,7 +140,6 @@ Partial Class Stock_Item_frm
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label37 = New System.Windows.Forms.Label()
-        Me.Panel3 = New System.Windows.Forms.Panel()
         Me.Panel28 = New System.Windows.Forms.Panel()
         Me.Group_TXT = New Tools.TXT()
         Me.Group_source = New System.Windows.Forms.BindingSource(Me.components)
@@ -149,7 +147,6 @@ Partial Class Stock_Item_frm
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Panel30 = New System.Windows.Forms.Panel()
         Me.Label38 = New System.Windows.Forms.Label()
-        Me.Panel4 = New System.Windows.Forms.Panel()
         Me.Panel6 = New System.Windows.Forms.Panel()
         Me.Panel44 = New System.Windows.Forms.Panel()
         Me.Label6 = New System.Windows.Forms.Label()
@@ -264,9 +261,9 @@ Partial Class Stock_Item_frm
         Me.Panel14.Controls.Add(Me.DataGridView1)
         Me.Panel14.Controls.Add(Me.Label11)
         Me.Panel14.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel14.Location = New System.Drawing.Point(656, 0)
+        Me.Panel14.Location = New System.Drawing.Point(657, 0)
         Me.Panel14.Name = "Panel14"
-        Me.Panel14.Size = New System.Drawing.Size(538, 705)
+        Me.Panel14.Size = New System.Drawing.Size(537, 705)
         Me.Panel14.TabIndex = 46
         '
         'DataGridView3
@@ -322,24 +319,24 @@ Partial Class Stock_Item_frm
         Me.DataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(215, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(210, Byte), Integer))
         Me.DataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.DataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.BurlyWood
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.BurlyWood
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = System.Drawing.Color.BurlyWood
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.BurlyWood
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle3
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column3, Me.Column4, Me.Column5, Me.Column9, Me.Column6, Me.Column7, Me.Column8})
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(215, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(210, Byte), Integer))
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(215, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(210, Byte), Integer))
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(CType(CType(215, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(210, Byte), Integer))
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(215, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(210, Byte), Integer))
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle4
         Me.DataGridView1.EnableHeadersVisualStyles = False
         Me.DataGridView1.GridColor = System.Drawing.Color.DimGray
         Me.DataGridView1.Location = New System.Drawing.Point(480, 157)
@@ -438,7 +435,7 @@ Partial Class Stock_Item_frm
         Me.Label11.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label11.Location = New System.Drawing.Point(0, 630)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(538, 75)
+        Me.Label11.Size = New System.Drawing.Size(537, 75)
         Me.Label11.TabIndex = 38
         Me.Label11.Text = "N/A"
         '
@@ -464,18 +461,16 @@ Partial Class Stock_Item_frm
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Left
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(656, 705)
+        Me.Panel1.Size = New System.Drawing.Size(657, 705)
         Me.Panel1.TabIndex = 3
         '
         'Panel11
         '
         Me.Panel11.AutoScroll = True
-        Me.Panel11.BackColor = System.Drawing.Color.FromArgb(CType(CType(215, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(210, Byte), Integer))
         Me.Panel11.Controls.Add(Me.Panel17)
-        Me.Panel11.Controls.Add(Me.Panel12)
-        Me.Panel11.Controls.Add(Me.Panel13)
         Me.Panel11.Controls.Add(Me.Panel26)
-        Me.Panel11.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel11.Controls.Add(Me.Panel4)
+        Me.Panel11.Dock = System.Windows.Forms.DockStyle.Left
         Me.Panel11.Location = New System.Drawing.Point(352, 78)
         Me.Panel11.Name = "Panel11"
         Me.Panel11.Size = New System.Drawing.Size(302, 552)
@@ -491,7 +486,7 @@ Partial Class Stock_Item_frm
         Me.Panel17.Controls.Add(Me.Label17)
         Me.Panel17.Controls.Add(Me.Panel20)
         Me.Panel17.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel17.Location = New System.Drawing.Point(0, 113)
+        Me.Panel17.Location = New System.Drawing.Point(1, 113)
         Me.Panel17.Name = "Panel17"
         Me.Panel17.Padding = New System.Windows.Forms.Padding(0, 0, 0, 10)
         Me.Panel17.Size = New System.Drawing.Size(301, 125)
@@ -530,8 +525,8 @@ Partial Class Stock_Item_frm
         '
         'Yn3
         '
-        Me.Yn3.Back_color = System.Drawing.Color.FromArgb(CType(CType(215, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(210, Byte), Integer))
-        Me.Yn3.BackColor = System.Drawing.Color.FromArgb(CType(CType(215, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(210, Byte), Integer))
+        Me.Yn3.Back_color = System.Drawing.Color.White
+        Me.Yn3.BackColor = System.Drawing.Color.White
         Me.Yn3.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Yn3.Data_Link_ = ""
         Me.Yn3.Defolt_ = "No"
@@ -599,8 +594,8 @@ Partial Class Stock_Item_frm
         '
         'exp_yn
         '
-        Me.exp_yn.Back_color = System.Drawing.Color.FromArgb(CType(CType(215, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(210, Byte), Integer))
-        Me.exp_yn.BackColor = System.Drawing.Color.FromArgb(CType(CType(215, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(210, Byte), Integer))
+        Me.exp_yn.Back_color = System.Drawing.Color.White
+        Me.exp_yn.BackColor = System.Drawing.Color.White
         Me.exp_yn.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.exp_yn.Data_Link_ = ""
         Me.exp_yn.Defolt_ = "No"
@@ -647,8 +642,8 @@ Partial Class Stock_Item_frm
         '
         'mfg_yn
         '
-        Me.mfg_yn.Back_color = System.Drawing.Color.FromArgb(CType(CType(215, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(210, Byte), Integer))
-        Me.mfg_yn.BackColor = System.Drawing.Color.FromArgb(CType(CType(215, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(210, Byte), Integer))
+        Me.mfg_yn.Back_color = System.Drawing.Color.White
+        Me.mfg_yn.BackColor = System.Drawing.Color.White
         Me.mfg_yn.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.mfg_yn.Data_Link_ = ""
         Me.mfg_yn.Defolt_ = "No"
@@ -684,8 +679,8 @@ Partial Class Stock_Item_frm
         '
         'batch_YN
         '
-        Me.batch_YN.Back_color = System.Drawing.Color.FromArgb(CType(CType(215, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(210, Byte), Integer))
-        Me.batch_YN.BackColor = System.Drawing.Color.FromArgb(CType(CType(215, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(210, Byte), Integer))
+        Me.batch_YN.Back_color = System.Drawing.Color.White
+        Me.batch_YN.BackColor = System.Drawing.Color.White
         Me.batch_YN.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.batch_YN.Data_Link_ = ""
         Me.batch_YN.Defolt_ = "No"
@@ -730,8 +725,8 @@ Partial Class Stock_Item_frm
         '
         'BOM_YN
         '
-        Me.BOM_YN.Back_color = System.Drawing.Color.FromArgb(CType(CType(215, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(210, Byte), Integer))
-        Me.BOM_YN.BackColor = System.Drawing.Color.FromArgb(CType(CType(215, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(210, Byte), Integer))
+        Me.BOM_YN.Back_color = System.Drawing.Color.White
+        Me.BOM_YN.BackColor = System.Drawing.Color.White
         Me.BOM_YN.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.BOM_YN.Data_Link_ = ""
         Me.BOM_YN.Defolt_ = "No"
@@ -784,26 +779,6 @@ Partial Class Stock_Item_frm
         Me.Panel20.TabIndex = 92
         Me.Panel20.TabStop = True
         '
-        'Panel12
-        '
-        Me.Panel12.BackColor = System.Drawing.Color.DarkGray
-        Me.Panel12.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel12.Location = New System.Drawing.Point(301, 113)
-        Me.Panel12.Name = "Panel12"
-        Me.Panel12.Size = New System.Drawing.Size(1, 438)
-        Me.Panel12.TabIndex = 2
-        Me.Panel12.TabStop = True
-        '
-        'Panel13
-        '
-        Me.Panel13.BackColor = System.Drawing.Color.DarkGray
-        Me.Panel13.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel13.Location = New System.Drawing.Point(0, 551)
-        Me.Panel13.Name = "Panel13"
-        Me.Panel13.Size = New System.Drawing.Size(302, 1)
-        Me.Panel13.TabIndex = 30
-        Me.Panel13.TabStop = True
-        '
         'Panel26
         '
         Me.Panel26.AutoSize = True
@@ -813,10 +788,10 @@ Partial Class Stock_Item_frm
         Me.Panel26.Controls.Add(Me.Panel36)
         Me.Panel26.Controls.Add(Me.Label40)
         Me.Panel26.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel26.Location = New System.Drawing.Point(0, 0)
+        Me.Panel26.Location = New System.Drawing.Point(1, 0)
         Me.Panel26.Name = "Panel26"
         Me.Panel26.Padding = New System.Windows.Forms.Padding(0, 0, 0, 10)
-        Me.Panel26.Size = New System.Drawing.Size(302, 113)
+        Me.Panel26.Size = New System.Drawing.Size(301, 113)
         Me.Panel26.TabIndex = 1
         '
         'Panel35
@@ -828,14 +803,14 @@ Partial Class Stock_Item_frm
         Me.Panel35.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel35.Location = New System.Drawing.Point(0, 81)
         Me.Panel35.Name = "Panel35"
-        Me.Panel35.Size = New System.Drawing.Size(302, 22)
+        Me.Panel35.Size = New System.Drawing.Size(301, 22)
         Me.Panel35.TabIndex = 5
         '
         'Txt3
         '
         Me.Txt3.Auto_Cleane = True
-        Me.Txt3.Back_color = System.Drawing.Color.FromArgb(CType(CType(215, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(210, Byte), Integer))
-        Me.Txt3.BackColor = System.Drawing.Color.FromArgb(CType(CType(215, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(210, Byte), Integer))
+        Me.Txt3.Back_color = System.Drawing.Color.White
+        Me.Txt3.BackColor = System.Drawing.Color.White
         Me.Txt3.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Txt3.Data_Link_ = ""
         Me.Txt3.Decimal_ = 2
@@ -889,14 +864,14 @@ Partial Class Stock_Item_frm
         Me.Panel39.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel39.Location = New System.Drawing.Point(0, 59)
         Me.Panel39.Name = "Panel39"
-        Me.Panel39.Size = New System.Drawing.Size(302, 22)
+        Me.Panel39.Size = New System.Drawing.Size(301, 22)
         Me.Panel39.TabIndex = 4
         '
         'Txt4
         '
         Me.Txt4.Auto_Cleane = True
-        Me.Txt4.Back_color = System.Drawing.Color.FromArgb(CType(CType(215, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(210, Byte), Integer))
-        Me.Txt4.BackColor = System.Drawing.Color.FromArgb(CType(CType(215, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(210, Byte), Integer))
+        Me.Txt4.Back_color = System.Drawing.Color.White
+        Me.Txt4.BackColor = System.Drawing.Color.White
         Me.Txt4.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Txt4.Data_Link_ = ""
         Me.Txt4.Decimal_ = 2
@@ -950,7 +925,7 @@ Partial Class Stock_Item_frm
         Me.Panel38.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel38.Location = New System.Drawing.Point(0, 37)
         Me.Panel38.Name = "Panel38"
-        Me.Panel38.Size = New System.Drawing.Size(302, 22)
+        Me.Panel38.Size = New System.Drawing.Size(301, 22)
         Me.Panel38.TabIndex = 3
         '
         'Label36
@@ -973,8 +948,8 @@ Partial Class Stock_Item_frm
         '
         'ST_Rate_YN
         '
-        Me.ST_Rate_YN.Back_color = System.Drawing.Color.FromArgb(CType(CType(215, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(210, Byte), Integer))
-        Me.ST_Rate_YN.BackColor = System.Drawing.Color.FromArgb(CType(CType(215, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(210, Byte), Integer))
+        Me.ST_Rate_YN.Back_color = System.Drawing.Color.White
+        Me.ST_Rate_YN.BackColor = System.Drawing.Color.White
         Me.ST_Rate_YN.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.ST_Rate_YN.Data_Link_ = ""
         Me.ST_Rate_YN.Defolt_ = "No"
@@ -996,7 +971,7 @@ Partial Class Stock_Item_frm
         Me.Panel36.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel36.Location = New System.Drawing.Point(0, 15)
         Me.Panel36.Name = "Panel36"
-        Me.Panel36.Size = New System.Drawing.Size(302, 22)
+        Me.Panel36.Size = New System.Drawing.Size(301, 22)
         Me.Panel36.TabIndex = 0
         '
         'Label51
@@ -1020,8 +995,8 @@ Partial Class Stock_Item_frm
         'MRP_TXT
         '
         Me.MRP_TXT.Auto_Cleane = True
-        Me.MRP_TXT.Back_color = System.Drawing.Color.FromArgb(CType(CType(215, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(210, Byte), Integer))
-        Me.MRP_TXT.BackColor = System.Drawing.Color.FromArgb(CType(CType(215, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(210, Byte), Integer))
+        Me.MRP_TXT.Back_color = System.Drawing.Color.White
+        Me.MRP_TXT.BackColor = System.Drawing.Color.White
         Me.MRP_TXT.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.MRP_TXT.Data_Link_ = ""
         Me.MRP_TXT.Decimal_ = 2
@@ -1053,20 +1028,27 @@ Partial Class Stock_Item_frm
         Me.Label40.Font = New System.Drawing.Font("Arial", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle))
         Me.Label40.Location = New System.Drawing.Point(0, 0)
         Me.Label40.Name = "Label40"
-        Me.Label40.Size = New System.Drawing.Size(302, 15)
+        Me.Label40.Size = New System.Drawing.Size(301, 15)
         Me.Label40.TabIndex = 94
         Me.Label40.Text = "Valuation"
         Me.Label40.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
+        'Panel4
+        '
+        Me.Panel4.BackColor = System.Drawing.Color.Silver
+        Me.Panel4.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Panel4.Location = New System.Drawing.Point(0, 0)
+        Me.Panel4.Name = "Panel4"
+        Me.Panel4.Size = New System.Drawing.Size(1, 552)
+        Me.Panel4.TabIndex = 106
+        Me.Panel4.TabStop = True
+        '
         'Panel2
         '
         Me.Panel2.AutoScroll = True
-        Me.Panel2.BackColor = System.Drawing.Color.Beige
         Me.Panel2.Controls.Add(Me.Panel21)
         Me.Panel2.Controls.Add(Me.Unit_Panel)
-        Me.Panel2.Controls.Add(Me.Panel3)
         Me.Panel2.Controls.Add(Me.Panel28)
-        Me.Panel2.Controls.Add(Me.Panel4)
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Left
         Me.Panel2.Location = New System.Drawing.Point(0, 78)
         Me.Panel2.Name = "Panel2"
@@ -1084,7 +1066,7 @@ Partial Class Stock_Item_frm
         Me.Panel21.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel21.Location = New System.Drawing.Point(0, 115)
         Me.Panel21.Name = "Panel21"
-        Me.Panel21.Size = New System.Drawing.Size(351, 146)
+        Me.Panel21.Size = New System.Drawing.Size(352, 146)
         Me.Panel21.TabIndex = 3
         '
         'Panel41
@@ -1107,14 +1089,14 @@ Partial Class Stock_Item_frm
         Me.Panel41.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel41.Location = New System.Drawing.Point(0, 39)
         Me.Panel41.Name = "Panel41"
-        Me.Panel41.Size = New System.Drawing.Size(351, 106)
+        Me.Panel41.Size = New System.Drawing.Size(352, 106)
         Me.Panel41.TabIndex = 106
         '
         'Txt5
         '
         Me.Txt5.Auto_Cleane = True
-        Me.Txt5.Back_color = System.Drawing.Color.Beige
-        Me.Txt5.BackColor = System.Drawing.Color.Beige
+        Me.Txt5.Back_color = System.Drawing.Color.White
+        Me.Txt5.BackColor = System.Drawing.Color.White
         Me.Txt5.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Txt5.Data_Link_ = ""
         Me.Txt5.Decimal_ = 2
@@ -1174,8 +1156,8 @@ Partial Class Stock_Item_frm
         'Txt7
         '
         Me.Txt7.Auto_Cleane = True
-        Me.Txt7.Back_color = System.Drawing.Color.Beige
-        Me.Txt7.BackColor = System.Drawing.Color.Beige
+        Me.Txt7.Back_color = System.Drawing.Color.White
+        Me.Txt7.BackColor = System.Drawing.Color.White
         Me.Txt7.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Txt7.Data_Link_ = ""
         Me.Txt7.Decimal_ = 2
@@ -1240,8 +1222,8 @@ Partial Class Stock_Item_frm
         'HSN_TXT
         '
         Me.HSN_TXT.Auto_Cleane = True
-        Me.HSN_TXT.Back_color = System.Drawing.Color.Beige
-        Me.HSN_TXT.BackColor = System.Drawing.Color.Beige
+        Me.HSN_TXT.Back_color = System.Drawing.Color.White
+        Me.HSN_TXT.BackColor = System.Drawing.Color.White
         Me.HSN_TXT.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.HSN_TXT.Data_Link_ = ""
         Me.HSN_TXT.Decimal_ = 2
@@ -1279,8 +1261,8 @@ Partial Class Stock_Item_frm
         'Txt1
         '
         Me.Txt1.Auto_Cleane = True
-        Me.Txt1.Back_color = System.Drawing.Color.Beige
-        Me.Txt1.BackColor = System.Drawing.Color.Beige
+        Me.Txt1.Back_color = System.Drawing.Color.White
+        Me.Txt1.BackColor = System.Drawing.Color.White
         Me.Txt1.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Txt1.Data_Link_ = ""
         Me.Txt1.Decimal_ = 2
@@ -1347,14 +1329,14 @@ Partial Class Stock_Item_frm
         Me.Panel18.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel18.Location = New System.Drawing.Point(0, 16)
         Me.Panel18.Name = "Panel18"
-        Me.Panel18.Size = New System.Drawing.Size(351, 23)
+        Me.Panel18.Size = New System.Drawing.Size(352, 23)
         Me.Panel18.TabIndex = 1
         '
         'TAX_Type
         '
         Me.TAX_Type.Auto_Cleane = True
-        Me.TAX_Type.Back_color = System.Drawing.Color.Beige
-        Me.TAX_Type.BackColor = System.Drawing.Color.Beige
+        Me.TAX_Type.Back_color = System.Drawing.Color.White
+        Me.TAX_Type.BackColor = System.Drawing.Color.White
         Me.TAX_Type.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TAX_Type.Data_Link_ = ""
         Me.TAX_Type.Decimal_ = 2
@@ -1405,7 +1387,7 @@ Partial Class Stock_Item_frm
         Me.Panel27.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel27.Location = New System.Drawing.Point(0, 1)
         Me.Panel27.Name = "Panel27"
-        Me.Panel27.Size = New System.Drawing.Size(351, 15)
+        Me.Panel27.Size = New System.Drawing.Size(352, 15)
         Me.Panel27.TabIndex = 0
         '
         'Label18
@@ -1414,7 +1396,7 @@ Partial Class Stock_Item_frm
         Me.Label18.Font = New System.Drawing.Font("Arial", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle))
         Me.Label18.Location = New System.Drawing.Point(0, 0)
         Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(222, 15)
+        Me.Label18.Size = New System.Drawing.Size(223, 15)
         Me.Label18.TabIndex = 94
         Me.Label18.Text = "GST Details"
         Me.Label18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -1422,8 +1404,8 @@ Partial Class Stock_Item_frm
         'Txt2
         '
         Me.Txt2.Auto_Cleane = True
-        Me.Txt2.Back_color = System.Drawing.Color.Beige
-        Me.Txt2.BackColor = System.Drawing.Color.Beige
+        Me.Txt2.Back_color = System.Drawing.Color.White
+        Me.Txt2.BackColor = System.Drawing.Color.White
         Me.Txt2.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Txt2.Data_Link_ = ""
         Me.Txt2.Decimal_ = 2
@@ -1434,7 +1416,7 @@ Partial Class Stock_Item_frm
         Me.Txt2.Font_Style = System.Drawing.FontStyle.Bold
         Me.Txt2.Format_ = "dd-MM-yyyy"
         Me.Txt2.Keydown_Support = True
-        Me.Txt2.Location = New System.Drawing.Point(222, 0)
+        Me.Txt2.Location = New System.Drawing.Point(223, 0)
         Me.Txt2.Msg_Object = Nothing
         Me.Txt2.Name = "Txt2"
         Me.Txt2.ReadOnly = True
@@ -1459,7 +1441,7 @@ Partial Class Stock_Item_frm
         Me.Panel23.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Panel23.Location = New System.Drawing.Point(0, 145)
         Me.Panel23.Name = "Panel23"
-        Me.Panel23.Size = New System.Drawing.Size(351, 1)
+        Me.Panel23.Size = New System.Drawing.Size(352, 1)
         Me.Panel23.TabIndex = 105
         Me.Panel23.TabStop = True
         '
@@ -1469,7 +1451,7 @@ Partial Class Stock_Item_frm
         Me.Panel24.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel24.Location = New System.Drawing.Point(0, 0)
         Me.Panel24.Name = "Panel24"
-        Me.Panel24.Size = New System.Drawing.Size(351, 1)
+        Me.Panel24.Size = New System.Drawing.Size(352, 1)
         Me.Panel24.TabIndex = 92
         Me.Panel24.TabStop = True
         '
@@ -1482,7 +1464,7 @@ Partial Class Stock_Item_frm
         Me.Unit_Panel.Dock = System.Windows.Forms.DockStyle.Top
         Me.Unit_Panel.Location = New System.Drawing.Point(0, 38)
         Me.Unit_Panel.Name = "Unit_Panel"
-        Me.Unit_Panel.Size = New System.Drawing.Size(351, 77)
+        Me.Unit_Panel.Size = New System.Drawing.Size(352, 77)
         Me.Unit_Panel.TabIndex = 2
         '
         'Panel15
@@ -1500,15 +1482,15 @@ Partial Class Stock_Item_frm
         Me.Panel15.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel15.Location = New System.Drawing.Point(0, 38)
         Me.Panel15.Name = "Panel15"
-        Me.Panel15.Size = New System.Drawing.Size(351, 39)
+        Me.Panel15.Size = New System.Drawing.Size(352, 39)
         Me.Panel15.TabIndex = 1
         Me.Panel15.Visible = False
         '
         'Unit2TXT
         '
         Me.Unit2TXT.Auto_Cleane = True
-        Me.Unit2TXT.Back_color = System.Drawing.Color.Beige
-        Me.Unit2TXT.BackColor = System.Drawing.Color.Beige
+        Me.Unit2TXT.Back_color = System.Drawing.Color.White
+        Me.Unit2TXT.BackColor = System.Drawing.Color.White
         Me.Unit2TXT.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Unit2TXT.Data_Link_ = ""
         Me.Unit2TXT.Decimal_ = 2
@@ -1566,8 +1548,8 @@ Partial Class Stock_Item_frm
         'TextBox3
         '
         Me.TextBox3.Auto_Cleane = True
-        Me.TextBox3.Back_color = System.Drawing.Color.Beige
-        Me.TextBox3.BackColor = System.Drawing.Color.Beige
+        Me.TextBox3.Back_color = System.Drawing.Color.White
+        Me.TextBox3.BackColor = System.Drawing.Color.White
         Me.TextBox3.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox3.Data_Link_ = ""
         Me.TextBox3.Decimal_ = 2
@@ -1628,8 +1610,8 @@ Partial Class Stock_Item_frm
         'TextBox2
         '
         Me.TextBox2.Auto_Cleane = True
-        Me.TextBox2.Back_color = System.Drawing.Color.Beige
-        Me.TextBox2.BackColor = System.Drawing.Color.Beige
+        Me.TextBox2.Back_color = System.Drawing.Color.White
+        Me.TextBox2.BackColor = System.Drawing.Color.White
         Me.TextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox2.Data_Link_ = ""
         Me.TextBox2.Decimal_ = 2
@@ -1667,14 +1649,14 @@ Partial Class Stock_Item_frm
         Me.Panel25.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel25.Location = New System.Drawing.Point(0, 15)
         Me.Panel25.Name = "Panel25"
-        Me.Panel25.Size = New System.Drawing.Size(351, 23)
+        Me.Panel25.Size = New System.Drawing.Size(352, 23)
         Me.Panel25.TabIndex = 0
         '
         'Unit_TXT
         '
         Me.Unit_TXT.Auto_Cleane = True
-        Me.Unit_TXT.Back_color = System.Drawing.Color.Beige
-        Me.Unit_TXT.BackColor = System.Drawing.Color.Beige
+        Me.Unit_TXT.Back_color = System.Drawing.Color.White
+        Me.Unit_TXT.BackColor = System.Drawing.Color.White
         Me.Unit_TXT.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Unit_TXT.Data_Link_ = ""
         Me.Unit_TXT.Decimal_ = 2
@@ -1725,20 +1707,10 @@ Partial Class Stock_Item_frm
         Me.Label37.Font = New System.Drawing.Font("Arial", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle))
         Me.Label37.Location = New System.Drawing.Point(0, 0)
         Me.Label37.Name = "Label37"
-        Me.Label37.Size = New System.Drawing.Size(351, 15)
+        Me.Label37.Size = New System.Drawing.Size(352, 15)
         Me.Label37.TabIndex = 94
         Me.Label37.Text = "Unit Details"
         Me.Label37.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Panel3
-        '
-        Me.Panel3.BackColor = System.Drawing.Color.DarkGray
-        Me.Panel3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel3.Location = New System.Drawing.Point(0, 551)
-        Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(351, 1)
-        Me.Panel3.TabIndex = 30
-        Me.Panel3.TabStop = True
         '
         'Panel28
         '
@@ -1751,14 +1723,14 @@ Partial Class Stock_Item_frm
         Me.Panel28.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel28.Location = New System.Drawing.Point(0, 0)
         Me.Panel28.Name = "Panel28"
-        Me.Panel28.Size = New System.Drawing.Size(351, 38)
+        Me.Panel28.Size = New System.Drawing.Size(352, 38)
         Me.Panel28.TabIndex = 0
         '
         'Group_TXT
         '
         Me.Group_TXT.Auto_Cleane = True
-        Me.Group_TXT.Back_color = System.Drawing.Color.Beige
-        Me.Group_TXT.BackColor = System.Drawing.Color.Beige
+        Me.Group_TXT.Back_color = System.Drawing.Color.White
+        Me.Group_TXT.BackColor = System.Drawing.Color.White
         Me.Group_TXT.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Group_TXT.Data_Link_ = ""
         Me.Group_TXT.Decimal_ = 2
@@ -1774,7 +1746,7 @@ Partial Class Stock_Item_frm
         Me.Group_TXT.Select_Auto_Show = True
         Me.Group_TXT.Select_Column_Color = "NA"
         Me.Group_TXT.Select_Columns = 0
-        Me.Group_TXT.Select_Filter = "Name LIKE '%<value>%'"
+        Me.Group_TXT.Select_Filter = "Name LIKE '%<value>%' or Nickname LIKE 'Create'"
         Me.Group_TXT.Select_Hide_Columns = "0,2,3,5"
         Me.Group_TXT.Select_Object = Nothing
         Me.Group_TXT.Select_Source = Me.Group_source
@@ -1808,7 +1780,7 @@ Partial Class Stock_Item_frm
         Me.Panel30.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Panel30.Location = New System.Drawing.Point(0, 37)
         Me.Panel30.Name = "Panel30"
-        Me.Panel30.Size = New System.Drawing.Size(351, 1)
+        Me.Panel30.Size = New System.Drawing.Size(352, 1)
         Me.Panel30.TabIndex = 105
         Me.Panel30.TabStop = True
         '
@@ -1818,25 +1790,14 @@ Partial Class Stock_Item_frm
         Me.Label38.Font = New System.Drawing.Font("Arial", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label38.Location = New System.Drawing.Point(0, 0)
         Me.Label38.Name = "Label38"
-        Me.Label38.Size = New System.Drawing.Size(351, 19)
+        Me.Label38.Size = New System.Drawing.Size(352, 19)
         Me.Label38.TabIndex = 94
         Me.Label38.Text = "Under Group Details"
         Me.Label38.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'Panel4
-        '
-        Me.Panel4.BackColor = System.Drawing.Color.Silver
-        Me.Panel4.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel4.Location = New System.Drawing.Point(351, 0)
-        Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(1, 552)
-        Me.Panel4.TabIndex = 31
-        Me.Panel4.TabStop = True
-        '
         'Panel6
         '
         Me.Panel6.AutoSize = True
-        Me.Panel6.BackColor = System.Drawing.Color.OldLace
         Me.Panel6.Controls.Add(Me.Panel44)
         Me.Panel6.Controls.Add(Me.Barcode_Panel)
         Me.Panel6.Controls.Add(Me.Label48)
@@ -1850,7 +1811,7 @@ Partial Class Stock_Item_frm
         Me.Panel6.Location = New System.Drawing.Point(0, 0)
         Me.Panel6.Name = "Panel6"
         Me.Panel6.Padding = New System.Windows.Forms.Padding(0, 0, 0, 5)
-        Me.Panel6.Size = New System.Drawing.Size(654, 78)
+        Me.Panel6.Size = New System.Drawing.Size(655, 78)
         Me.Panel6.TabIndex = 0
         '
         'Panel44
@@ -1880,8 +1841,8 @@ Partial Class Stock_Item_frm
         'Discription_TXT
         '
         Me.Discription_TXT.Auto_Cleane = True
-        Me.Discription_TXT.Back_color = System.Drawing.Color.OldLace
-        Me.Discription_TXT.BackColor = System.Drawing.Color.OldLace
+        Me.Discription_TXT.Back_color = System.Drawing.Color.White
+        Me.Discription_TXT.BackColor = System.Drawing.Color.White
         Me.Discription_TXT.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Discription_TXT.Data_Link_ = ""
         Me.Discription_TXT.Decimal_ = 2
@@ -1928,8 +1889,8 @@ Partial Class Stock_Item_frm
         'Note_TXT
         '
         Me.Note_TXT.Auto_Cleane = True
-        Me.Note_TXT.Back_color = System.Drawing.Color.OldLace
-        Me.Note_TXT.BackColor = System.Drawing.Color.OldLace
+        Me.Note_TXT.Back_color = System.Drawing.Color.White
+        Me.Note_TXT.BackColor = System.Drawing.Color.White
         Me.Note_TXT.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Note_TXT.Data_Link_ = ""
         Me.Note_TXT.Decimal_ = 2
@@ -1989,8 +1950,8 @@ Partial Class Stock_Item_frm
         'Barcode_TXT
         '
         Me.Barcode_TXT.Auto_Cleane = True
-        Me.Barcode_TXT.Back_color = System.Drawing.Color.OldLace
-        Me.Barcode_TXT.BackColor = System.Drawing.Color.OldLace
+        Me.Barcode_TXT.Back_color = System.Drawing.Color.White
+        Me.Barcode_TXT.BackColor = System.Drawing.Color.White
         Me.Barcode_TXT.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Barcode_TXT.Data_Link_ = ""
         Me.Barcode_TXT.Decimal_ = 2
@@ -2038,8 +1999,8 @@ Partial Class Stock_Item_frm
         'Alias_TXT
         '
         Me.Alias_TXT.Auto_Cleane = True
-        Me.Alias_TXT.Back_color = System.Drawing.Color.OldLace
-        Me.Alias_TXT.BackColor = System.Drawing.Color.OldLace
+        Me.Alias_TXT.Back_color = System.Drawing.Color.White
+        Me.Alias_TXT.BackColor = System.Drawing.Color.White
         Me.Alias_TXT.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Alias_TXT.Data_Link_ = ""
         Me.Alias_TXT.Decimal_ = 2
@@ -2087,8 +2048,8 @@ Partial Class Stock_Item_frm
         'Name_TXT
         '
         Me.Name_TXT.Auto_Cleane = True
-        Me.Name_TXT.Back_color = System.Drawing.Color.OldLace
-        Me.Name_TXT.BackColor = System.Drawing.Color.OldLace
+        Me.Name_TXT.Back_color = System.Drawing.Color.White
+        Me.Name_TXT.BackColor = System.Drawing.Color.White
         Me.Name_TXT.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Name_TXT.Data_Link_ = ""
         Me.Name_TXT.Decimal_ = 2
@@ -2129,20 +2090,20 @@ Partial Class Stock_Item_frm
         Me.Panel10.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Panel10.Location = New System.Drawing.Point(0, 72)
         Me.Panel10.Name = "Panel10"
-        Me.Panel10.Size = New System.Drawing.Size(654, 1)
+        Me.Panel10.Size = New System.Drawing.Size(655, 1)
         Me.Panel10.TabIndex = 30
         Me.Panel10.TabStop = True
         '
         'Panel7
         '
         Me.Panel7.AutoScroll = True
-        Me.Panel7.BackColor = System.Drawing.Color.MistyRose
+        Me.Panel7.BackColor = System.Drawing.Color.White
         Me.Panel7.Controls.Add(Me.Panel22)
         Me.Panel7.Controls.Add(Me.Panel8)
         Me.Panel7.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Panel7.Location = New System.Drawing.Point(0, 630)
         Me.Panel7.Name = "Panel7"
-        Me.Panel7.Size = New System.Drawing.Size(654, 73)
+        Me.Panel7.Size = New System.Drawing.Size(655, 73)
         Me.Panel7.TabIndex = 3
         '
         'Panel22
@@ -2154,7 +2115,7 @@ Partial Class Stock_Item_frm
         Me.Panel22.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel22.Location = New System.Drawing.Point(0, 1)
         Me.Panel22.Name = "Panel22"
-        Me.Panel22.Size = New System.Drawing.Size(654, 32)
+        Me.Panel22.Size = New System.Drawing.Size(655, 32)
         Me.Panel22.TabIndex = 103
         '
         'OB_Panel
@@ -2165,7 +2126,7 @@ Partial Class Stock_Item_frm
         Me.OB_Panel.Dock = System.Windows.Forms.DockStyle.Top
         Me.OB_Panel.Location = New System.Drawing.Point(254, 0)
         Me.OB_Panel.Name = "OB_Panel"
-        Me.OB_Panel.Size = New System.Drawing.Size(400, 32)
+        Me.OB_Panel.Size = New System.Drawing.Size(401, 32)
         Me.OB_Panel.TabIndex = 45
         '
         'Panel40
@@ -2176,14 +2137,14 @@ Partial Class Stock_Item_frm
         Me.Panel40.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel40.Location = New System.Drawing.Point(0, 16)
         Me.Panel40.Name = "Panel40"
-        Me.Panel40.Size = New System.Drawing.Size(400, 16)
+        Me.Panel40.Size = New System.Drawing.Size(401, 16)
         Me.Panel40.TabIndex = 2
         '
         'Ob_Quanitity_TXT
         '
         Me.Ob_Quanitity_TXT.Auto_Cleane = True
-        Me.Ob_Quanitity_TXT.Back_color = System.Drawing.Color.MistyRose
-        Me.Ob_Quanitity_TXT.BackColor = System.Drawing.Color.MistyRose
+        Me.Ob_Quanitity_TXT.Back_color = System.Drawing.Color.White
+        Me.Ob_Quanitity_TXT.BackColor = System.Drawing.Color.White
         Me.Ob_Quanitity_TXT.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Ob_Quanitity_TXT.Data_Link_ = ""
         Me.Ob_Quanitity_TXT.Decimal_ = 2
@@ -2194,7 +2155,7 @@ Partial Class Stock_Item_frm
         Me.Ob_Quanitity_TXT.Font_Style = System.Drawing.FontStyle.Bold
         Me.Ob_Quanitity_TXT.Format_ = "dd-MM-yyyy"
         Me.Ob_Quanitity_TXT.Keydown_Support = True
-        Me.Ob_Quanitity_TXT.Location = New System.Drawing.Point(155, 0)
+        Me.Ob_Quanitity_TXT.Location = New System.Drawing.Point(156, 0)
         Me.Ob_Quanitity_TXT.Msg_Object = Nothing
         Me.Ob_Quanitity_TXT.Name = "Ob_Quanitity_TXT"
         Me.Ob_Quanitity_TXT.Select_Auto_Show = True
@@ -2216,7 +2177,7 @@ Partial Class Stock_Item_frm
         '
         Me.OB_Unit_Label.Dock = System.Windows.Forms.DockStyle.Right
         Me.OB_Unit_Label.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.OB_Unit_Label.Location = New System.Drawing.Point(225, 0)
+        Me.OB_Unit_Label.Location = New System.Drawing.Point(226, 0)
         Me.OB_Unit_Label.Name = "OB_Unit_Label"
         Me.OB_Unit_Label.Size = New System.Drawing.Size(80, 16)
         Me.OB_Unit_Label.TabIndex = 41
@@ -2224,8 +2185,8 @@ Partial Class Stock_Item_frm
         'Ob_Amt_TXT
         '
         Me.Ob_Amt_TXT.Auto_Cleane = True
-        Me.Ob_Amt_TXT.Back_color = System.Drawing.Color.MistyRose
-        Me.Ob_Amt_TXT.BackColor = System.Drawing.Color.MistyRose
+        Me.Ob_Amt_TXT.Back_color = System.Drawing.Color.White
+        Me.Ob_Amt_TXT.BackColor = System.Drawing.Color.White
         Me.Ob_Amt_TXT.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Ob_Amt_TXT.Data_Link_ = ""
         Me.Ob_Amt_TXT.Decimal_ = 2
@@ -2236,7 +2197,7 @@ Partial Class Stock_Item_frm
         Me.Ob_Amt_TXT.Font_Style = System.Drawing.FontStyle.Bold
         Me.Ob_Amt_TXT.Format_ = "dd-MM-yyyy"
         Me.Ob_Amt_TXT.Keydown_Support = True
-        Me.Ob_Amt_TXT.Location = New System.Drawing.Point(305, 0)
+        Me.Ob_Amt_TXT.Location = New System.Drawing.Point(306, 0)
         Me.Ob_Amt_TXT.Msg_Object = Nothing
         Me.Ob_Amt_TXT.Name = "Ob_Amt_TXT"
         Me.Ob_Amt_TXT.Select_Auto_Show = True
@@ -2261,14 +2222,14 @@ Partial Class Stock_Item_frm
         Me.Panel29.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel29.Location = New System.Drawing.Point(0, 0)
         Me.Panel29.Name = "Panel29"
-        Me.Panel29.Size = New System.Drawing.Size(400, 16)
+        Me.Panel29.Size = New System.Drawing.Size(401, 16)
         Me.Panel29.TabIndex = 1
         '
         'Label19
         '
         Me.Label19.Dock = System.Windows.Forms.DockStyle.Right
         Me.Label19.Font = New System.Drawing.Font("Arial", 9.75!)
-        Me.Label19.Location = New System.Drawing.Point(155, 0)
+        Me.Label19.Location = New System.Drawing.Point(156, 0)
         Me.Label19.Name = "Label19"
         Me.Label19.Size = New System.Drawing.Size(150, 16)
         Me.Label19.TabIndex = 32
@@ -2279,7 +2240,7 @@ Partial Class Stock_Item_frm
         '
         Me.Label54.Dock = System.Windows.Forms.DockStyle.Right
         Me.Label54.Font = New System.Drawing.Font("Arial", 9.75!)
-        Me.Label54.Location = New System.Drawing.Point(305, 0)
+        Me.Label54.Location = New System.Drawing.Point(306, 0)
         Me.Label54.Name = "Label54"
         Me.Label54.Size = New System.Drawing.Size(95, 16)
         Me.Label54.TabIndex = 34
@@ -2290,7 +2251,7 @@ Partial Class Stock_Item_frm
         '
         Me.Opning_balance_Panel.AutoSize = True
         Me.Opning_balance_Panel.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Opning_balance_Panel.Location = New System.Drawing.Point(654, 0)
+        Me.Opning_balance_Panel.Location = New System.Drawing.Point(655, 0)
         Me.Opning_balance_Panel.Name = "Opning_balance_Panel"
         Me.Opning_balance_Panel.Size = New System.Drawing.Size(0, 32)
         Me.Opning_balance_Panel.TabIndex = 1
@@ -2320,8 +2281,8 @@ Partial Class Stock_Item_frm
         'Reorder_Qty_TXT
         '
         Me.Reorder_Qty_TXT.Auto_Cleane = True
-        Me.Reorder_Qty_TXT.Back_color = System.Drawing.Color.MistyRose
-        Me.Reorder_Qty_TXT.BackColor = System.Drawing.Color.MistyRose
+        Me.Reorder_Qty_TXT.Back_color = System.Drawing.Color.White
+        Me.Reorder_Qty_TXT.BackColor = System.Drawing.Color.White
         Me.Reorder_Qty_TXT.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Reorder_Qty_TXT.Data_Link_ = ""
         Me.Reorder_Qty_TXT.Decimal_ = 2
@@ -2384,11 +2345,11 @@ Partial Class Stock_Item_frm
         '
         'Panel8
         '
-        Me.Panel8.BackColor = System.Drawing.Color.DarkGray
+        Me.Panel8.BackColor = System.Drawing.Color.Silver
         Me.Panel8.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel8.Location = New System.Drawing.Point(0, 0)
         Me.Panel8.Name = "Panel8"
-        Me.Panel8.Size = New System.Drawing.Size(654, 1)
+        Me.Panel8.Size = New System.Drawing.Size(655, 1)
         Me.Panel8.TabIndex = 31
         Me.Panel8.TabStop = True
         '
@@ -2545,11 +2506,9 @@ Partial Class Stock_Item_frm
     Friend WithEvents Label7 As Label
     Friend WithEvents Unit_TXT As Tools.TXT
     Friend WithEvents Label8 As Label
-    Friend WithEvents Panel4 As Panel
     Friend WithEvents Label4 As Label
     Friend WithEvents Group_TXT As Tools.TXT
     Friend WithEvents Label3 As Label
-    Friend WithEvents Panel3 As Panel
     Friend WithEvents Panel6 As Panel
     Friend WithEvents Label5 As Label
     Friend WithEvents Label48 As Label
@@ -2576,8 +2535,6 @@ Partial Class Stock_Item_frm
     Friend WithEvents Label26 As Label
     Friend WithEvents Label27 As Label
     Friend WithEvents Panel11 As Panel
-    Friend WithEvents Panel12 As Panel
-    Friend WithEvents Panel13 As Panel
     Friend WithEvents Label28 As Label
     Friend WithEvents Unit2TXT As Tools.TXT
     Friend WithEvents Label29 As Label
@@ -2704,4 +2661,5 @@ Partial Class Stock_Item_frm
     Friend WithEvents Reorder_Qty_TXT As Tools.TXT
     Friend WithEvents Label67 As Label
     Friend WithEvents Panel44 As Panel
+    Friend WithEvents Panel4 As Panel
 End Class

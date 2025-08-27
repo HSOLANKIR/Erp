@@ -3145,7 +3145,7 @@ Partial Public Class Print_dt
         
         Private columnBatch_No As Global.System.Data.DataColumn
         
-        Private columnEx_Date As Global.System.Data.DataColumn
+        Private columnExp_Date As Global.System.Data.DataColumn
         
         Private columnMRP As Global.System.Data.DataColumn
         
@@ -3158,6 +3158,8 @@ Partial Public Class Print_dt
         Private columnQty2 As Global.System.Data.DataColumn
         
         Private columnUnit2 As Global.System.Data.DataColumn
+        
+        Private columnMfg_Date As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
@@ -3316,9 +3318,9 @@ Partial Public Class Print_dt
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property Ex_DateColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property Exp_DateColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnEx_Date
+                Return Me.columnExp_Date
             End Get
         End Property
         
@@ -3367,6 +3369,14 @@ Partial Public Class Print_dt
         Public ReadOnly Property Unit2Column() As Global.System.Data.DataColumn
             Get
                 Return Me.columnUnit2
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property Mfg_DateColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnMfg_Date
             End Get
         End Property
         
@@ -3423,15 +3433,16 @@ Partial Public Class Print_dt
                     ByVal Amount_Total As String,  _
                     ByVal Category As String,  _
                     ByVal Batch_No As String,  _
-                    ByVal Ex_Date As String,  _
+                    ByVal Exp_Date As String,  _
                     ByVal MRP As String,  _
                     ByVal Description As String,  _
                     ByVal Discount_P As String,  _
                     ByVal Discount_A As String,  _
                     ByVal Qty2 As String,  _
-                    ByVal Unit2 As String) As TBL_ivc_item_detailsRow
+                    ByVal Unit2 As String,  _
+                    ByVal Mfg_Date As String) As TBL_ivc_item_detailsRow
             Dim rowTBL_ivc_item_detailsRow As TBL_ivc_item_detailsRow = CType(Me.NewRow,TBL_ivc_item_detailsRow)
-            Dim columnValuesArray() As Object = New Object() {ID, Item, HSN, Quantity, Unit, Rate, Subtotal, GST, GST_Amt, Amount, Subtotal_Total, GST_Amt_Total, Amount_Total, Category, Batch_No, Ex_Date, MRP, Description, Discount_P, Discount_A, Qty2, Unit2}
+            Dim columnValuesArray() As Object = New Object() {ID, Item, HSN, Quantity, Unit, Rate, Subtotal, GST, GST_Amt, Amount, Subtotal_Total, GST_Amt_Total, Amount_Total, Category, Batch_No, Exp_Date, MRP, Description, Discount_P, Discount_A, Qty2, Unit2, Mfg_Date}
             rowTBL_ivc_item_detailsRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowTBL_ivc_item_detailsRow)
             Return rowTBL_ivc_item_detailsRow
@@ -3469,13 +3480,14 @@ Partial Public Class Print_dt
             Me.columnAmount_Total = MyBase.Columns("Amount_Total")
             Me.columnCategory = MyBase.Columns("Category")
             Me.columnBatch_No = MyBase.Columns("Batch_No")
-            Me.columnEx_Date = MyBase.Columns("Ex_Date")
+            Me.columnExp_Date = MyBase.Columns("Exp_Date")
             Me.columnMRP = MyBase.Columns("MRP")
             Me.columnDescription = MyBase.Columns("Description")
             Me.columnDiscount_P = MyBase.Columns("Discount_P")
             Me.columnDiscount_A = MyBase.Columns("Discount_A")
             Me.columnQty2 = MyBase.Columns("Qty2")
             Me.columnUnit2 = MyBase.Columns("Unit2")
+            Me.columnMfg_Date = MyBase.Columns("Mfg_Date")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -3515,8 +3527,8 @@ Partial Public Class Print_dt
             MyBase.Columns.Add(Me.columnCategory)
             Me.columnBatch_No = New Global.System.Data.DataColumn("Batch_No", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnBatch_No)
-            Me.columnEx_Date = New Global.System.Data.DataColumn("Ex_Date", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnEx_Date)
+            Me.columnExp_Date = New Global.System.Data.DataColumn("Exp_Date", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnExp_Date)
             Me.columnMRP = New Global.System.Data.DataColumn("MRP", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnMRP)
             Me.columnDescription = New Global.System.Data.DataColumn("Description", GetType(String), Nothing, Global.System.Data.MappingType.Element)
@@ -3529,6 +3541,8 @@ Partial Public Class Print_dt
             MyBase.Columns.Add(Me.columnQty2)
             Me.columnUnit2 = New Global.System.Data.DataColumn("Unit2", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnUnit2)
+            Me.columnMfg_Date = New Global.System.Data.DataColumn("Mfg_Date", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnMfg_Date)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -11147,16 +11161,16 @@ Partial Public Class Print_dt
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property Ex_Date() As String
+        Public Property Exp_Date() As String
             Get
                 Try 
-                    Return CType(Me(Me.tableTBL_ivc_item_details.Ex_DateColumn),String)
+                    Return CType(Me(Me.tableTBL_ivc_item_details.Exp_DateColumn),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Ex_Date' in table 'TBL_ivc_item_details' is DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Exp_Date' in table 'TBL_ivc_item_details' is DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tableTBL_ivc_item_details.Ex_DateColumn) = value
+                Me(Me.tableTBL_ivc_item_details.Exp_DateColumn) = value
             End Set
         End Property
         
@@ -11247,6 +11261,21 @@ Partial Public Class Print_dt
             End Get
             Set
                 Me(Me.tableTBL_ivc_item_details.Unit2Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property Mfg_Date() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTBL_ivc_item_details.Mfg_DateColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Mfg_Date' in table 'TBL_ivc_item_details' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTBL_ivc_item_details.Mfg_DateColumn) = value
             End Set
         End Property
         
@@ -11432,14 +11461,14 @@ Partial Public Class Print_dt
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Function IsEx_DateNull() As Boolean
-            Return Me.IsNull(Me.tableTBL_ivc_item_details.Ex_DateColumn)
+        Public Function IsExp_DateNull() As Boolean
+            Return Me.IsNull(Me.tableTBL_ivc_item_details.Exp_DateColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Sub SetEx_DateNull()
-            Me(Me.tableTBL_ivc_item_details.Ex_DateColumn) = Global.System.Convert.DBNull
+        Public Sub SetExp_DateNull()
+            Me(Me.tableTBL_ivc_item_details.Exp_DateColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -11512,6 +11541,18 @@ Partial Public Class Print_dt
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Sub SetUnit2Null()
             Me(Me.tableTBL_ivc_item_details.Unit2Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IsMfg_DateNull() As Boolean
+            Return Me.IsNull(Me.tableTBL_ivc_item_details.Mfg_DateColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetMfg_DateNull()
+            Me(Me.tableTBL_ivc_item_details.Mfg_DateColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     

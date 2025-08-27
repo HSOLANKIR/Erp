@@ -116,6 +116,12 @@ Public Class Backup_db_frm
         ProgressBag1.Progress_color = Color.LightSeaGreen
         For i As Integer = 1 To 100
             Backup_Background.ReportProgress(i / 1)
+
+            ProgressBag1.Value += 1
+            ProgressBag1.Run(0)
+            Label8.Text = $"{N2_FORMATE(Val(ProgressBag1.Value * 100) / Val(ProgressBag1.Maximum))} %"
+
+
             Dim fi As String = Format(i, "0000")
             If path = Nothing Then
                 If Directory.Exists(Backup_Path & "\" & Company_ID_str & $"_Backup({fi}).bk") = False Then
@@ -183,7 +189,7 @@ Public Class Backup_db_frm
 
         Dim cn As New SQLiteConnection()
 
-        Dim coun_ As Integer = 0
+        Dim coun_ As Integer = 1
         Dim TBL_List As String = ""
         If open_MSSQL_Custom_path(Backup_Path, cn) = True Then
             Dim cmd_m As SQLiteCommand = New SQLiteCommand($"SELECT * FROM sqlite_master WHERE type='table'", cn)
@@ -205,6 +211,8 @@ Public Class Backup_db_frm
     Private Function backup_fill(cn As SQLiteConnection, path As String, T As String)
         Dim Tbl As String() = T.Split(";")
         Dim count_ As Integer = 0
+        ProgressBag1.Value = 0
+        ProgressBag1.Run(0)
         For Each s As String In Tbl
             If s <> Nothing Then
                 If s.Substring(1, 3) = "TBL" Then
@@ -214,8 +222,10 @@ Public Class Backup_db_frm
             End If
             count_ += 1
             Backup_Background.ReportProgress(count_)
-            'Threading.Thread.Sleep(5)
-
+            'Threading.Thread.Sleep(10)
+            ProgressBag1.Value += 1
+            ProgressBag1.Run(0)
+            Label8.Text = $"{N2_FORMATE(Val(ProgressBag1.Value * 100) / Val(ProgressBag1.Maximum))} %"
         Next
     End Function
     Private Function info_file_Fill_data(path As String) As Boolean
@@ -327,10 +337,9 @@ Public Class Backup_db_frm
     End Sub
 
     Private Sub Backup_Background_ProgressChanged(sender As Object, e As ProgressChangedEventArgs) Handles Backup_Background.ProgressChanged
-
-        ProgressBag1.Value = e.ProgressPercentage
-        ProgressBag1.Run(1)
-        Label8.Text = $"{N2_FORMATE(Val(ProgressBag1.Value * 100) / Val(ProgressBag1.Maximum))} %"
+        'ProgressBag1.Value = e.ProgressPercentage
+        'ProgressBag1.Run(1)
+        'Label8.Text = $"{N2_FORMATE(Val(ProgressBag1.Value * 100) / Val(ProgressBag1.Maximum))} %"
     End Sub
 
     Private Sub Panel10_Paint(sender As Object, e As PaintEventArgs) Handles Panel10.Paint
@@ -393,8 +402,9 @@ Public Class Backup_db_frm
 
         Delete_Prossess.Value = e.ProgressPercentage
         Delete_Prossess.Run(1)
-
         Label24.Text = $"{N2_FORMATE(Val(Delete_Prossess.Value * 100) / Val(Delete_Prossess.Maximum))} %"
+
+        Threading.Thread.Sleep(30)
     End Sub
 
     Private Sub Deletebackup_Back_Disposed(sender As Object, e As EventArgs) Handles Deletebackup_Back.Disposed
